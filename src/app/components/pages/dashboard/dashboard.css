@@ -1,0 +1,277 @@
+/* Variables pour les couleurs */
+.dashboard-page-container {
+  --color-blue: #2563eb;
+  --color-green: #10b981;
+  --color-orange: #f59e0b;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-light-gray: #f3f4f6;
+  padding: 20px;
+}
+
+.page-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: var(--color-black);
+}
+
+.content-grid {
+  display: grid;
+  /* Définit la structure : 2 colonnes, la seconde est plus petite pour le graphique */
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 20px;
+}
+
+/* -------------------- 1. HEADER / CADRE MULTICOLORE -------------------- */
+
+.header-card {
+  grid-column: 1 / 2; /* S'étend sur la première colonne */
+  height: 180px;
+  border-radius: 12px;
+  /* L'image de fond doit être dans public/images/ */
+  background-size: cover;
+  background-position: center;
+  padding: 25px;
+  color: var(--color-white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden; /* Pour contenir l'illustration de l'homme */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header-text h2 {
+  font-size: 1.7rem;
+  margin: 0 0 10px 0;
+}
+
+.header-text p {
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.btn-primary {
+  background-color: var(--color-white);
+  color: var(--color-blue);
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-light-gray);
+}
+
+.btn-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  stroke: var(--color-blue); /* Couleur de l'icône dans le bouton */
+  fill: none;
+}
+
+.header-illustration {
+  /* L'image de l'homme doit être dans public/images/ */
+  height: 100%;
+  object-fit: contain;
+  margin-right: -25px; /* Décalage vers l'extérieur pour l'effet de la maquette */
+}
+
+/* -------------------- 2. DIAGRAMME (Cercle) -------------------- */
+
+.chart-card {
+  grid-column: 2 / 3; /* Dans la deuxième colonne */
+  grid-row: 1 / 3; /* S'étend sur les deux premières lignes (Header et Vue d'ensemble) */
+  background-color: var(--color-white);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.pie-chart-image {
+  /* L'image du cercle doit être dans public/images/ */
+  width: 85%;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.chart-legend {
+  width: 100%;
+  padding-left: 10px;
+  font-size: 0.9rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  color: #4b5563; /* Gris foncé pour le texte de la légende */
+}
+
+.legend-item .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* Style spécifique pour la couleur de la légende */
+.legend-item.gray .dot {
+  background-color: #e5e7eb;
+}
+
+/* -------------------- 3. VUE D'ENSEMBLE (Statistiques) -------------------- */
+
+.overview-section {
+  grid-column: 1 / 2; /* Dans la première colonne, sous le Header */
+  padding: 0 10px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.section-header h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-black);
+  margin: 0;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 5px 10px;
+  background-color: var(--color-white);
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  padding: 5px;
+  font-size: 0.9rem;
+  width: 150px;
+}
+
+.search-icon {
+  width: 20px;
+  height: 20px;
+  stroke: #6b7280;
+}
+
+.stats-cards {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.stat-card {
+  flex: 1;
+  background-color: var(--color-white);
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+}
+
+.icon-circle {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.stat-icon {
+  width: 22px;
+  height: 22px;
+  stroke: var(--color-white);
+  fill: none;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.total-label {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-bottom: 2px;
+}
+
+.total-value {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--color-black);
+}
+
+/* -------------------- 4. ACTIVITÉS RÉCENTES -------------------- */
+
+.activity-section {
+  grid-column: 1 / 3; /* S'étend sur les deux colonnes en bas */
+  padding: 0 10px;
+  margin-top: -10px; /* Réduire l'espace avec la section du dessus */
+}
+
+.activity-section h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-black);
+  margin-bottom: 15px;
+}
+
+.activity-list {
+  background-color: var(--color-white);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.activity-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-content {
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.activity-user-name {
+  font-weight: 600;
+}
+
+.activity-time {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  flex-shrink: 0;
+}
