@@ -1,7 +1,16 @@
 <div class="app-layout">
-  <app-sidebar></app-sidebar>
+
+  <!--
+    La barre latérale s'affiche uniquement si le signal 'showSidebar' est VRAI.
+    Ce signal est géré dans src/app/app.ts, basé sur la route actuelle (excluant /login).
+  -->
+  @if (showSidebar()) {
+    <app-sidebar></app-sidebar>
+  }
 
   <div class="main-content">
+    <!-- Le contenu de la page courante (LoginComponent ou DashboardComponent)
+         sera affiché à cet emplacement. -->
     <router-outlet></router-outlet>
   </div>
 </div>
