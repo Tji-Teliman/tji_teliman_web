@@ -1,0 +1,20 @@
+.cont{
+  display: grid;
+  height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
+  grid-template-columns: 250px auto;
+  gap: 10px;
+}
+
+/* .sidbar{
+  grid-template-columns: 150px;
+  grid-column: 1 / 2;
+} */
+
+/* .main{
+  grid-column: 2 / 3;
+  overflow-y: auto;
+  background-color: #f4f4f4;
+  width: 100%;
+} */

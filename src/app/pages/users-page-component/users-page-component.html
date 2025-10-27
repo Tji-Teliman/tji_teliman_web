@@ -1,0 +1,71 @@
+<div class="users-page">
+
+  <!-- ====== BARRE DU HAUT ====== -->
+  <div class="user-bar">
+    <!-- 1Barre de recherche -->
+    <div class="user-bar-top">
+      <div class="search-wrapper">
+        <span class="icon"></span>
+        <input type="text" placeholder="Search" />
+      </div>
+
+      <div class="profile">
+        <div class="avatar">👤</div>
+        <div class="profile-text">
+          <div class="profile-name">Admin</div>
+          <div class="profile-role">Principale</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2️⃣ Section "Utilisateurs" + statistiques -->
+    <div class="stats-row">
+      <div class="tab active">Utilisateurs</div>
+
+      <div class="cards-container">
+        <div class="stat-card total-card">
+          <div class="stat-title">Total</div>
+          <div class="stat-value">2031</div>
+        </div>
+
+        <div class="stat-card recruteurs-card">
+          <div class="stat-title">Recruteurs</div>
+          <div class="stat-value">438</div>
+        </div>
+
+        <div class="stat-card prestataires-card">
+          <div class="stat-title">Jeunes Prestataires</div>
+          <div class="stat-value">1280</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== CONTENU DE LA PAGE (tableau) ====== -->
+  <!-- ... ton tableau ici ... -->
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Genre</th>
+        <th>Email</th>
+        <th>Rôle</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.nom }}</td>
+        <td>{{ user.prenom }}</td>
+        <td>{{ user.genre }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td class="action" (click)="blockUser(user)">Bloquer</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</div>
