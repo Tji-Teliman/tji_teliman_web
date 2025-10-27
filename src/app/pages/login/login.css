@@ -1,0 +1,150 @@
+/* Arrière-plan dégradé */
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Dégradé plus doux et pastel (Similaire au Figma) */
+  background: linear-gradient(135deg, #8ebae4, #8cddc5);
+}
+
+/* Carte principale */
+.login-card {
+  background: white;
+  /* MISE À JOUR : Augmenter le padding vertical (hauteur) pour aérer */
+  padding: 4rem 4rem;
+  border-radius: 15px;
+  /* Ombre plus large et plus douce pour l'effet de flottement */
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+  /* MISE À JOUR : Diminuer la largeur pour correspondre à la première image */
+  width: 100%;
+  max-width: 300px; /* Réduction de 400px à 340px */
+  text-align: center;
+  border: 1px solid #e5e7eb;
+  z-index: 10;
+}
+
+/* Icône utilisateur */
+.avatar {
+  /* Style du cercle flottant pour l'icône de profil */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  /* Agrandissement du cercle de 70px à 85px */
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  background-color: #e0f0ff;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+
+  /* Agrandissement de l'icône de 35px à 45px */
+  font-size: 60px;
+  color: #2563eb;
+  margin-bottom: 2rem;
+}
+
+/* Champs de saisie */
+.input-group {
+  display: flex;
+  align-items: center;
+  /* Trait de fond (style de l'input non-entouré) */
+  border: none;
+  border-bottom: 2px solid #d1d5db;
+  border-radius: 0;
+  padding: 8px 0;
+  margin-bottom: 1.8rem; /* Légère augmentation pour plus de hauteur visuelle */
+  transition: border-bottom-color 0.3s;
+}
+
+.input-group:focus-within {
+  border-bottom-color: #2563eb; /* Le trait devient bleu au focus */
+}
+
+.input-group i {
+  color: #2563eb;
+  margin-right: 12px;
+}
+
+.input-group input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background: transparent;
+}
+
+/* Options sous le champ */
+.options {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin: 12px 0 20px 0;
+  color: #374151;
+}
+
+/* Bouton principal */
+.btn-login {
+  width: 100%;
+  background: linear-gradient(to right, #2563eb, #10b981);
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 12px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: transform 0.2s, opacity 0.3s;
+}
+
+.btn-login:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* 💫 Animation d'apparition douce */
+.animate {
+  animation: slideUp 0.8s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .login-card {
+    width: 90%;
+    max-width: none;
+    padding: 2rem;
+  }
+
+  .avatar {
+    font-size: 55px;
+    width: 70px;
+    height: 70px;
+  }
+
+  .btn-login {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    width: 100%;
+    padding: 1.8rem;
+  }
+}
