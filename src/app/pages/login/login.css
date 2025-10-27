@@ -2,6 +2,7 @@
 .login-container {
   height: 100vh;
   display: flex;
+  width: 100vw;
   justify-content: center;
   align-items: center;
   /* Dégradé plus doux et pastel (Similaire au Figma) */
@@ -12,13 +13,13 @@
 .login-card {
   background: white;
   /* MISE À JOUR : Augmenter le padding vertical (hauteur) pour aérer */
-  padding: 4rem 4rem;
+  padding: 6rem 4rem;
   border-radius: 15px;
   /* Ombre plus large et plus douce pour l'effet de flottement */
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
   /* MISE À JOUR : Diminuer la largeur pour correspondre à la première image */
   width: 100%;
-  max-width: 300px; /* Réduction de 400px à 340px */
+  max-width: 369px; /* Réduction de 400px à 340px */
   text-align: center;
   border: 1px solid #e5e7eb;
   z-index: 10;
@@ -48,12 +49,14 @@
   display: flex;
   align-items: center;
   /* Trait de fond (style de l'input non-entouré) */
-  border: none;
+  /* border: 1px solid #d1d5db; */
+  width:260px;
   border-bottom: 2px solid #d1d5db;
   border-radius: 0;
   padding: 8px 0;
   margin-bottom: 1.8rem; /* Légère augmentation pour plus de hauteur visuelle */
   transition: border-bottom-color 0.3s;
+  /* gap: 8px; */
 }
 
 .input-group:focus-within {

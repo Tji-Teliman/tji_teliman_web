@@ -110,7 +110,7 @@
 
   padding: 12px 20px;
 
-  /* 💡 ARRONDIS UNIQUEMENT CÔTÉ GAUCHE (comme sur la maquette) */
+  /*  ARRONDIS UNIQUEMENT CÔTÉ GAUCHE (comme sur la maquette) */
   /* Le bord droit est droit, mais la fin du div parent donne l'impression d'une coupe. */
   border-radius: 20px 0 0 20px;
 
@@ -122,7 +122,7 @@
   /* Nous allons utiliser la largeur par défaut pour rester dans le parent */
   width: auto;
 
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
   position: relative;
   z-index: 1;
 }

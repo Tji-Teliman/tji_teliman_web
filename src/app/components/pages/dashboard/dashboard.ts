@@ -12,7 +12,6 @@ import { RouterLink } from '@angular/router'; // Si vous avez des liens internes
   styleUrls: ['./dashboard.css'],
 })
 export class DashboardComponent implements OnInit {
-  // Données de l'administrateur et des statistiques
   adminName: string = 'Amadou Bagayoko';
 
   stats = [
