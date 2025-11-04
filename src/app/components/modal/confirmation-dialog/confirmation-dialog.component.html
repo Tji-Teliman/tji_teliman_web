@@ -1,0 +1,9 @@
+<div class="custom-modal-content">
+  <p class="modal-message">{{ data.message || 'Voulez-vous vraiment effectuer cette action ?' }}</p>
+
+  <div class="modal-actions">
+    <button class="btn-confirm" (click)="onConfirm()">Confirmer</button>
+    
+    <button class="btn-cancel" (click)="onCancel()">Annuler</button>
+  </div>
+</div>

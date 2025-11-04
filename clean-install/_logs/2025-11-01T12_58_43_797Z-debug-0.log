@@ -1,0 +1,1194 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Users\Rama Zolie\AppData\Roaming\npm\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.2
+2 info using node@v20.13.1
+3 silly config load:file:C:\Users\Rama Zolie\AppData\Roaming\npm\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\.npmrc
+5 silly config load:file:C:\Users\Rama Zolie\.npmrc
+6 silly config load:file:C:\Users\Rama Zolie\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm install @fortawesome/angular-fontawesome @fortawesome/free-solid-svg-icons
+8 verbose argv "install" "@fortawesome/angular-fontawesome" "@fortawesome/free-solid-svg-icons"
+9 verbose logfile logs-max:10 dir:C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\clean-install\_logs\2025-11-01T12_58_43_797Z-
+10 verbose logfile C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\clean-install\_logs\2025-11-01T12_58_43_797Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+13 silly logfile done cleaning log files
+14 silly idealTree buildDeps
+15 silly fetch manifest @fortawesome/angular-fontawesome@*
+16 silly packumentCache full:https://registry.npmjs.org/@fortawesome%2fangular-fontawesome cache-miss
+17 http fetch GET 200 https://registry.npmjs.org/@fortawesome%2fangular-fontawesome 2168ms (cache miss)
+18 silly packumentCache full:https://registry.npmjs.org/@fortawesome%2fangular-fontawesome set size:undefined disposed:false
+19 silly fetch manifest @angular/core@^20.3.0
+20 silly packumentCache full:https://registry.npmjs.org/@angular%2fcore cache-miss
+21 http fetch GET 200 https://registry.npmjs.org/@angular%2fcore 329ms (cache revalidated)
+22 silly packumentCache full:https://registry.npmjs.org/@angular%2fcore set size:2746033 disposed:false
+23 silly fetch manifest @angular/compiler@^20.3.0
+24 silly packumentCache full:https://registry.npmjs.org/@angular%2fcompiler cache-miss
+25 http fetch GET 200 https://registry.npmjs.org/@angular%2fcompiler 261ms (cache revalidated)
+26 silly packumentCache full:https://registry.npmjs.org/@angular%2fcompiler set size:2533806 disposed:false
+27 silly fetch manifest rxjs@~7.8.0
+28 silly packumentCache full:https://registry.npmjs.org/rxjs cache-miss
+29 http fetch GET 200 https://registry.npmjs.org/rxjs 214ms (cache revalidated)
+30 silly packumentCache full:https://registry.npmjs.org/rxjs set size:980097 disposed:false
+31 silly fetch manifest zone.js@~0.15.0
+32 silly packumentCache full:https://registry.npmjs.org/zone.js cache-miss
+33 http fetch GET 200 https://registry.npmjs.org/zone.js 204ms (cache revalidated)
+34 silly packumentCache full:https://registry.npmjs.org/zone.js set size:365274 disposed:false
+35 silly fetch manifest @fortawesome/free-solid-svg-icons@*
+36 silly packumentCache full:https://registry.npmjs.org/@fortawesome%2ffree-solid-svg-icons cache-miss
+37 http fetch GET 200 https://registry.npmjs.org/@fortawesome%2ffree-solid-svg-icons 364ms (cache miss)
+38 silly packumentCache full:https://registry.npmjs.org/@fortawesome%2ffree-solid-svg-icons set size:undefined disposed:false
+39 silly placeDep ROOT @fortawesome/angular-fontawesome@3.0.0 OK for: tji-teliman-web@0.0.0 want: *
+40 silly placeDep ROOT @fortawesome/free-solid-svg-icons@7.1.0 OK for: tji-teliman-web@0.0.0 want: *
+41 silly fetch manifest @fortawesome/fontawesome-svg-core@^7.0.0
+42 silly packumentCache full:https://registry.npmjs.org/@fortawesome%2ffontawesome-svg-core cache-miss
+43 silly fetch manifest @fortawesome/fontawesome-common-types@7.1.0
+44 silly packumentCache full:https://registry.npmjs.org/@fortawesome%2ffontawesome-common-types cache-miss
+45 http fetch GET 200 https://registry.npmjs.org/@fortawesome%2ffontawesome-svg-core 300ms (cache miss)
+46 silly packumentCache full:https://registry.npmjs.org/@fortawesome%2ffontawesome-svg-core set size:undefined disposed:false
+47 http fetch GET 200 https://registry.npmjs.org/@fortawesome%2ffontawesome-common-types 1063ms (cache miss)
+48 silly packumentCache full:https://registry.npmjs.org/@fortawesome%2ffontawesome-common-types set size:undefined disposed:false
+49 silly placeDep ROOT @fortawesome/fontawesome-svg-core@7.1.0 OK for: @fortawesome/angular-fontawesome@3.0.0 want: ^7.0.0
+50 silly placeDep ROOT @fortawesome/fontawesome-common-types@7.1.0 OK for: @fortawesome/fontawesome-svg-core@7.1.0 want: 7.1.0
+51 warn EBADENGINE Unsupported engine {
+51 warn EBADENGINE   package: '@angular-devkit/architect@0.2003.7',
+51 warn EBADENGINE   required: {
+51 warn EBADENGINE     node: '^20.19.0 || ^22.12.0 || >=24.0.0',
+51 warn EBADENGINE     npm: '^6.11.0 || ^7.5.6 || >=8.0.0',
+51 warn EBADENGINE     yarn: '>= 1.13.0'
+51 warn EBADENGINE   },
+51 warn EBADENGINE   current: { node: 'v20.13.1', npm: '10.9.2' }
+51 warn EBADENGINE }
+52 warn EBADENGINE Unsupported engine {
+52 warn EBADENGINE   package: '@angular-devkit/core@20.3.7',
+52 warn EBADENGINE   required: {
+52 warn EBADENGINE     node: '^20.19.0 || ^22.12.0 || >=24.0.0',
+52 warn EBADENGINE     npm: '^6.11.0 || ^7.5.6 || >=8.0.0',
+52 warn EBADENGINE     yarn: '>= 1.13.0'
+52 warn EBADENGINE   },
+52 warn EBADENGINE   current: { node: 'v20.13.1', npm: '10.9.2' }
+52 warn EBADENGINE }
+53 warn EBADENGINE Unsupported engine {
+53 warn EBADENGINE   package: '@angular-devkit/schematics@20.3.7',
+53 warn EBADENGINE   required: {
+53 warn EBADENGINE     node: '^20.19.0 || ^22.12.0 || >=24.0.0',
+53 warn EBADENGINE     npm: '^6.11.0 || ^7.5.6 || >=8.0.0',
+53 warn EBADENGINE     yarn: '>= 1.13.0'
+53 warn EBADENGINE   },
+53 warn EBADENGINE   current: { node: 'v20.13.1', npm: '10.9.2' }
+53 warn EBADENGINE }
+54 warn EBADENGINE Unsupported engine {
+54 warn EBADENGINE   package: '@angular/build@20.3.7',
+54 warn EBADENGINE   required: {
+54 warn EBADENGINE     node: '^20.19.0 || ^22.12.0 || >=24.0.0',
+54 warn EBADENGINE     npm: '^6.11.0 || ^7.5.6 || >=8.0.0',
+54 warn EBADENGINE     yarn: '>= 1.13.0'
+54 warn EBADENGINE   },
+54 warn EBADENGINE   current: { node: 'v20.13.1', npm: '10.9.2' }
+54 warn EBADENGINE }
+55 warn EBADENGINE Unsupported engine {
+55 warn EBADENGINE   package: '@angular/cli@20.3.7',
+55 warn EBADENGINE   required: {
+55 warn EBADENGINE     node: '^20.19.0 || ^22.12.0 || >=24.0.0',
+55 warn EBADENGINE     npm: '^6.11.0 || ^7.5.6 || >=8.0.0',
+55 warn EBADENGINE     yarn: '>= 1.13.0'
+55 warn EBADENGINE   },
+55 warn EBADENGINE   current: { node: 'v20.13.1', npm: '10.9.2' }
+55 warn EBADENGINE }
+56 warn EBADENGINE Unsupported engine {
+56 warn EBADENGINE   package: '@angular/common@20.3.7',
+56 warn EBADENGINE   required: { node: '^20.19.0 || ^22.12.0 || >=24.0.0' },
+56 warn EBADENGINE   current: { node: 'v20.13.1', npm: '10.9.2' }
+56 warn EBADENGINE }
+57 warn EBADENGINE Unsupported engine {
+57 warn EBADENGINE   package: '@angular/compiler@20.3.7',
+57 warn EBADENGINE   required: { node: '^20.19.0 || ^22.12.0 || >=24.0.0' },
+57 warn EBADENGINE   current: { node: 'v20.13.1', npm: '10.9.2' }
+57 warn EBADENGINE }
+58 warn EBADENGINE Unsupported engine {
+58 warn EBADENGINE   package: '@angular/compiler-cli@20.3.7',
+58 warn EBADENGINE   required: { node: '^20.19.0 || ^22.12.0 || >=24.0.0' },
+58 warn EBADENGINE   current: { node: 'v20.13.1', npm: '10.9.2' }
+58 warn EBADENGINE }
+59 warn EBADENGINE Unsupported engine {
+59 warn EBADENGINE   package: '@angular/core@20.3.7',
+59 warn EBADENGINE   required: { node: '^20.19.0 || ^22.12.0 || >=24.0.0' },
+59 warn EBADENGINE   current: { node: 'v20.13.1', npm: '10.9.2' }
+59 warn EBADENGINE }
+60 warn EBADENGINE Unsupported engine {
+60 warn EBADENGINE   package: '@angular/forms@20.3.7',
+60 warn EBADENGINE   required: { node: '^20.19.0 || ^22.12.0 || >=24.0.0' },
+60 warn EBADENGINE   current: { node: 'v20.13.1', npm: '10.9.2' }
+60 warn EBADENGINE }
+61 warn EBADENGINE Unsupported engine {
+61 warn EBADENGINE   package: '@angular/platform-browser@20.3.7',
+61 warn EBADENGINE   required: { node: '^20.19.0 || ^22.12.0 || >=24.0.0' },
+61 warn EBADENGINE   current: { node: 'v20.13.1', npm: '10.9.2' }
+61 warn EBADENGINE }
+62 warn EBADENGINE Unsupported engine {
+62 warn EBADENGINE   package: '@angular/router@20.3.7',
+62 warn EBADENGINE   required: { node: '^20.19.0 || ^22.12.0 || >=24.0.0' },
+62 warn EBADENGINE   current: { node: 'v20.13.1', npm: '10.9.2' }
+62 warn EBADENGINE }
+63 warn EBADENGINE Unsupported engine {
+63 warn EBADENGINE   package: '@schematics/angular@20.3.7',
+63 warn EBADENGINE   required: {
+63 warn EBADENGINE     node: '^20.19.0 || ^22.12.0 || >=24.0.0',
+63 warn EBADENGINE     npm: '^6.11.0 || ^7.5.6 || >=8.0.0',
+63 warn EBADENGINE     yarn: '>= 1.13.0'
+63 warn EBADENGINE   },
+63 warn EBADENGINE   current: { node: 'v20.13.1', npm: '10.9.2' }
+63 warn EBADENGINE }
+64 warn EBADENGINE Unsupported engine {
+64 warn EBADENGINE   package: 'hosted-git-info@9.0.2',
+64 warn EBADENGINE   required: { node: '^20.17.0 || >=22.9.0' },
+64 warn EBADENGINE   current: { node: 'v20.13.1', npm: '10.9.2' }
+64 warn EBADENGINE }
+65 warn EBADENGINE Unsupported engine {
+65 warn EBADENGINE   package: 'ignore-walk@8.0.0',
+65 warn EBADENGINE   required: { node: '^20.17.0 || >=22.9.0' },
+65 warn EBADENGINE   current: { node: 'v20.13.1', npm: '10.9.2' }
+65 warn EBADENGINE }
+66 warn EBADENGINE Unsupported engine {
+66 warn EBADENGINE   package: 'npm-package-arg@13.0.0',
+66 warn EBADENGINE   required: { node: '^20.17.0 || >=22.9.0' },
+66 warn EBADENGINE   current: { node: 'v20.13.1', npm: '10.9.2' }
+66 warn EBADENGINE }
+67 warn EBADENGINE Unsupported engine {
+67 warn EBADENGINE   package: 'npm-packlist@10.0.3',
+67 warn EBADENGINE   required: { node: '^20.17.0 || >=22.9.0' },
+67 warn EBADENGINE   current: { node: 'v20.13.1', npm: '10.9.2' }
+67 warn EBADENGINE }
+68 warn EBADENGINE Unsupported engine {
+68 warn EBADENGINE   package: 'proc-log@6.0.0',
+68 warn EBADENGINE   required: { node: '^20.17.0 || >=22.9.0' },
+68 warn EBADENGINE   current: { node: 'v20.13.1', npm: '10.9.2' }
+68 warn EBADENGINE }
+69 warn EBADENGINE Unsupported engine {
+69 warn EBADENGINE   package: 'pacote@21.0.0',
+69 warn EBADENGINE   required: { node: '^20.17.0 || >=22.9.0' },
+69 warn EBADENGINE   current: { node: 'v20.13.1', npm: '10.9.2' }
+69 warn EBADENGINE }
+70 warn EBADENGINE Unsupported engine {
+70 warn EBADENGINE   package: 'vite@7.1.11',
+70 warn EBADENGINE   required: { node: '^20.19.0 || >=22.12.0' },
+70 warn EBADENGINE   current: { node: 'v20.13.1', npm: '10.9.2' }
+70 warn EBADENGINE }
+71 warn EBADENGINE Unsupported engine {
+71 warn EBADENGINE   package: 'yargs@18.0.0',
+71 warn EBADENGINE   required: { node: '^20.19.0 || ^22.12.0 || >=23' },
+71 warn EBADENGINE   current: { node: 'v20.13.1', npm: '10.9.2' }
+71 warn EBADENGINE }
+72 warn EBADENGINE Unsupported engine {
+72 warn EBADENGINE   package: 'yargs-parser@22.0.0',
+72 warn EBADENGINE   required: { node: '^20.19.0 || ^22.12.0 || >=23' },
+72 warn EBADENGINE   current: { node: 'v20.13.1', npm: '10.9.2' }
+72 warn EBADENGINE }
+73 silly reify moves {}
+74 silly audit bulk request {
+74 silly audit   '@algolia/abtesting': [ '1.1.0' ],
+74 silly audit   '@algolia/client-abtesting': [ '5.35.0' ],
+74 silly audit   '@algolia/client-analytics': [ '5.35.0' ],
+74 silly audit   '@algolia/client-common': [ '5.35.0' ],
+74 silly audit   '@algolia/client-insights': [ '5.35.0' ],
+74 silly audit   '@algolia/client-personalization': [ '5.35.0' ],
+74 silly audit   '@algolia/client-query-suggestions': [ '5.35.0' ],
+74 silly audit   '@algolia/client-search': [ '5.35.0' ],
+74 silly audit   '@algolia/ingestion': [ '1.35.0' ],
+74 silly audit   '@algolia/monitoring': [ '1.35.0' ],
+74 silly audit   '@algolia/recommend': [ '5.35.0' ],
+74 silly audit   '@algolia/requester-browser-xhr': [ '5.35.0' ],
+74 silly audit   '@algolia/requester-fetch': [ '5.35.0' ],
+74 silly audit   '@algolia/requester-node-http': [ '5.35.0' ],
+74 silly audit   '@ampproject/remapping': [ '2.3.0' ],
+74 silly audit   '@angular-devkit/architect': [ '0.2003.7' ],
+74 silly audit   '@angular-devkit/core': [ '20.3.7' ],
+74 silly audit   '@angular-devkit/schematics': [ '20.3.7' ],
+74 silly audit   '@angular/build': [ '20.3.7' ],
+74 silly audit   '@angular/cdk': [ '20.2.10' ],
+74 silly audit   '@angular/cli': [ '20.3.7' ],
+74 silly audit   '@angular/common': [ '20.3.7' ],
+74 silly audit   '@angular/compiler': [ '20.3.7' ],
+74 silly audit   '@angular/compiler-cli': [ '20.3.7' ],
+74 silly audit   '@angular/core': [ '20.3.7' ],
+74 silly audit   '@angular/forms': [ '20.3.7' ],
+74 silly audit   '@angular/material': [ '20.2.10' ],
+74 silly audit   '@angular/platform-browser': [ '20.3.7' ],
+74 silly audit   '@angular/router': [ '20.3.7' ],
+74 silly audit   '@babel/code-frame': [ '7.27.1' ],
+74 silly audit   '@babel/compat-data': [ '7.28.5' ],
+74 silly audit   '@babel/core': [ '7.28.3' ],
+74 silly audit   'convert-source-map': [ '2.0.0', '1.9.0' ],
+74 silly audit   semver: [ '6.3.1', '7.7.2' ],
+74 silly audit   '@babel/generator': [ '7.28.5' ],
+74 silly audit   '@babel/helper-annotate-as-pure': [ '7.27.3' ],
+74 silly audit   '@babel/helper-compilation-targets': [ '7.27.2' ],
+74 silly audit   '@babel/helper-globals': [ '7.28.0' ],
+74 silly audit   '@babel/helper-module-imports': [ '7.27.1' ],
+74 silly audit   '@babel/helper-module-transforms': [ '7.28.3' ],
+74 silly audit   '@babel/helper-split-export-declaration': [ '7.24.7' ],
+74 silly audit   '@babel/helper-string-parser': [ '7.27.1' ],
+74 silly audit   '@babel/helper-validator-identifier': [ '7.28.5' ],
+74 silly audit   '@babel/helper-validator-option': [ '7.27.1' ],
+74 silly audit   '@babel/helpers': [ '7.28.4' ],
+74 silly audit   '@babel/parser': [ '7.28.5' ],
+74 silly audit   '@babel/template': [ '7.27.2' ],
+74 silly audit   '@babel/traverse': [ '7.28.5' ],
+74 silly audit   '@babel/types': [ '7.28.5' ],
+74 silly audit   '@colors/colors': [ '1.5.0' ],
+74 silly audit   '@esbuild/aix-ppc64': [ '0.25.9' ],
+74 silly audit   '@esbuild/android-arm': [ '0.25.9' ],
+74 silly audit   '@esbuild/android-arm64': [ '0.25.9' ],
+74 silly audit   '@esbuild/android-x64': [ '0.25.9' ],
+74 silly audit   '@esbuild/darwin-arm64': [ '0.25.9' ],
+74 silly audit   '@esbuild/darwin-x64': [ '0.25.9' ],
+74 silly audit   '@esbuild/freebsd-arm64': [ '0.25.9' ],
+74 silly audit   '@esbuild/freebsd-x64': [ '0.25.9' ],
+74 silly audit   '@esbuild/linux-arm': [ '0.25.9' ],
+74 silly audit   '@esbuild/linux-arm64': [ '0.25.9' ],
+74 silly audit   '@esbuild/linux-ia32': [ '0.25.9' ],
+74 silly audit   '@esbuild/linux-loong64': [ '0.25.9' ],
+74 silly audit   '@esbuild/linux-mips64el': [ '0.25.9' ],
+74 silly audit   '@esbuild/linux-ppc64': [ '0.25.9' ],
+74 silly audit   '@esbuild/linux-riscv64': [ '0.25.9' ],
+74 silly audit   '@esbuild/linux-s390x': [ '0.25.9' ],
+74 silly audit   '@esbuild/linux-x64': [ '0.25.9' ],
+74 silly audit   '@esbuild/netbsd-arm64': [ '0.25.9' ],
+74 silly audit   '@esbuild/netbsd-x64': [ '0.25.9' ],
+74 silly audit   '@esbuild/openbsd-arm64': [ '0.25.9' ],
+74 silly audit   '@esbuild/openbsd-x64': [ '0.25.9' ],
+74 silly audit   '@esbuild/openharmony-arm64': [ '0.25.9' ],
+74 silly audit   '@esbuild/sunos-x64': [ '0.25.9' ],
+74 silly audit   '@esbuild/win32-arm64': [ '0.25.9' ],
+74 silly audit   '@esbuild/win32-ia32': [ '0.25.9' ],
+74 silly audit   '@esbuild/win32-x64': [ '0.25.9' ],
+74 silly audit   '@inquirer/ansi': [ '1.0.1' ],
+74 silly audit   '@inquirer/checkbox': [ '4.3.0' ],
+74 silly audit   '@inquirer/confirm': [ '5.1.14' ],
+74 silly audit   '@inquirer/core': [ '10.3.0' ],
+74 silly audit   '@inquirer/editor': [ '4.2.21' ],
+74 silly audit   '@inquirer/expand': [ '4.0.21' ],
+74 silly audit   '@inquirer/external-editor': [ '1.0.2' ],
+74 silly audit   '@inquirer/figures': [ '1.0.14' ],
+74 silly audit   '@inquirer/input': [ '4.2.5' ],
+74 silly audit   '@inquirer/number': [ '3.0.21' ],
+74 silly audit   '@inquirer/password': [ '4.0.21' ],
+74 silly audit   '@inquirer/prompts': [ '7.8.2' ],
+74 silly audit   '@inquirer/rawlist': [ '4.1.9' ],
+74 silly audit   '@inquirer/search': [ '3.2.0' ],
+74 silly audit   '@inquirer/select': [ '4.4.0' ],
+74 silly audit   '@inquirer/type': [ '3.0.9' ],
+74 silly audit   '@isaacs/balanced-match': [ '4.0.1' ],
+74 silly audit   '@isaacs/brace-expansion': [ '5.0.0' ],
+74 silly audit   '@isaacs/cliui': [ '8.0.2' ],
+74 silly audit   'emoji-regex': [ '9.2.2', '10.6.0', '8.0.0' ],
+74 silly audit   'string-width': [ '5.1.2', '4.2.3', '7.2.0' ],
+74 silly audit   'wrap-ansi': [ '8.1.0', '9.0.2', '7.0.0', '6.2.0' ],
+74 silly audit   '@isaacs/fs-minipass': [ '4.0.1' ],
+74 silly audit   '@istanbuljs/schema': [ '0.1.3' ],
+74 silly audit   '@jridgewell/gen-mapping': [ '0.3.13' ],
+74 silly audit   '@jridgewell/resolve-uri': [ '3.1.2' ],
+74 silly audit   '@jridgewell/sourcemap-codec': [ '1.5.5' ],
+74 silly audit   '@jridgewell/trace-mapping': [ '0.3.31' ],
+74 silly audit   '@listr2/prompt-adapter-inquirer': [ '3.0.1' ],
+74 silly audit   '@lmdb/lmdb-darwin-arm64': [ '3.4.2' ],
+74 silly audit   '@lmdb/lmdb-darwin-x64': [ '3.4.2' ],
+74 silly audit   '@lmdb/lmdb-linux-arm': [ '3.4.2' ],
+74 silly audit   '@lmdb/lmdb-linux-arm64': [ '3.4.2' ],
+74 silly audit   '@lmdb/lmdb-linux-x64': [ '3.4.2' ],
+74 silly audit   '@lmdb/lmdb-win32-arm64': [ '3.4.2' ],
+74 silly audit   '@lmdb/lmdb-win32-x64': [ '3.4.2' ],
+74 silly audit   '@modelcontextprotocol/sdk': [ '1.17.3' ],
+74 silly audit   ajv: [ '6.12.6', '8.17.1' ],
+74 silly audit   'json-schema-traverse': [ '0.4.1', '1.0.0' ],
+74 silly audit   '@msgpackr-extract/msgpackr-extract-darwin-arm64': [ '3.0.3' ],
+74 silly audit   '@msgpackr-extract/msgpackr-extract-darwin-x64': [ '3.0.3' ],
+74 silly audit   '@msgpackr-extract/msgpackr-extract-linux-arm': [ '3.0.3' ],
+74 silly audit   '@msgpackr-extract/msgpackr-extract-linux-arm64': [ '3.0.3' ],
+74 silly audit   '@msgpackr-extract/msgpackr-extract-linux-x64': [ '3.0.3' ],
+74 silly audit   '@msgpackr-extract/msgpackr-extract-win32-x64': [ '3.0.3' ],
+74 silly audit   '@napi-rs/nice': [ '1.1.1' ],
+74 silly audit   '@napi-rs/nice-android-arm-eabi': [ '1.1.1' ],
+74 silly audit   '@napi-rs/nice-android-arm64': [ '1.1.1' ],
+74 silly audit   '@napi-rs/nice-darwin-arm64': [ '1.1.1' ],
+74 silly audit   '@napi-rs/nice-darwin-x64': [ '1.1.1' ],
+74 silly audit   '@napi-rs/nice-freebsd-x64': [ '1.1.1' ],
+74 silly audit   '@napi-rs/nice-linux-arm-gnueabihf': [ '1.1.1' ],
+74 silly audit   '@napi-rs/nice-linux-arm64-gnu': [ '1.1.1' ],
+74 silly audit   '@napi-rs/nice-linux-arm64-musl': [ '1.1.1' ],
+74 silly audit   '@napi-rs/nice-linux-ppc64-gnu': [ '1.1.1' ],
+74 silly audit   '@napi-rs/nice-linux-riscv64-gnu': [ '1.1.1' ],
+74 silly audit   '@napi-rs/nice-linux-s390x-gnu': [ '1.1.1' ],
+74 silly audit   '@napi-rs/nice-linux-x64-gnu': [ '1.1.1' ],
+74 silly audit   '@napi-rs/nice-linux-x64-musl': [ '1.1.1' ],
+74 silly audit   '@napi-rs/nice-openharmony-arm64': [ '1.1.1' ],
+74 silly audit   '@napi-rs/nice-win32-arm64-msvc': [ '1.1.1' ],
+74 silly audit   '@napi-rs/nice-win32-ia32-msvc': [ '1.1.1' ],
+74 silly audit   '@napi-rs/nice-win32-x64-msvc': [ '1.1.1' ],
+74 silly audit   '@npmcli/agent': [ '3.0.0' ],
+74 silly audit   'lru-cache': [ '10.4.3', '11.2.2', '5.1.1' ],
+74 silly audit   '@npmcli/fs': [ '4.0.0' ],
+74 silly audit   '@npmcli/git': [ '6.0.3' ],
+74 silly audit   isexe: [ '3.1.1', '2.0.0' ],
+74 silly audit   which: [ '5.0.0', '1.3.1', '2.0.2' ],
+74 silly audit   '@npmcli/installed-package-contents': [ '3.0.0' ],
+74 silly audit   '@npmcli/node-gyp': [ '4.0.0' ],
+74 silly audit   '@npmcli/package-json': [ '6.2.0' ],
+74 silly audit   'brace-expansion': [ '2.0.2', '1.1.12' ],
+74 silly audit   glob: [ '10.4.5', '7.2.3' ],
+74 silly audit   'hosted-git-info': [ '8.1.0', '9.0.2' ],
+74 silly audit   minimatch: [ '9.0.5', '10.0.3', '3.1.2' ],
+74 silly audit   '@npmcli/promise-spawn': [ '8.0.3' ],
+74 silly audit   '@npmcli/redact': [ '3.2.2' ],
+74 silly audit   '@npmcli/run-script': [ '9.1.0' ],
+74 silly audit   '@parcel/watcher': [ '2.5.1' ],
+74 silly audit   '@parcel/watcher-android-arm64': [ '2.5.1' ],
+74 silly audit   '@parcel/watcher-darwin-arm64': [ '2.5.1' ],
+74 silly audit   '@parcel/watcher-darwin-x64': [ '2.5.1' ],
+74 silly audit   '@parcel/watcher-freebsd-x64': [ '2.5.1' ],
+74 silly audit   '@parcel/watcher-linux-arm-glibc': [ '2.5.1' ],
+74 silly audit   '@parcel/watcher-linux-arm-musl': [ '2.5.1' ],
+74 silly audit   '@parcel/watcher-linux-arm64-glibc': [ '2.5.1' ],
+74 silly audit   '@parcel/watcher-linux-arm64-musl': [ '2.5.1' ],
+74 silly audit   '@parcel/watcher-linux-x64-glibc': [ '2.5.1' ],
+74 silly audit   '@parcel/watcher-linux-x64-musl': [ '2.5.1' ],
+74 silly audit   '@parcel/watcher-win32-arm64': [ '2.5.1' ],
+74 silly audit   '@parcel/watcher-win32-ia32': [ '2.5.1' ],
+74 silly audit   '@parcel/watcher-win32-x64': [ '2.5.1' ],
+74 silly audit   'detect-libc': [ '1.0.3', '2.1.2' ],
+74 silly audit   'node-addon-api': [ '7.1.1', '6.1.0' ],
+74 silly audit   '@pkgjs/parseargs': [ '0.11.0' ],
+74 silly audit   '@rollup/rollup-android-arm-eabi': [ '4.52.3' ],
+74 silly audit   '@rollup/rollup-android-arm64': [ '4.52.3' ],
+74 silly audit   '@rollup/rollup-darwin-arm64': [ '4.52.3' ],
+74 silly audit   '@rollup/rollup-darwin-x64': [ '4.52.3' ],
+74 silly audit   '@rollup/rollup-freebsd-arm64': [ '4.52.3' ],
+74 silly audit   '@rollup/rollup-freebsd-x64': [ '4.52.3' ],
+74 silly audit   '@rollup/rollup-linux-arm-gnueabihf': [ '4.52.3' ],
+74 silly audit   '@rollup/rollup-linux-arm-musleabihf': [ '4.52.3' ],
+74 silly audit   '@rollup/rollup-linux-arm64-gnu': [ '4.52.3' ],
+74 silly audit   '@rollup/rollup-linux-arm64-musl': [ '4.52.3' ],
+74 silly audit   '@rollup/rollup-linux-loong64-gnu': [ '4.52.3' ],
+74 silly audit   '@rollup/rollup-linux-ppc64-gnu': [ '4.52.3' ],
+74 silly audit   '@rollup/rollup-linux-riscv64-gnu': [ '4.52.3' ],
+74 silly audit   '@rollup/rollup-linux-riscv64-musl': [ '4.52.3' ],
+74 silly audit   '@rollup/rollup-linux-s390x-gnu': [ '4.52.3' ],
+74 silly audit   '@rollup/rollup-linux-x64-gnu': [ '4.52.3' ],
+74 silly audit   '@rollup/rollup-linux-x64-musl': [ '4.52.3' ],
+74 silly audit   '@rollup/rollup-openharmony-arm64': [ '4.52.3' ],
+74 silly audit   '@rollup/rollup-win32-arm64-msvc': [ '4.52.3' ],
+74 silly audit   '@rollup/rollup-win32-ia32-msvc': [ '4.52.3' ],
+74 silly audit   '@rollup/rollup-win32-x64-gnu': [ '4.52.3' ],
+74 silly audit   '@rollup/rollup-win32-x64-msvc': [ '4.52.3' ],
+74 silly audit   '@schematics/angular': [ '20.3.7' ],
+74 silly audit   '@sigstore/bundle': [ '3.1.0' ],
+74 silly audit   '@sigstore/core': [ '2.0.0' ],
+74 silly audit   '@sigstore/protobuf-specs': [ '0.4.3' ],
+74 silly audit   '@sigstore/sign': [ '3.1.0' ],
+74 silly audit   '@sigstore/tuf': [ '3.1.1' ],
+74 silly audit   '@sigstore/verify': [ '2.1.1' ],
+74 silly audit   '@socket.io/component-emitter': [ '3.1.2' ],
+74 silly audit   '@tufjs/canonical-json': [ '2.0.0' ],
+74 silly audit   '@tufjs/models': [ '3.0.1' ],
+74 silly audit   '@types/cors': [ '2.8.19' ],
+74 silly audit   '@types/estree': [ '1.0.8' ],
+74 silly audit   '@types/jasmine': [ '5.1.12' ],
+74 silly audit   '@types/node': [ '24.9.1' ],
+74 silly audit   '@vitejs/plugin-basic-ssl': [ '2.1.0' ],
+74 silly audit   '@yarnpkg/lockfile': [ '1.1.0' ],
+74 silly audit   abbrev: [ '3.0.1' ],
+74 silly audit   accepts: [ '2.0.0', '1.3.8' ],
+74 silly audit   'agent-base': [ '7.1.4' ],
+74 silly audit   'ajv-formats': [ '3.0.1' ],
+74 silly audit   algoliasearch: [ '5.35.0' ],
+74 silly audit   'ansi-escapes': [ '7.1.1' ],
+74 silly audit   'ansi-regex': [ '6.2.2', '5.0.1' ],
+74 silly audit   'ansi-styles': [ '6.2.3', '4.3.0' ],
+74 silly audit   anymatch: [ '3.1.3' ],
+74 silly audit   picomatch: [ '2.3.1', '4.0.3' ],
+74 silly audit   'balanced-match': [ '1.0.2' ],
+74 silly audit   base64id: [ '2.0.0' ],
+74 silly audit   'baseline-browser-mapping': [ '2.8.20' ],
+74 silly audit   beasties: [ '0.3.5' ],
+74 silly audit   'binary-extensions': [ '2.3.0' ],
+74 silly audit   'body-parser': [ '2.2.0', '1.20.3' ],
+74 silly audit   'iconv-lite': [ '0.6.3', '0.7.0', '0.4.24' ],
+74 silly audit   boolbase: [ '1.0.0' ],
+74 silly audit   braces: [ '3.0.3' ],
+74 silly audit   browserslist: [ '4.27.0' ],
+74 silly audit   'buffer-from': [ '1.1.2' ],
+74 silly audit   bytes: [ '3.1.2' ],
+74 silly audit   cacache: [ '19.0.1' ],
+74 silly audit   chownr: [ '3.0.0', '2.0.0' ],
+74 silly audit   tar: [ '7.5.1', '6.2.1' ],
+74 silly audit   yallist: [ '5.0.0', '4.0.0', '3.1.1' ],
+74 silly audit   'call-bind-apply-helpers': [ '1.0.2' ],
+74 silly audit   'call-bound': [ '1.0.4' ],
+74 silly audit   'caniuse-lite': [ '1.0.30001751' ],
+74 silly audit   chalk: [ '5.6.2' ],
+74 silly audit   chardet: [ '2.1.0' ],
+74 silly audit   chokidar: [ '4.0.3', '3.6.0' ],
+74 silly audit   'cli-cursor': [ '5.0.0' ],
+74 silly audit   'cli-spinners': [ '2.9.2' ],
+74 silly audit   'cli-truncate': [ '4.0.0' ],
+74 silly audit   'cli-width': [ '4.1.0' ],
+74 silly audit   cliui: [ '9.0.1', '7.0.4' ],
+74 silly audit   'color-convert': [ '2.0.1' ],
+74 silly audit   'color-name': [ '1.1.4' ],
+74 silly audit   colorette: [ '2.0.20' ],
+74 silly audit   'concat-map': [ '0.0.1' ],
+74 silly audit   connect: [ '3.7.0' ],
+74 silly audit   debug: [ '2.6.9', '4.4.3', '4.3.7' ],
+74 silly audit   encodeurl: [ '1.0.2', '2.0.0' ],
+74 silly audit   finalhandler: [ '1.1.2', '2.1.0' ],
+74 silly audit   ms: [ '2.0.0', '2.1.3' ],
+74 silly audit   'on-finished': [ '2.3.0', '2.4.1' ],
+74 silly audit   statuses: [ '1.5.0', '2.0.1', '2.0.2' ],
+74 silly audit   'content-disposition': [ '1.0.0' ],
+74 silly audit   'content-type': [ '1.0.5' ],
+74 silly audit   cookie: [ '0.7.2' ],
+74 silly audit   'cookie-signature': [ '1.2.2' ],
+74 silly audit   cors: [ '2.8.5' ],
+74 silly audit   'cross-spawn': [ '7.0.6' ],
+74 silly audit   'css-select': [ '6.0.0' ],
+74 silly audit   'css-what': [ '7.0.0' ],
+74 silly audit   'custom-event': [ '1.0.1' ],
+74 silly audit   'date-format': [ '4.0.14' ],
+74 silly audit   depd: [ '2.0.0' ],
+74 silly audit   destroy: [ '1.2.0' ],
+74 silly audit   di: [ '0.0.1' ],
+74 silly audit   'dom-serialize': [ '2.2.1' ],
+74 silly audit   'dom-serializer': [ '2.0.0' ],
+74 silly audit   domelementtype: [ '2.3.0' ],
+74 silly audit   domhandler: [ '5.0.3' ],
+74 silly audit   domutils: [ '3.2.2' ],
+74 silly audit   'dunder-proto': [ '1.0.1' ],
+74 silly audit   eastasianwidth: [ '0.2.0' ],
+74 silly audit   'ee-first': [ '1.1.1' ],
+74 silly audit   'electron-to-chromium': [ '1.5.241' ],
+74 silly audit   encoding: [ '0.1.13' ],
+74 silly audit   'engine.io': [ '6.6.4' ],
+74 silly audit   'engine.io-parser': [ '5.2.3' ],
+74 silly audit   'mime-db': [ '1.52.0', '1.54.0' ],
+74 silly audit   'mime-types': [ '2.1.35', '3.0.1' ],
+74 silly audit   negotiator: [ '0.6.3', '1.0.0' ],
+74 silly audit   ent: [ '2.2.2' ],
+74 silly audit   entities: [ '4.5.0', '6.0.1' ],
+74 silly audit   'env-paths': [ '2.2.1' ],
+74 silly audit   environment: [ '1.1.0' ],
+74 silly audit   'err-code': [ '2.0.3' ],
+74 silly audit   'es-define-property': [ '1.0.1' ],
+74 silly audit   'es-errors': [ '1.3.0' ],
+74 silly audit   'es-object-atoms': [ '1.1.1' ],
+74 silly audit   esbuild: [ '0.25.9' ],
+74 silly audit   escalade: [ '3.2.0' ],
+74 silly audit   'escape-html': [ '1.0.3' ],
+74 silly audit   etag: [ '1.8.1' ],
+74 silly audit   eventemitter3: [ '4.0.7', '5.0.1' ],
+74 silly audit   eventsource: [ '3.0.7' ],
+74 silly audit   'eventsource-parser': [ '3.0.6' ],
+74 silly audit   'exponential-backoff': [ '3.1.3' ],
+74 silly audit   express: [ '5.1.0' ],
+74 silly audit   'express-rate-limit': [ '7.5.1' ],
+74 silly audit   extend: [ '3.0.2' ],
+74 silly audit   'fast-deep-equal': [ '3.1.3' ],
+74 silly audit   'fast-json-stable-stringify': [ '2.1.0' ],
+74 silly audit   'fast-uri': [ '3.1.0' ],
+74 silly audit   fdir: [ '6.5.0' ],
+74 silly audit   'fill-range': [ '7.1.1' ],
+74 silly audit   flatted: [ '3.3.3' ],
+74 silly audit   'follow-redirects': [ '1.15.11' ],
+74 silly audit   'foreground-child': [ '3.3.1' ],
+74 silly audit   forwarded: [ '0.2.0' ],
+74 silly audit   fresh: [ '2.0.0' ],
+74 silly audit   'fs-extra': [ '8.1.0' ],
+74 silly audit   'fs-minipass': [ '3.0.3', '2.1.0' ],
+74 silly audit   'fs.realpath': [ '1.0.0' ],
+74 silly audit   fsevents: [ '2.3.3' ],
+74 silly audit   'function-bind': [ '1.1.2' ],
+74 silly audit   gensync: [ '1.0.0-beta.2' ],
+74 silly audit   'get-caller-file': [ '2.0.5' ],
+74 silly audit   'get-east-asian-width': [ '1.4.0' ],
+74 silly audit   'get-intrinsic': [ '1.3.0' ],
+74 silly audit   'get-proto': [ '1.0.1' ],
+74 silly audit   'glob-parent': [ '5.1.2' ],
+74 silly audit   'glob-to-regexp': [ '0.4.1' ],
+74 silly audit   gopd: [ '1.2.0' ],
+74 silly audit   'graceful-fs': [ '4.2.11' ],
+74 silly audit   'has-flag': [ '4.0.0' ],
+74 silly audit   'has-symbols': [ '1.1.0' ],
+74 silly audit   'has-tostringtag': [ '1.0.2' ],
+74 silly audit   hasown: [ '2.0.2' ],
+74 silly audit   'html-escaper': [ '2.0.2' ],
+74 silly audit   htmlparser2: [ '10.0.0' ],
+74 silly audit   'http-cache-semantics': [ '4.2.0' ],
+74 silly audit   'http-errors': [ '2.0.0' ],
+74 silly audit   'http-proxy': [ '1.18.1' ],
+74 silly audit   'http-proxy-agent': [ '7.0.2' ],
+74 silly audit   'https-proxy-agent': [ '7.0.6' ],
+74 silly audit   'ignore-walk': [ '8.0.0' ],
+74 silly audit   immutable: [ '5.1.4' ],
+74 silly audit   imurmurhash: [ '0.1.4' ],
+74 silly audit   inflight: [ '1.0.6' ],
+74 silly audit   inherits: [ '2.0.4' ],
+74 silly audit   ini: [ '5.0.0' ],
+74 silly audit   'ip-address': [ '10.0.1' ],
+74 silly audit   'ipaddr.js': [ '1.9.1' ],
+74 silly audit   'is-binary-path': [ '2.1.0' ],
+74 silly audit   'is-core-module': [ '2.16.1' ],
+74 silly audit   'is-extglob': [ '2.1.1' ],
+74 silly audit   'is-fullwidth-code-point': [ '4.0.0', '3.0.0', '5.1.0' ],
+74 silly audit   'is-glob': [ '4.0.3' ],
+74 silly audit   'is-interactive': [ '2.0.0' ],
+74 silly audit   'is-number': [ '7.0.0' ],
+74 silly audit   'is-promise': [ '4.0.0' ],
+74 silly audit   'is-regex': [ '1.2.1' ],
+74 silly audit   'is-unicode-supported': [ '2.1.0', '1.3.0' ],
+74 silly audit   isbinaryfile: [ '4.0.10' ],
+74 silly audit   'istanbul-lib-coverage': [ '3.2.2' ],
+74 silly audit   'istanbul-lib-instrument': [ '6.0.3', '5.2.1' ],
+74 silly audit   'istanbul-lib-report': [ '3.0.1' ],
+74 silly audit   'istanbul-lib-source-maps': [ '4.0.1' ],
+74 silly audit   'source-map': [ '0.6.1', '0.7.6' ],
+74 silly audit   'istanbul-reports': [ '3.2.0' ],
+74 silly audit   jackspeak: [ '3.4.3' ],
+74 silly audit   'jasmine-core': [ '5.9.0', '4.6.1' ],
+74 silly audit   'js-tokens': [ '4.0.0' ],
+74 silly audit   jsesc: [ '3.1.0' ],
+74 silly audit   'json-parse-even-better-errors': [ '4.0.0' ],
+74 silly audit   json5: [ '2.2.3' ],
+74 silly audit   'jsonc-parser': [ '3.3.1' ],
+74 silly audit   jsonfile: [ '4.0.0' ],
+74 silly audit   jsonparse: [ '1.3.1' ],
+74 silly audit   karma: [ '6.4.4' ],
+74 silly audit   'karma-chrome-launcher': [ '3.2.0' ],
+74 silly audit   'karma-coverage': [ '2.2.1' ],
+74 silly audit   'karma-jasmine': [ '5.1.0' ],
+74 silly audit   'karma-jasmine-html-reporter': [ '2.1.0' ],
+74 silly audit   'media-typer': [ '0.3.0', '1.1.0' ],
+74 silly audit   qs: [ '6.13.0', '6.14.0' ],
+74 silly audit   'raw-body': [ '2.5.2', '3.0.1' ],
+74 silly audit   readdirp: [ '3.6.0', '4.1.2' ],
+74 silly audit   'strip-ansi': [ '6.0.1', '7.1.2' ],
+74 silly audit   'type-is': [ '1.6.18', '2.0.1' ],
+74 silly audit   yargs: [ '16.2.0', '18.0.0' ],
+74 silly audit   'yargs-parser': [ '20.2.9', '22.0.0' ],
+74 silly audit   listr2: [ '9.0.1' ],
+74 silly audit   lmdb: [ '3.4.2' ],
+74 silly audit   lodash: [ '4.17.21' ],
+74 silly audit   'log-symbols': [ '6.0.0' ],
+74 silly audit   'log-update': [ '6.1.0' ],
+74 silly audit   'slice-ansi': [ '7.1.2', '5.0.0' ],
+74 silly audit   log4js: [ '6.9.1' ],
+74 silly audit   'magic-string': [ '0.30.17' ],
+74 silly audit   'make-dir': [ '4.0.0' ],
+74 silly audit   'make-fetch-happen': [ '14.0.3' ],
+74 silly audit   'math-intrinsics': [ '1.1.0' ],
+74 silly audit   'merge-descriptors': [ '2.0.0' ],
+74 silly audit   micromatch: [ '4.0.8' ],
+74 silly audit   mime: [ '2.6.0' ],
+74 silly audit   'mimic-function': [ '5.0.1' ],
+74 silly audit   minimist: [ '1.2.8' ],
+74 silly audit   minipass: [ '7.1.2', '3.3.6', '5.0.0' ],
+74 silly audit   'minipass-collect': [ '2.0.1' ],
+74 silly audit   'minipass-fetch': [ '4.0.1' ],
+74 silly audit   'minipass-flush': [ '1.0.5' ],
+74 silly audit   'minipass-pipeline': [ '1.2.4' ],
+74 silly audit   'minipass-sized': [ '1.0.3' ],
+74 silly audit   minizlib: [ '3.1.0', '2.1.2' ],
+74 silly audit   mkdirp: [ '0.5.6', '1.0.4' ],
+74 silly audit   mrmime: [ '2.0.1' ],
+74 silly audit   msgpackr: [ '1.11.5' ],
+74 silly audit   'msgpackr-extract': [ '3.0.3' ],
+74 silly audit   'mute-stream': [ '2.0.0' ],
+74 silly audit   nanoid: [ '3.3.11' ],
+74 silly audit   'node-gyp': [ '11.5.0' ],
+74 silly audit   'node-gyp-build-optional-packages': [ '5.2.2' ],
+74 silly audit   'node-releases': [ '2.0.26' ],
+74 silly audit   nopt: [ '8.1.0' ],
+74 silly audit   'normalize-path': [ '3.0.0' ],
+74 silly audit   'npm-bundled': [ '4.0.0' ],
+74 silly audit   'npm-install-checks': [ '7.1.2' ],
+74 silly audit   'npm-normalize-package-bin': [ '4.0.0' ],
+74 silly audit   'npm-package-arg': [ '13.0.0', '12.0.2' ],
+74 silly audit   'npm-packlist': [ '10.0.3' ],
+74 silly audit   'proc-log': [ '6.0.0', '5.0.0' ],
+74 silly audit   'npm-pick-manifest': [ '10.0.0' ],
+74 silly audit   'npm-registry-fetch': [ '18.0.2' ],
+74 silly audit   'nth-check': [ '2.1.1' ],
+74 silly audit   'object-assign': [ '4.1.1' ],
+74 silly audit   'object-inspect': [ '1.13.4' ],
+74 silly audit   once: [ '1.4.0' ],
+74 silly audit   onetime: [ '7.0.0' ],
+74 silly audit   ora: [ '8.2.0' ],
+74 silly audit   'ordered-binary': [ '1.6.0' ],
+74 silly audit   'p-map': [ '7.0.3' ],
+74 silly audit   'package-json-from-dist': [ '1.0.1' ],
+74 silly audit   pacote: [ '21.0.0' ],
+74 silly audit   parse5: [ '8.0.0' ],
+74 silly audit   'parse5-html-rewriting-stream': [ '8.0.0' ],
+74 silly audit   'parse5-sax-parser': [ '8.0.0' ],
+74 silly audit   parseurl: [ '1.3.3' ],
+74 silly audit   'path-is-absolute': [ '1.0.1' ],
+74 silly audit   'path-key': [ '3.1.1' ],
+74 silly audit   'path-parse': [ '1.0.7' ],
+74 silly audit   'path-scurry': [ '1.11.1' ],
+74 silly audit   'path-to-regexp': [ '8.3.0' ],
+74 silly audit   picocolors: [ '1.1.1' ],
+74 silly audit   piscina: [ '5.1.3' ],
+74 silly audit   'pkce-challenge': [ '5.0.0' ],
+74 silly audit   postcss: [ '8.5.6' ],
+74 silly audit   'postcss-media-query-parser': [ '0.2.3' ],
+74 silly audit   'promise-retry': [ '2.0.1' ],
+74 silly audit   'proxy-addr': [ '2.0.7' ],
+74 silly audit   punycode: [ '1.4.1', '2.3.1' ],
+74 silly audit   qjobs: [ '1.2.0' ],
+74 silly audit   'range-parser': [ '1.2.1' ],
+74 silly audit   'reflect-metadata': [ '0.2.2' ],
+74 silly audit   'require-directory': [ '2.1.1' ],
+74 silly audit   'require-from-string': [ '2.0.2' ],
+74 silly audit   'requires-port': [ '1.0.0' ],
+74 silly audit   resolve: [ '1.22.10' ],
+74 silly audit   'restore-cursor': [ '5.1.0' ],
+74 silly audit   retry: [ '0.12.0' ],
+74 silly audit   rfdc: [ '1.4.1' ],
+74 silly audit   rimraf: [ '3.0.2' ],
+74 silly audit   rollup: [ '4.52.3' ],
+74 silly audit   router: [ '2.2.0' ],
+74 silly audit   rxjs: [ '7.8.2' ],
+74 silly audit   'safe-buffer': [ '5.2.1' ],
+74 silly audit   'safe-regex-test': [ '1.1.0' ],
+74 silly audit   'safer-buffer': [ '2.1.2' ],
+74 silly audit   sass: [ '1.90.0' ],
+74 silly audit   send: [ '1.2.0' ],
+74 silly audit   'serve-static': [ '2.2.0' ],
+74 silly audit   setprototypeof: [ '1.2.0' ],
+74 silly audit   'shebang-command': [ '2.0.0' ],
+74 silly audit   'shebang-regex': [ '3.0.0' ],
+74 silly audit   'side-channel': [ '1.1.0' ],
+74 silly audit   'side-channel-list': [ '1.0.0' ],
+74 silly audit   'side-channel-map': [ '1.0.1' ],
+74 silly audit   'side-channel-weakmap': [ '1.0.2' ],
+74 silly audit   'signal-exit': [ '4.1.0' ],
+74 silly audit   sigstore: [ '3.1.0' ],
+74 silly audit   'smart-buffer': [ '4.2.0' ],
+74 silly audit   'socket.io': [ '4.8.1' ],
+74 silly audit   'socket.io-adapter': [ '2.5.5' ],
+74 silly audit   'socket.io-parser': [ '4.2.4' ],
+74 silly audit   socks: [ '2.8.7' ],
+74 silly audit   'socks-proxy-agent': [ '8.0.5' ],
+74 silly audit   'source-map-js': [ '1.2.1' ],
+74 silly audit   'source-map-support': [ '0.5.21' ],
+74 silly audit   'spdx-correct': [ '3.2.0' ],
+74 silly audit   'spdx-exceptions': [ '2.5.0' ],
+74 silly audit   'spdx-expression-parse': [ '3.0.1' ],
+74 silly audit   'spdx-license-ids': [ '3.0.22' ],
+74 silly audit   ssri: [ '12.0.0' ],
+74 silly audit   'stdin-discarder': [ '0.2.2' ],
+74 silly audit   streamroller: [ '3.1.5' ],
+74 silly audit   'supports-color': [ '7.2.0' ],
+74 silly audit   'supports-preserve-symlinks-flag': [ '1.0.0' ],
+74 silly audit   tinyglobby: [ '0.2.14', '0.2.15' ],
+74 silly audit   tmp: [ '0.2.5' ],
+74 silly audit   'to-regex-range': [ '5.0.1' ],
+74 silly audit   toidentifier: [ '1.0.1' ],
+74 silly audit   tslib: [ '2.8.1' ],
+74 silly audit   'tuf-js': [ '3.1.0' ],
+74 silly audit   typescript: [ '5.9.3' ],
+74 silly audit   'ua-parser-js': [ '0.7.41' ],
+74 silly audit   'undici-types': [ '7.16.0' ],
+74 silly audit   'unique-filename': [ '4.0.0' ],
+74 silly audit   'unique-slug': [ '5.0.0' ],
+74 silly audit   universalify: [ '0.1.2' ],
+74 silly audit   unpipe: [ '1.0.0' ],
+74 silly audit   'update-browserslist-db': [ '1.1.4' ],
+74 silly audit   'uri-js': [ '4.4.1' ],
+74 silly audit   'utils-merge': [ '1.0.1' ],
+74 silly audit   'validate-npm-package-license': [ '3.0.4' ],
+74 silly audit   'validate-npm-package-name': [ '6.0.2' ],
+74 silly audit   vary: [ '1.1.2' ],
+74 silly audit   vite: [ '7.1.11' ],
+74 silly audit   'void-elements': [ '2.0.1' ],
+74 silly audit   watchpack: [ '2.4.4' ],
+74 silly audit   'weak-lru-cache': [ '1.2.2' ],
+74 silly audit   wrappy: [ '1.0.2' ],
+74 silly audit   ws: [ '8.17.1' ],
+74 silly audit   y18n: [ '5.0.8' ],
+74 silly audit   'yoctocolors-cjs': [ '2.1.3' ],
+74 silly audit   zod: [ '3.25.76' ],
+74 silly audit   'zod-to-json-schema': [ '3.24.6' ],
+74 silly audit   'zone.js': [ '0.15.1' ],
+74 silly audit   '@fortawesome/angular-fontawesome': [ '3.0.0' ],
+74 silly audit   '@fortawesome/free-solid-svg-icons': [ '7.1.0' ],
+74 silly audit   '@fortawesome/fontawesome-svg-core': [ '7.1.0' ],
+74 silly audit   '@fortawesome/fontawesome-common-types': [ '7.1.0' ]
+74 silly audit }
+75 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\fsevents
+76 silly reify mark deleted [
+76 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\fsevents'
+76 silly reify ]
+77 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@rollup\rollup-win32-ia32-msvc
+78 silly reify mark deleted [
+78 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@rollup\\rollup-win32-ia32-msvc'
+78 silly reify ]
+79 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@rollup\rollup-win32-arm64-msvc
+80 silly reify mark deleted [
+80 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@rollup\\rollup-win32-arm64-msvc'
+80 silly reify ]
+81 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@rollup\rollup-openharmony-arm64
+82 silly reify mark deleted [
+82 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@rollup\\rollup-openharmony-arm64'
+82 silly reify ]
+83 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@rollup\rollup-linux-x64-musl
+84 silly reify mark deleted [
+84 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@rollup\\rollup-linux-x64-musl'
+84 silly reify ]
+85 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@rollup\rollup-linux-x64-gnu
+86 silly reify mark deleted [
+86 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@rollup\\rollup-linux-x64-gnu'
+86 silly reify ]
+87 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@rollup\rollup-linux-s390x-gnu
+88 silly reify mark deleted [
+88 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@rollup\\rollup-linux-s390x-gnu'
+88 silly reify ]
+89 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@rollup\rollup-linux-riscv64-musl
+90 silly reify mark deleted [
+90 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@rollup\\rollup-linux-riscv64-musl'
+90 silly reify ]
+91 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@rollup\rollup-linux-riscv64-gnu
+92 silly reify mark deleted [
+92 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@rollup\\rollup-linux-riscv64-gnu'
+92 silly reify ]
+93 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@rollup\rollup-linux-ppc64-gnu
+94 silly reify mark deleted [
+94 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@rollup\\rollup-linux-ppc64-gnu'
+94 silly reify ]
+95 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@rollup\rollup-linux-loong64-gnu
+96 silly reify mark deleted [
+96 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@rollup\\rollup-linux-loong64-gnu'
+96 silly reify ]
+97 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@rollup\rollup-linux-arm64-musl
+98 silly reify mark deleted [
+98 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@rollup\\rollup-linux-arm64-musl'
+98 silly reify ]
+99 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@rollup\rollup-linux-arm64-gnu
+100 silly reify mark deleted [
+100 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@rollup\\rollup-linux-arm64-gnu'
+100 silly reify ]
+101 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@rollup\rollup-linux-arm-musleabihf
+102 silly reify mark deleted [
+102 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@rollup\\rollup-linux-arm-musleabihf'
+102 silly reify ]
+103 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@rollup\rollup-linux-arm-gnueabihf
+104 silly reify mark deleted [
+104 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@rollup\\rollup-linux-arm-gnueabihf'
+104 silly reify ]
+105 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@rollup\rollup-freebsd-x64
+106 silly reify mark deleted [
+106 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@rollup\\rollup-freebsd-x64'
+106 silly reify ]
+107 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@rollup\rollup-freebsd-arm64
+108 silly reify mark deleted [
+108 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@rollup\\rollup-freebsd-arm64'
+108 silly reify ]
+109 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@rollup\rollup-darwin-x64
+110 silly reify mark deleted [
+110 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@rollup\\rollup-darwin-x64'
+110 silly reify ]
+111 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@rollup\rollup-darwin-arm64
+112 silly reify mark deleted [
+112 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@rollup\\rollup-darwin-arm64'
+112 silly reify ]
+113 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@rollup\rollup-android-arm64
+114 silly reify mark deleted [
+114 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@rollup\\rollup-android-arm64'
+114 silly reify ]
+115 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@rollup\rollup-android-arm-eabi
+116 silly reify mark deleted [
+116 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@rollup\\rollup-android-arm-eabi'
+116 silly reify ]
+117 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@parcel\watcher-win32-ia32
+118 silly reify mark deleted [
+118 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@parcel\\watcher-win32-ia32'
+118 silly reify ]
+119 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@parcel\watcher-win32-arm64
+120 silly reify mark deleted [
+120 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@parcel\\watcher-win32-arm64'
+120 silly reify ]
+121 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@parcel\watcher-linux-x64-musl
+122 silly reify mark deleted [
+122 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@parcel\\watcher-linux-x64-musl'
+122 silly reify ]
+123 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@parcel\watcher-linux-x64-glibc
+124 silly reify mark deleted [
+124 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@parcel\\watcher-linux-x64-glibc'
+124 silly reify ]
+125 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@parcel\watcher-linux-arm64-musl
+126 silly reify mark deleted [
+126 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@parcel\\watcher-linux-arm64-musl'
+126 silly reify ]
+127 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@parcel\watcher-linux-arm64-glibc
+128 silly reify mark deleted [
+128 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@parcel\\watcher-linux-arm64-glibc'
+128 silly reify ]
+129 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@parcel\watcher-linux-arm-musl
+130 silly reify mark deleted [
+130 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@parcel\\watcher-linux-arm-musl'
+130 silly reify ]
+131 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@parcel\watcher-linux-arm-glibc
+132 silly reify mark deleted [
+132 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@parcel\\watcher-linux-arm-glibc'
+132 silly reify ]
+133 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@parcel\watcher-freebsd-x64
+134 silly reify mark deleted [
+134 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@parcel\\watcher-freebsd-x64'
+134 silly reify ]
+135 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@parcel\watcher-darwin-x64
+136 silly reify mark deleted [
+136 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@parcel\\watcher-darwin-x64'
+136 silly reify ]
+137 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@parcel\watcher-darwin-arm64
+138 silly reify mark deleted [
+138 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@parcel\\watcher-darwin-arm64'
+138 silly reify ]
+139 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@parcel\watcher-android-arm64
+140 silly reify mark deleted [
+140 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@parcel\\watcher-android-arm64'
+140 silly reify ]
+141 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@napi-rs\nice-win32-ia32-msvc
+142 silly reify mark deleted [
+142 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@napi-rs\\nice-win32-ia32-msvc'
+142 silly reify ]
+143 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@napi-rs\nice-win32-arm64-msvc
+144 silly reify mark deleted [
+144 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@napi-rs\\nice-win32-arm64-msvc'
+144 silly reify ]
+145 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@napi-rs\nice-openharmony-arm64
+146 silly reify mark deleted [
+146 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@napi-rs\\nice-openharmony-arm64'
+146 silly reify ]
+147 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@napi-rs\nice-linux-x64-musl
+148 silly reify mark deleted [
+148 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@napi-rs\\nice-linux-x64-musl'
+148 silly reify ]
+149 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@napi-rs\nice-linux-x64-gnu
+150 silly reify mark deleted [
+150 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@napi-rs\\nice-linux-x64-gnu'
+150 silly reify ]
+151 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@napi-rs\nice-linux-s390x-gnu
+152 silly reify mark deleted [
+152 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@napi-rs\\nice-linux-s390x-gnu'
+152 silly reify ]
+153 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@napi-rs\nice-linux-riscv64-gnu
+154 silly reify mark deleted [
+154 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@napi-rs\\nice-linux-riscv64-gnu'
+154 silly reify ]
+155 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@napi-rs\nice-linux-ppc64-gnu
+156 silly reify mark deleted [
+156 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@napi-rs\\nice-linux-ppc64-gnu'
+156 silly reify ]
+157 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@napi-rs\nice-linux-arm64-musl
+158 silly reify mark deleted [
+158 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@napi-rs\\nice-linux-arm64-musl'
+158 silly reify ]
+159 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@napi-rs\nice-linux-arm64-gnu
+160 silly reify mark deleted [
+160 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@napi-rs\\nice-linux-arm64-gnu'
+160 silly reify ]
+161 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@napi-rs\nice-linux-arm-gnueabihf
+162 silly reify mark deleted [
+162 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@napi-rs\\nice-linux-arm-gnueabihf'
+162 silly reify ]
+163 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@napi-rs\nice-freebsd-x64
+164 silly reify mark deleted [
+164 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@napi-rs\\nice-freebsd-x64'
+164 silly reify ]
+165 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@napi-rs\nice-darwin-x64
+166 silly reify mark deleted [
+166 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@napi-rs\\nice-darwin-x64'
+166 silly reify ]
+167 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@napi-rs\nice-darwin-arm64
+168 silly reify mark deleted [
+168 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@napi-rs\\nice-darwin-arm64'
+168 silly reify ]
+169 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@napi-rs\nice-android-arm64
+170 silly reify mark deleted [
+170 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@napi-rs\\nice-android-arm64'
+170 silly reify ]
+171 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@napi-rs\nice-android-arm-eabi
+172 silly reify mark deleted [
+172 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@napi-rs\\nice-android-arm-eabi'
+172 silly reify ]
+173 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@msgpackr-extract\msgpackr-extract-linux-x64
+174 silly reify mark deleted [
+174 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@msgpackr-extract\\msgpackr-extract-linux-x64'
+174 silly reify ]
+175 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@msgpackr-extract\msgpackr-extract-linux-arm64
+176 silly reify mark deleted [
+176 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@msgpackr-extract\\msgpackr-extract-linux-arm64'
+176 silly reify ]
+177 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@msgpackr-extract\msgpackr-extract-linux-arm
+178 silly reify mark deleted [
+178 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@msgpackr-extract\\msgpackr-extract-linux-arm'
+178 silly reify ]
+179 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@msgpackr-extract\msgpackr-extract-darwin-x64
+180 silly reify mark deleted [
+180 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@msgpackr-extract\\msgpackr-extract-darwin-x64'
+180 silly reify ]
+181 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@msgpackr-extract\msgpackr-extract-darwin-arm64
+182 silly reify mark deleted [
+182 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@msgpackr-extract\\msgpackr-extract-darwin-arm64'
+182 silly reify ]
+183 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@lmdb\lmdb-win32-arm64
+184 silly reify mark deleted [
+184 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@lmdb\\lmdb-win32-arm64'
+184 silly reify ]
+185 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@lmdb\lmdb-linux-x64
+186 silly reify mark deleted [
+186 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@lmdb\\lmdb-linux-x64'
+186 silly reify ]
+187 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@lmdb\lmdb-linux-arm64
+188 silly reify mark deleted [
+188 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@lmdb\\lmdb-linux-arm64'
+188 silly reify ]
+189 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@lmdb\lmdb-linux-arm
+190 silly reify mark deleted [
+190 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@lmdb\\lmdb-linux-arm'
+190 silly reify ]
+191 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@lmdb\lmdb-darwin-x64
+192 silly reify mark deleted [
+192 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@lmdb\\lmdb-darwin-x64'
+192 silly reify ]
+193 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@lmdb\lmdb-darwin-arm64
+194 silly reify mark deleted [
+194 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@lmdb\\lmdb-darwin-arm64'
+194 silly reify ]
+195 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@esbuild\win32-ia32
+196 silly reify mark deleted [
+196 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@esbuild\\win32-ia32'
+196 silly reify ]
+197 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@esbuild\win32-arm64
+198 silly reify mark deleted [
+198 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@esbuild\\win32-arm64'
+198 silly reify ]
+199 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@esbuild\sunos-x64
+200 silly reify mark deleted [
+200 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@esbuild\\sunos-x64'
+200 silly reify ]
+201 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@esbuild\openharmony-arm64
+202 silly reify mark deleted [
+202 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@esbuild\\openharmony-arm64'
+202 silly reify ]
+203 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@esbuild\openbsd-x64
+204 silly reify mark deleted [
+204 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@esbuild\\openbsd-x64'
+204 silly reify ]
+205 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@esbuild\openbsd-arm64
+206 silly reify mark deleted [
+206 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@esbuild\\openbsd-arm64'
+206 silly reify ]
+207 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@esbuild\netbsd-x64
+208 silly reify mark deleted [
+208 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@esbuild\\netbsd-x64'
+208 silly reify ]
+209 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@esbuild\netbsd-arm64
+210 silly reify mark deleted [
+210 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@esbuild\\netbsd-arm64'
+210 silly reify ]
+211 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@esbuild\linux-x64
+212 silly reify mark deleted [
+212 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@esbuild\\linux-x64'
+212 silly reify ]
+213 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@esbuild\linux-s390x
+214 silly reify mark deleted [
+214 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@esbuild\\linux-s390x'
+214 silly reify ]
+215 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@esbuild\linux-riscv64
+216 silly reify mark deleted [
+216 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@esbuild\\linux-riscv64'
+216 silly reify ]
+217 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@esbuild\linux-ppc64
+218 silly reify mark deleted [
+218 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@esbuild\\linux-ppc64'
+218 silly reify ]
+219 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@esbuild\linux-mips64el
+220 silly reify mark deleted [
+220 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@esbuild\\linux-mips64el'
+220 silly reify ]
+221 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@esbuild\linux-loong64
+222 silly reify mark deleted [
+222 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@esbuild\\linux-loong64'
+222 silly reify ]
+223 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@esbuild\linux-ia32
+224 silly reify mark deleted [
+224 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@esbuild\\linux-ia32'
+224 silly reify ]
+225 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@esbuild\linux-arm64
+226 silly reify mark deleted [
+226 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@esbuild\\linux-arm64'
+226 silly reify ]
+227 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@esbuild\linux-arm
+228 silly reify mark deleted [
+228 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@esbuild\\linux-arm'
+228 silly reify ]
+229 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@esbuild\freebsd-x64
+230 silly reify mark deleted [
+230 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@esbuild\\freebsd-x64'
+230 silly reify ]
+231 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@esbuild\freebsd-arm64
+232 silly reify mark deleted [
+232 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@esbuild\\freebsd-arm64'
+232 silly reify ]
+233 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@esbuild\darwin-x64
+234 silly reify mark deleted [
+234 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@esbuild\\darwin-x64'
+234 silly reify ]
+235 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@esbuild\darwin-arm64
+236 silly reify mark deleted [
+236 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@esbuild\\darwin-arm64'
+236 silly reify ]
+237 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@esbuild\android-x64
+238 silly reify mark deleted [
+238 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@esbuild\\android-x64'
+238 silly reify ]
+239 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@esbuild\android-arm64
+240 silly reify mark deleted [
+240 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@esbuild\\android-arm64'
+240 silly reify ]
+241 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@esbuild\android-arm
+242 silly reify mark deleted [
+242 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@esbuild\\android-arm'
+242 silly reify ]
+243 verbose reify failed optional dependency C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\node_modules\@esbuild\aix-ppc64
+244 silly reify mark deleted [
+244 silly reify   'C:\\Users\\Rama Zolie\\Desktop\\Tji-TELIMAN-WEB\\tji_teliman_web\\node_modules\\@esbuild\\aix-ppc64'
+244 silly reify ]
+245 http cache @fortawesome/fontawesome-common-types@https://registry.npmjs.org/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-7.1.0.tgz 0ms (cache hit)
+246 http cache @fortawesome/fontawesome-svg-core@https://registry.npmjs.org/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-7.1.0.tgz 0ms (cache hit)
+247 http cache @fortawesome/free-solid-svg-icons@https://registry.npmjs.org/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-7.1.0.tgz 1ms (cache hit)
+248 http cache @fortawesome/angular-fontawesome@https://registry.npmjs.org/@fortawesome/angular-fontawesome/-/angular-fontawesome-3.0.0.tgz 0ms (cache hit)
+249 silly tarball no local data for @fortawesome/fontawesome-common-types@https://registry.npmjs.org/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-7.1.0.tgz. Extracting by manifest.
+250 silly tarball no local data for @fortawesome/fontawesome-svg-core@https://registry.npmjs.org/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-7.1.0.tgz. Extracting by manifest.
+251 silly tarball no local data for @fortawesome/free-solid-svg-icons@https://registry.npmjs.org/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-7.1.0.tgz. Extracting by manifest.
+252 silly tarball no local data for @fortawesome/angular-fontawesome@https://registry.npmjs.org/@fortawesome/angular-fontawesome/-/angular-fontawesome-3.0.0.tgz. Extracting by manifest.
+253 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 1074ms
+254 silly audit report {
+254 silly audit report   tar: [
+254 silly audit report     {
+254 silly audit report       id: 1109463,
+254 silly audit report       url: 'https://github.com/advisories/GHSA-29xp-372q-xqph',
+254 silly audit report       title: 'node-tar has a race condition leading to uninitialized memory exposure',
+254 silly audit report       severity: 'moderate',
+254 silly audit report       vulnerable_versions: '=7.5.1',
+254 silly audit report       cwe: [Array],
+254 silly audit report       cvss: [Object]
+254 silly audit report     }
+254 silly audit report   ]
+254 silly audit report }
+255 silly packumentCache corgi:https://registry.npmjs.org/tar cache-miss
+256 http fetch GET 200 https://registry.npmjs.org/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-7.1.0.tgz 5813ms (cache miss)
+257 http fetch GET 200 https://registry.npmjs.org/tar 5650ms (cache miss)
+258 silly packumentCache corgi:https://registry.npmjs.org/tar set size:undefined disposed:false
+259 silly packumentCache corgi:https://registry.npmjs.org/cacache cache-miss
+260 silly packumentCache corgi:https://registry.npmjs.org/node-gyp cache-miss
+261 http fetch GET 200 https://registry.npmjs.org/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-7.1.0.tgz 7101ms (cache miss)
+262 http fetch GET 200 https://registry.npmjs.org/@fortawesome/angular-fontawesome/-/angular-fontawesome-3.0.0.tgz 7097ms (cache miss)
+263 http fetch GET 200 https://registry.npmjs.org/cacache 4025ms (cache miss)
+264 silly packumentCache corgi:https://registry.npmjs.org/cacache set size:undefined disposed:false
+265 http fetch GET 200 https://registry.npmjs.org/node-gyp 4106ms (cache miss)
+266 silly packumentCache corgi:https://registry.npmjs.org/node-gyp set size:undefined disposed:false
+267 http fetch GET 200 https://registry.npmjs.org/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-7.1.0.tgz 618413ms (cache miss)
+268 silly ADD node_modules/@fortawesome/fontawesome-common-types
+269 silly ADD node_modules/@fortawesome/fontawesome-svg-core
+270 silly ADD node_modules/@fortawesome/free-solid-svg-icons
+271 silly ADD node_modules/@fortawesome/angular-fontawesome
+272 silly ADD
+273 silly ADD
+274 silly ADD
+275 silly ADD
+276 silly ADD
+277 silly ADD
+278 silly ADD
+279 silly ADD
+280 silly ADD
+281 silly ADD
+282 silly ADD
+283 silly ADD
+284 silly ADD
+285 silly ADD
+286 silly ADD
+287 silly ADD
+288 silly ADD
+289 silly ADD
+290 silly ADD
+291 silly ADD
+292 silly ADD
+293 silly ADD
+294 silly ADD
+295 silly ADD
+296 silly ADD
+297 silly ADD
+298 silly ADD
+299 silly ADD
+300 silly ADD
+301 silly ADD
+302 silly ADD
+303 silly ADD
+304 silly ADD
+305 silly ADD
+306 silly ADD
+307 silly ADD
+308 silly ADD
+309 silly ADD
+310 silly ADD
+311 silly ADD
+312 silly ADD
+313 silly ADD
+314 silly ADD
+315 silly ADD
+316 silly ADD
+317 silly ADD
+318 silly ADD
+319 silly ADD
+320 silly ADD
+321 silly ADD
+322 silly ADD
+323 silly ADD
+324 silly ADD
+325 silly ADD
+326 silly ADD
+327 silly ADD
+328 silly ADD
+329 silly ADD
+330 silly ADD
+331 silly ADD
+332 silly ADD
+333 silly ADD
+334 silly ADD
+335 silly ADD
+336 silly ADD
+337 silly ADD
+338 silly ADD
+339 silly ADD
+340 silly ADD
+341 silly ADD
+342 silly ADD
+343 silly ADD
+344 silly ADD
+345 silly ADD
+346 silly ADD
+347 silly ADD
+348 silly ADD
+349 silly ADD
+350 silly ADD
+351 silly ADD
+352 silly ADD
+353 silly ADD
+354 silly ADD
+355 silly ADD
+356 silly ADD
+357 verbose cwd C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web
+358 verbose os Windows_NT 10.0.19045
+359 verbose node v20.13.1
+360 verbose npm  v10.9.2
+361 verbose exit 0
+362 info ok

@@ -6,9 +6,15 @@ import { Index } from './pages/index';
 import { Missions } from './pages/missions/missions';
 import { Alertes } from './pages/alertes/alertes';
 import { Paiements } from './pages/paiements/paiements';
-import { Litiges } from './pages/litiges/litiges';
-import { Competences } from './pages/competences/competences';
-import { Categories } from './pages/categories/categories';
+import { LitigesComponent } from './pages/litiges/litiges';
+import { CompetencesComponent } from './pages/competences/competences';
+import { CategoriesComponent } from './pages/categories/categories';
+import { MissionDetailComponent } from './pages/mission-detail/mission-detail.component';
+import { CandidaturesComponent } from './pages/candidatures/candidatures.component';
+import { LitigesDetailComponent } from './pages/litige-detail/litige-detail.component';
+import { IndexLitigeComponent } from './pages/litiges/index-litige/index-litige.component';
+
+
 export const routes: Routes = [
   {
     path: '',
@@ -33,7 +39,8 @@ export const routes: Routes = [
         children:[
         ]
       },
-
+      
+      
       //Les routes pour Alertes :
       {
         path:'alerts',
@@ -53,36 +60,55 @@ export const routes: Routes = [
 
       //La liste des routes pour les litiges
       {
-        path:'litiges',
-        component:Litiges,
-        children:[
-
+         path: 'litiges',
+         component: IndexLitigeComponent,
+         children:[
+        {
+         path: '',
+         component: LitigesComponent
+        
+        }
         ]
       },
+    
 
       //La liste des routes pour les competences
       {
-        path:'competences',
-        component:Competences,
-        children:[
-
-        ]
+        path: 'competences', 
+        component: CompetencesComponent ,
+        
       },
 
       //La liste des routes pour les categories
       {
         path:'categories',
-        component:Categories,
-        children:[
-
-        ]
+        component:CategoriesComponent,
+        
       }
 
     ]
   },
   {
+      path: 'annonce-details/:id', // Utilise le même chemin que dans alertes.ts
+      component: MissionDetailComponent,
+  },
+  {
+        path: 'mission-detail/:id',
+        component: MissionDetailComponent,
+      },
+      {
+    path: 'mission-candidatures/:id', // Chemin clair pour la gestion des candidatures
+    component: CandidaturesComponent,
+    },
+    
+
+  {
     path: 'login',
     component: Login,
+  },
+  {
+    path: 'litiges/detail/:no',
+    component: LitigesDetailComponent
   },
 
   {
