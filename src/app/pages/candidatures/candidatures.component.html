@@ -1,0 +1,65 @@
+<div class="candidatures-container" *ngIf="missionId">
+  <div class="sidebar-band">
+    <button class="back-button" (click)="goBack()">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+  </div>
+
+  <div class="content-area">
+    <h1 class="page-title">Candidatures pour la Mission: {{ missionTitle }}</h1>
+
+    <div class="controls-bar">
+      <div class="filter-tabs">
+        <button 
+          class="tab" 
+          [class.active]="currentFilter === 'tout'" 
+          (click)="filterCandidatures('tout')">
+          Tout ({{ candidatures.length }})
+        </button>
+        <button 
+          class="tab" 
+          [class.active]="currentFilter === 'valider'" 
+          (click)="filterCandidatures('valider')">
+          Valider (**{{ validatedCount }}**)
+        </button>
+        <button 
+          class="tab" 
+          [class.active]="currentFilter === 'rejeter'" 
+          (click)="filterCandidatures('rejeter')">
+          Rejeter (**{{ rejectedCount }}**)
+        </button>
+      </div>
+
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search"[(ngModel)]="searchText"
+          (ngModelChange)="onSearchChange()">
+      </div>
+    </div>
+
+    <div class="candidatures-grid">
+      <div class="candidature-card" *ngFor="let cand of filteredCandidatures">
+        <img [src]="'images/' + cand.candidatePhoto" alt="Candidat Photo" class="candidate-photo">
+        <div class="candidature-meta">
+          <div class="candidate-name">{{ cand.candidateName }}</div>
+          <div class="motivation-badge">Motivation</div>
+          <p class="motivation-text">{{ cand.motivation }}...</p>
+        </div>
+        
+        <div class="action-menu-container">
+          <button class="action-toggle" (click)="openActionMenu(cand.id)">
+            <i class="fas fa-ellipsis-v"></i>
+          </button>
+          
+          <div class="action-dropdown" *ngIf="selectedCandidatureId === cand.id">
+            <div class="menu-item" (click)="supprimerCandidature(cand.id); selectedCandidatureId = null;">Supprimer la candidature</div>
+            <div class="menu-item" (click)="bloquerCandidat(cand.id); selectedCandidatureId = null;">Bloquer le candidat</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="filteredCandidatures.length === 0" class="empty-state">
+        Aucune candidature trouvée pour le filtre actuel.
+    </div>
+  </div>
+</div>

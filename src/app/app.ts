@@ -3,11 +3,12 @@ import { Router, RouterOutlet, NavigationEnd } from '@angular/router'; // 💡 I
 import { filter } from 'rxjs/operators';
 // Importez le composant de la barre latérale
 import { SidebarComponent } from './components/ui/sidebar/sidebar';
+import { AdminHeaderComponent } from './components/admin-header/admin-header.component';
 
 @Component({
   selector: 'app-root',
   // Ajoutez SidebarComponent aux imports pour qu'il soit utilisable dans le template
-  imports: [RouterOutlet, SidebarComponent],
+  imports: [RouterOutlet, SidebarComponent, AdminHeaderComponent],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

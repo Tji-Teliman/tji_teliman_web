@@ -5,85 +5,12 @@
   background: #ffffff;
   padding: 10px 20px;
 }
-
-/* ===== BARRE PRINCIPALE ===== */
-.user-bar {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  background: #ffffff;
-  border-radius: 8px;
-}
-
-/* --- Haut : search + profil --- */
-.user-bar-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* Barre de recherche */
-.search-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #ffffff;
-  border: 1px solid #dfe6f2;
-  box-shadow: 0 1px 1px rgba(0,0,0,0.05);
-  padding: 8px 12px;
-  border-radius: 28px;
-  width: 280px;
-}
-
-.search-wrapper .icon {
-  font-size: 14px;
-  opacity: 0.6;
-}
-
-.search-wrapper input {
-  border: none;
-  outline: none;
-  width: 100%;
-  font-size: 14px;
-  background: transparent;
-}
-
-/* Profil (droite) */
-.profile {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.avatar {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(180deg,#f8fafc,#e6eefc);
-  border: 1px solid #dbeafe;
-  font-size: 20px;
-}
-
-.profile-text .profile-name {
-  color: #2563eb;
-  font-weight: 700;
-  font-size: 14px;
-}
-
-.profile-text .profile-role {
-  color: #10b981;
-  font-weight: 700;
-  font-size: 12px;
-}
-
 /* ===== Ligne des stats ===== */
 .stats-row {
   display: flex;
   align-items: stretch;
   gap: 14px;
+  margin-top: 2%;
 }
 
 /* Bouton "Utilisateurs" */
@@ -248,7 +175,23 @@
     padding: 8px;
   }
 }
+/* users-page-component.css */
 
+/* Style pour la ligne bloquée (rouge très clair) */
+.table-wrapper tr.blocked-user {
+  background-color: #fee2e2; /* Rouge très clair (red-100 ou similaire) */
+}
+
+/* Style spécifique pour le texte d'action "Débloquer" */
+.table-wrapper td.action.unblock-action {
+  color: #f97316; /* Couleur orange/ambre (similaire à recruteur) */
+  font-weight: 700; /* Plus gras pour le démarquer */
+}
+
+.table-wrapper td.action.unblock-action:hover {
+  color: #ea580c; /* Orange plus foncé au survol */
+  text-decoration: none; /* Enlève le soulignement pour le distinguer du 'Bloquer' */
+}
 
 /* ===== Responsive ===== */
 @media (max-width: 900px) {

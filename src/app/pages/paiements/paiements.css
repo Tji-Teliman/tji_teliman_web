@@ -1,0 +1,226 @@
+/* dashboard.component.css */
+
+.dashboard-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5; /* Couleur de fond légère pour le contraste */
+    margin-top: 2%;
+}
+
+/* ------------------------------------- */
+/* --- Section Cartes Statistiques --- */
+/* ------------------------------------- */
+
+.stats-cards-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    flex: 1;
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+}
+
+.card-title {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    opacity: 0.9;
+}
+.barre{
+    margin-top: 2%;
+}
+.card-value {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* Couleurs exactes des cartes */
+.blue-card {
+    background-color: #3b82f6; /* Bleu Vif */
+}
+
+.orange-card {
+    background-color: #f59e0b; /* Orange Vif */
+}
+
+.green-card-failed {
+    background-color: #10b981; /* Vert */
+}
+
+.grey-card {
+    background-color: #4b5563; /* Gris Sombre */
+}
+
+/* ------------------------------------- */
+/* --- Section Liste des Paiements --- */
+/* ------------------------------------- */
+
+.payments-list-container {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb; /* Bordure légère */
+}
+
+.list-header {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.list-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1f2937;
+}
+
+/* Barre de Recherche */
+.search-bar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.search-input-group {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    background-color: #f3f4f6; /* Fond du champ de recherche */
+    border-radius: 8px;
+    padding: 8px 15px;
+    margin-right: 10px;
+    border: 1px solid #e5e7eb;
+}
+
+.search-icon {
+    width: 18px;
+    height: 18px;
+    color: #9ca3af;
+    margin-right: 10px;
+}
+
+.search-input-group input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 14px;
+    width: 100%;
+    padding: 0;
+}
+
+.search-button {
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-button:hover {
+    background-color: #2563eb;
+}
+
+/* ------------------------------------- */
+/* --- Tableau des Paiements --- */
+/* ------------------------------------- */
+
+.payments-table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table-header,
+.table-row {
+    display: grid;
+    /* Définition des colonnes comme dans l'image */
+    grid-template-columns: 2fr 1.5fr 1.5fr 1.5fr 1fr 1fr;
+    gap: 10px;
+    padding: 15px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.table-header {
+    font-weight: 600;
+    color: #6b7280;
+    font-size: 13px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.table-row {
+    color: #1f2937;
+    font-size: 14px;
+    align-items: center;
+}
+
+.table-row:last-child {
+    border-bottom: none; /* Supprime la bordure sous la dernière ligne */
+}
+
+.row-cell {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Styles spécifiques au contenu */
+.mission-title-col {
+    font-weight: bold;
+}
+
+.remuneration-amount {
+    color: #f59e0b; /* Orange pour le montant */
+    font-weight: bold;
+}
+
+/* Tags de Statut */
+.status-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 12px;
+    text-align: center;
+    border: 1px solid transparent; /* Bordure pour l'effet de tag */
+}
+
+.status-success {
+    background-color: #ecfdf5; /* Vert clair */
+    color: #059669; /* Vert foncé pour le texte */
+    border-color: #a7f3d0;
+}
+
+.status-pending {
+    background-color: #fffbeb; /* Jaune clair (En attente) */
+    color: #d97706; /* Orange foncé pour le texte */
+    border-color: #fcd34d;
+}
+
+.status-failed {
+    background-color: #fef2f2; /* Rouge clair (Échoué) */
+    color: #ef4444; /* Rouge foncé pour le texte */
+    border-color: #fca5a5;
+}
+
+.status-col,
+.date-col {
+    text-align: center;
+    justify-content: center;
+}

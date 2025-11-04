@@ -1,0 +1,48 @@
+/* Centre le texte et donne un peu d'espace */
+.custom-modal-content {
+  text-align: center;
+  padding: 10px 20px 20px 20px;
+}
+
+/* Style du message */
+.modal-message {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+/* Conteneur des boutons */
+.modal-actions {
+  display: flex;
+  justify-content: center; /* Centre les boutons */
+  gap: 15px; /* Espace entre les boutons */
+}
+
+/* Styles de base pour tous les boutons du modal */
+.btn-confirm, .btn-cancel {
+  border: none;
+  padding: 10px 30px;
+  border-radius: 8px; /* Bords arrondis */
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-grow: 1; /* Permet aux boutons de se développer */
+  max-width: 150px;
+}
+
+/* 1. Bouton Confirmer (Bleu) */
+.btn-confirm {
+  background-color: #3b82f6; /* Bleu vif */
+  color: white;
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+/* 2. Bouton Annuler (Orange/Jaune) */
+.btn-cancel {
+  background-color: #f59e0b; /* Orange vif */
+  color: white;
+  box-shadow: 0 4px 8px rgba(245, 158, 11, 0.3);
+}
+

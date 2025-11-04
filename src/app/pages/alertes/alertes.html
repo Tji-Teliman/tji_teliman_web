@@ -1,1 +1,44 @@
-<p>alertes works!</p>
+<div class="alertes-container">
+  <!-- En-tête : titre + bouton -->
+  <app-admin-header></app-admin-header>
+  <div class="header-row">
+    <h2 class="main-title">Notifications & Alertes</h2>
+    <button 
+  mat-flat-button 
+  class="send-btn" 
+  (click)="openSendNotificationDialog()"
+>
+  <mat-icon></mat-icon>
+  Envoyer Notification
+</button>
+  </div>
+
+  <p class="subtitle">
+    Gérer les missions signalées par les utilisateurs
+  </p>
+
+  <!-- Liste des alertes -->
+  <div class="alerts-list">
+    <div 
+    class="alert-card" 
+    *ngFor="let alert of filteredAlerts" 
+    [class.new]="!alert.isSeen"
+  >
+    <div class="alert-info">
+      <strong>{{ alert.title }}</strong>
+      <p>{{ alert.description }}</p>
+    </div>
+      <div class="alert-actions">
+      <button class="btn-action primary" (click)="viewAdvertisement(alert.advertisementId)">Voir l'annonce</button>
+      <button class="btn-action danger" (click)="deleteAlert(alert.id)">Supprimer l'annonce</button>
+      <button *ngIf="!alert.isSeen" class="btn-action secondary" (click)="markAsSeen(alert)">
+    Ignorer
+  </button>
+  
+  <span *ngIf="alert.isSeen" class="status traite">
+    Traité
+  </span>
+    </div>
+    </div>
+  </div>
+</div>

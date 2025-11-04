@@ -1,0 +1,46 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Users\Rama Zolie\AppData\Roaming\npm\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.2
+2 info using node@v20.13.1
+3 silly config load:file:C:\Users\Rama Zolie\AppData\Roaming\npm\node_modules\npm\npmrc
+4 silly config load:file:c:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\.npmrc
+5 silly config load:file:C:\Users\Rama Zolie\.npmrc
+6 silly config load:file:C:\Users\Rama Zolie\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm outdated
+8 verbose argv "outdated" "--json"
+9 verbose logfile logs-max:10 dir:c:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\clean-install\_logs\2025-11-03T12_12_56_127Z-
+10 verbose logfile c:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\clean-install\_logs\2025-11-03T12_12_56_127Z-debug-0.log
+11 silly logfile start cleaning logs, removing 2 files
+12 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+13 silly logfile done cleaning log files
+14 http fetch GET 200 https://registry.npmjs.org/@angular%2frouter 7076ms (cache revalidated)
+15 http fetch GET 200 https://registry.npmjs.org/@angular%2fcore 9190ms (cache revalidated)
+16 http fetch GET 200 https://registry.npmjs.org/@angular%2fcompiler 10699ms (cache revalidated)
+17 http fetch GET 200 https://registry.npmjs.org/@angular%2fmaterial 11770ms (cache revalidated)
+18 http fetch GET 200 https://registry.npmjs.org/@angular%2fforms 12089ms (cache revalidated)
+19 http fetch GET 200 https://registry.npmjs.org/@fortawesome%2fangular-fontawesome 13148ms (cache revalidated)
+20 http fetch GET 200 https://registry.npmjs.org/rxjs 13107ms (cache revalidated)
+21 http fetch GET 200 https://registry.npmjs.org/@angular%2fbuild 13331ms (cache revalidated)
+22 http fetch GET 200 https://registry.npmjs.org/@angular%2fplatform-browser 13840ms (cache revalidated)
+23 http fetch GET 200 https://registry.npmjs.org/source-map 14256ms (cache revalidated)
+24 http fetch GET 200 https://registry.npmjs.org/zone.js 14278ms (cache revalidated)
+25 http fetch GET 200 https://registry.npmjs.org/@angular%2fcdk 14445ms (cache revalidated)
+26 http fetch GET 200 https://registry.npmjs.org/tslib 14376ms (cache revalidated)
+27 http fetch GET 200 https://registry.npmjs.org/@angular%2fcli 14358ms (cache revalidated)
+28 http fetch GET 200 https://registry.npmjs.org/@angular%2fcommon 16118ms (cache revalidated)
+29 http fetch GET 200 https://registry.npmjs.org/@angular%2fcompiler-cli 16634ms (cache revalidated)
+30 http fetch GET 200 https://registry.npmjs.org/jasmine-core 17324ms (cache revalidated)
+31 http fetch GET 200 https://registry.npmjs.org/karma-jasmine 17334ms (cache revalidated)
+32 http fetch GET 200 https://registry.npmjs.org/karma 17372ms (cache revalidated)
+33 http fetch GET 200 https://registry.npmjs.org/karma-chrome-launcher 17431ms (cache revalidated)
+34 http fetch GET 200 https://registry.npmjs.org/@types%2fjasmine 17458ms (cache revalidated)
+35 http fetch GET 200 https://registry.npmjs.org/karma-jasmine-html-reporter 17414ms (cache revalidated)
+36 http fetch GET 200 https://registry.npmjs.org/@fortawesome%2ffree-solid-svg-icons 17564ms (cache revalidated)
+37 http fetch GET 200 https://registry.npmjs.org/karma-coverage 17489ms (cache revalidated)
+38 http fetch GET 200 https://registry.npmjs.org/@fortawesome%2ffontawesome-free 17815ms (cache miss)
+39 http fetch GET 200 https://registry.npmjs.org/typescript 19127ms (cache updated)
+40 verbose cwd c:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web
+41 verbose os Windows_NT 10.0.19045
+42 verbose node v20.13.1
+43 verbose npm  v10.9.2
+44 verbose exit 1
+45 verbose code 1
