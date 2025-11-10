@@ -1,0 +1,45 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Users\Rama Zolie\AppData\Roaming\npm\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.2
+2 info using node@v20.13.1
+3 silly config load:file:C:\Users\Rama Zolie\AppData\Roaming\npm\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\.npmrc
+5 silly config load:file:C:\Users\Rama Zolie\.npmrc
+6 silly config load:file:C:\Users\Rama Zolie\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm install @angular/flex-layout
+8 verbose argv "install" "@angular/flex-layout"
+9 verbose logfile logs-max:10 dir:C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\clean-install\_logs\2025-11-05T14_39_15_520Z-
+10 verbose logfile C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\clean-install\_logs\2025-11-05T14_39_15_520Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+13 silly logfile done cleaning log files
+14 silly idealTree buildDeps
+15 silly fetch manifest @angular/flex-layout@*
+16 silly packumentCache full:https://registry.npmjs.org/@angular%2fflex-layout cache-miss
+17 http cache https://registry.npmjs.org/@angular%2fflex-layout 311ms (cache hit)
+18 silly packumentCache full:https://registry.npmjs.org/@angular%2fflex-layout set size:132845 disposed:false
+19 silly placeDep ROOT @angular/flex-layout@ OK for: tji-teliman-web@0.0.0 want: *
+20 verbose type range
+21 verbose stack @angular/flex-layout: No matching version found for @angular/flex-layout@*.
+21 verbose stack     at module.exports (C:\Users\Rama Zolie\AppData\Roaming\npm\node_modules\npm\node_modules\npm-pick-manifest\lib\index.js:215:23)
+21 verbose stack     at RegistryFetcher.manifest (C:\Users\Rama Zolie\AppData\Roaming\npm\node_modules\npm\node_modules\pacote\lib\registry.js:130:54)
+21 verbose stack     at async #fetchManifest (C:\Users\Rama Zolie\AppData\Roaming\npm\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\build-ideal-tree.js:1202:20)
+21 verbose stack     at async #nodeFromEdge (C:\Users\Rama Zolie\AppData\Roaming\npm\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\build-ideal-tree.js:1040:19)
+21 verbose stack     at async #buildDepStep (C:\Users\Rama Zolie\AppData\Roaming\npm\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\build-ideal-tree.js:904:11)
+21 verbose stack     at async Arborist.buildIdealTree (C:\Users\Rama Zolie\AppData\Roaming\npm\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\build-ideal-tree.js:181:7)
+21 verbose stack     at async Promise.all (index 1)
+21 verbose stack     at async Arborist.reify (C:\Users\Rama Zolie\AppData\Roaming\npm\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:131:5)
+21 verbose stack     at async Install.exec (C:\Users\Rama Zolie\AppData\Roaming\npm\node_modules\npm\lib\commands\install.js:150:5)
+21 verbose stack     at async Npm.exec (C:\Users\Rama Zolie\AppData\Roaming\npm\node_modules\npm\lib\npm.js:207:9)
+22 error code ETARGET
+23 error notarget No matching version found for @angular/flex-layout@*.
+24 error notarget In most cases you or one of your dependencies are requesting
+24 error notarget a package version that doesn't exist.
+25 silly unfinished npm timer reify 1762353556326
+26 silly unfinished npm timer reify:loadTrees 1762353556327
+27 verbose cwd C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web
+28 verbose os Windows_NT 10.0.19045
+29 verbose node v20.13.1
+30 verbose npm  v10.9.2
+31 verbose exit 1
+32 verbose code 1
+33 error A complete log of this run can be found in: C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\clean-install\_logs\2025-11-05T14_39_15_520Z-debug-0.log

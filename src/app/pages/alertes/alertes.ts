@@ -121,9 +121,37 @@ export class Alertes implements OnInit {
 
 
   openSendNotificationDialog(): void {
-    const dialogRef = this.dialog.open(SendNotificationDialogComponent, {
-      width: '500px', 
-      disableClose: true, 
-    });
+  // Ouvre le dialogue avec les configurations définies
+  const dialogRef = this.dialog.open(SendNotificationDialogComponent, {
+    width: '500px', 
+    disableClose: true, // Empêche la fermeture par clic en dehors ou Échap
+    panelClass: 'notification-dialog-panel',
+  });
+
+  // S'abonne à l'événement de fermeture du dialogue
+  dialogRef.afterClosed().subscribe(result => {
+    // Le 'result' sera soit 'null' (Annuler), soit 'NotificationData' (Envoyer)
+
+    if (result) {
+      // Cas : ENVOYER (result contient les données)
+      const notificationData = result; 
+      
+      // Ici, vous implémenteriez la logique d'envoi à votre backend/API.
+      // Par exemple : this.notificationService.send(notificationData).subscribe(...);
+
+      console.log('Notification à envoyer :', notificationData);
+
+      // Afficher un message de succès après l'envoi simulé
+      this.snackBar.open(
+        `Notification envoyée aux ${notificationData.target === 'both' ? 'jeunes et recruteurs' : notificationData.target === 'youngs' ? 'jeunes' : 'recruteurs'} !`, 
+        'Fermer', 
+        { duration: 5000, panelClass: ['snackbar-success'] }
+      );
+
+    } else {
+      // Cas : ANNULER (result est null)
+      this.snackBar.open('Envoi de notification annulé.', 'Fermer', { duration: 2000 });
+    }
+  });
   }
 }

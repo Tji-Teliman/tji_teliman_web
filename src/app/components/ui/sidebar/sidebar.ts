@@ -16,7 +16,14 @@ import { RouterModule } from '@angular/router'; // ESSENTIEL pour routerLink et 
   styleUrls: ['./sidebar.css'],
 })
 export class SidebarComponent implements OnInit {
+  // 1. Propriété pour l'état du menu
+  isCollapsed: boolean = false;
+
   constructor() {}
 
   ngOnInit(): void {}
+  // 2. Méthode pour basculer l'état
+  toggleSidebar(): void {
+    this.isCollapsed = !this.isCollapsed;
+  }
 }

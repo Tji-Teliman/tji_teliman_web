@@ -1,171 +1,149 @@
-import { Component, OnInit, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router'; // Ajout de RouterOutlet pour la démo, même s'il n'est pas strictement utilisé ici
-
-// Interface pour définir la structure d'un litige
-interface Litige {
-  no: number;
-  jeune: string;
-  jeunePhoto: string;
-  jeuneEmail: string;
-  recruteur: string;
-  recruteurPhoto: string;
-  recruteurEmail: string;
-  mission: string;
-  missionId: string;
-  statut: 'En attente' | 'En cours' | 'Résolu' | 'Fermé';
-  montant: string;
-  dateCreation: string;
-  derniereMiseAJour: string;
-  resolutionPrevue: string;
-  description: string;
-}
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common'; // Pour *ngIf / [ngClass]
+import { MatCardModule } from '@angular/material/card'; // Pour les cartes Material
+import { MatButtonModule } from '@angular/material/button'; // Pour les boutons Material
+import { MatIconModule } from '@angular/material/icon'; // Pour les icônes (work, arrow_back)
+import { ActivatedRoute, Router } from '@angular/router'; // Pour la navigation
+import { ModalComponent } from '../../components/modal/modal.component'; // Ajustez ce chemin si nécessaire
 
 @Component({
-  // Rétabli le nom du composant à LitigesComponent pour la cohérence
-  selector: 'app-litiges-detail',
-  standalone: true,
-  // Ajout de RouterOutlet juste pour éviter les warnings non liés à ce composant si jamais il est utilisé
-  imports: [CommonModule, RouterOutlet], 
-  
-  // J'utilise les noms de fichiers de votre erreur pour l'instant, 
-  // car l'erreur NG2008 indique que vous utilisez ce chemin local.
-  // NOTE: Dans un projet standard, le nom serait plutôt './litiges.component.html'
-  templateUrl: './litige-detail.component.html', 
-  styleUrls: ['./litige-detail.component.css']
+  selector: 'app-litige-detail',
+  standalone: true,
+  // Ajout des modules Material + CommonModule + ModalComponent
+  imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule, ModalComponent],
+  templateUrl: './litige-detail.component.html',
+  styleUrls: ['./litige-detail.component.css']
 })
-// Le nom de la classe est de nouveau LitigesComponent pour englober la liste et le détail
 export class LitigesDetailComponent implements OnInit { 
+  litigeId: string | null = null;
+  litige: any = null; 
+  
+  // 1. Références aux modals de confirmation
+  @ViewChild('actionConfirmationModal') actionConfirmationModal!: ModalComponent;
+  @ViewChild('successModal') successModal!: ModalComponent; 
+  
+  // 2. Propriétés pour stocker l'état et le message du modal
+  pendingAction: 'fermer' | 'resoudre' | null = null;
+  confirmationMessage: string = '';
 
-  // CORRECTION MAJEURE: Le type doit être 'Litige[]' et non 'LitigesComponent[]'
-  private litigesDataSource: Litige[] = [
-    {
-      no: 1,
-      jeune: 'Marie Dupont',
-      jeunePhoto: 'https://placehold.co/100x100/374151/ffffff?text=MD',
-      jeuneEmail: 'marie.dupont@email.com',
-      recruteur: 'Tech Innovations Corp',
-      recruteurPhoto: 'https://placehold.co/100x100/10B981/ffffff?text=TI',
-      recruteurEmail: 'recruteur@tech.com',
-      mission: 'Développement d\'une API REST',
-      missionId: 'MIS-2024-452',
-      statut: 'En attente',
-      montant: '850 €',
-      dateCreation: '15/10/2024',
-      derniereMiseAJour: '18/10/2024',
-      resolutionPrevue: '25/10/2024',
-      description: "Le jeune n'a pas été payé pour la mission effectuée. Le recruteur affirme que le travail est incomplet."
-    },
-    {
-      no: 2,
-      jeune: 'Thomas Dubois',
-      jeunePhoto: 'https://placehold.co/100x100/F97316/ffffff?text=TD',
-      recruteur: 'Marketing Plus',
-      recruteurPhoto: 'https://placehold.co/100x100/FACC15/ffffff?text=MP',
-      jeuneEmail: 'thomas.dubois@email.com',
-      recruteurEmail: 'contact@marketingp.fr',
-      mission: 'Conception d\'une campagne publicitaire',
-      missionId: 'MIS-2024-453',
-      statut: 'En cours',
-      montant: '1 200 €',
-      dateCreation: '01/10/2024',
-      derniereMiseAJour: '20/10/2024',
-      resolutionPrevue: '30/10/2024',
-      description: "Le recruteur a annulé la mission après le début, sans compensation pour le travail déjà fourni."
-    },
-    {
-      no: 3,
-      jeune: 'Sofia Lacroix',
-      jeunePhoto: 'https://placehold.co/100x100/9333EA/ffffff?text=SL',
-      recruteur: 'Global Solutions',
-      recruteurPhoto: 'https://placehold.co/100x100/3B82F6/ffffff?text=GS',
-      jeuneEmail: 'sofia.lacroix@email.com',
-      recruteurEmail: 'support@globalsol.com',
-      mission: 'Audit de sécurité Web',
-      missionId: 'MIS-2024-454',
-      statut: 'Résolu',
-      montant: '500 €',
-      dateCreation: '05/09/2024',
-      derniereMiseAJour: '10/09/2024',
-      resolutionPrevue: '10/09/2024',
-      description: "Problème de communication résolu. Paiement effectué après médiation."
-    },
-    {
-      no: 4,
-      jeune: 'Alex Martin',
-      jeunePhoto: 'https://placehold.co/100x100/BE185D/ffffff?text=AM',
-      recruteur: 'Innovation X',
-      recruteurPhoto: 'https://placehold.co/100x100/22C55E/ffffff?text=IX',
-      jeuneEmail: 'alex.martin@email.com',
-      recruteurEmail: 'jobs@innovationx.net',
-      mission: 'Traduction de documentation technique',
-      missionId: 'MIS-2024-455',
-      statut: 'Fermé',
-      montant: '300 €',
-      dateCreation: '20/08/2024',
-      derniereMiseAJour: '25/08/2024',
-      resolutionPrevue: '25/08/2024',
-      description: "Dossier classé sans suite, litige jugé non recevable."
-    }
-  ];
+  // Injectez ActivatedRoute et Router pour la navigation
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
-  // État de l'application (utilisé par le template HTML)
-  litigesAffiches = signal<Litige[]>([]);
-  litigeSelectionne = signal<Litige | null>(null);
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('no'); 
+      if (id) {
+        this.litigeId = id;
+        this.loadLitigeDetails(this.litigeId);
+      } else {
+        this.router.navigate(['/litiges']); 
+      }
+    });
+  }
 
-  // Filtres disponibles
-  filtres: string[] = ['Tous', 'En attente', 'En cours', 'Résolu', 'Fermé'];
-  filtreActif: string = 'Tous';
+  loadLitigeDetails(id: string): void {
+    // CORRECTION 2: Logique pour simuler un statut variable basé sur l'ID numérique
+    const numericId = parseInt(id, 10); // Conversion en nombre
+    let statutLitige = 'En attente'; 
 
-  ngOnInit() {
-    // Initialise la liste affichée avec toutes les données au démarrage
-    this.litigesAffiches.set(this.litigesDataSource);
-  }
+    if (numericId === 1) {
+        statutLitige = 'Résolu'; 
+    } else if (numericId === 2) {
+        statutLitige = 'Ouvert'; 
+    } else if (numericId === 3) {
+        statutLitige = 'Résolu';
+    } else if (numericId === 4) {
+        statutLitige = 'Fermé';
+    } else if (numericId === 5 || numericId === 6 || numericId === 7) {
+        statutLitige = 'En Cours';
+    } else {
+        statutLitige = 'En attente';
+    }
 
-  // Logique de filtrage des litiges pour la vue de liste
-  filtrerLitiges(filtre: string) {
-    this.filtreActif = filtre;
-    if (filtre === 'Tous') {
-      this.litigesAffiches.set(this.litigesDataSource);
-    } else {
-      this.litigesAffiches.set(this.litigesDataSource.filter(l => l.statut === filtre));
-    }
-  }
+    // Simuler le chargement des données
+    this.litige = {
+      numero: id, 
+      objet: 'Livraison',
+      description: "Le jeune n'a pas été payé pour la mission effectuée.",
+      statut: statutLitige, // Utilisation du statut variable
+      montant: '15.000 FCFA',
+      dateCreation: '10/01/2025',
+      derniereMiseAJour: '10/01/2025',
+      resolutionPrevued: '22/01/2025',
+      jeune: {
+        nom: 'Ramatou Konare',
+        email: 'rama@gmail.com',
+        avatarUrl: 'images/hommepro.png' 
+      },
+      recruteur: {
+        nom: 'Amadou Bakagoyo',
+        email: 'amadou@gmail.com',
+        avatarUrl: 'images/profil.png' 
+      },
+      missionAssociee: {
+        numero: id,
+        titre: 'Livraison'
+      }
+    };
+  }
 
-  // Logique pour basculer vers la vue de détail
-  voirDetails(litige: Litige) {
-    this.litigeSelectionne.set(litige);
-  }
+  // ⭐ NOUVEAU GETTER : Détermine si le litige est dans un état final.
+  get isLitigeClosed(): boolean {
+    if (!this.litige) return true; // Empêche les actions si les données ne sont pas chargées
+    const status = this.litige.statut;
+    // Les statuts considérés comme "finaux" sont "Résolu" et "Fermé".
+    return status === 'Résolu' || status === 'Fermé';
+  }
 
-  // Logique pour revenir à la liste
-  retourListe() {
-    this.litigeSelectionne.set(null);
-  }
+  // --- LOGIQUE DE GESTION DES ACTIONS AVEC CONFIRMATION ---
 
-  // Logique pour déterminer la classe CSS du statut
-  getStatutClass(statut: Litige['statut']): string {
-    switch (statut) {
-      case 'En attente':
-        return 'en-attente';
-      case 'En cours':
-        return 'en-cours';
-      case 'Résolu':
-        return 'resolu';
-      case 'Fermé':
-        return 'ferme';
-      default:
-        return '';
-    }
-  }
+  fermerLitige(): void {
+    // ⭐ AJOUT : Blocage si déjà dans un état final
+    if (this.isLitigeClosed) return; 
+    
+    this.pendingAction = 'fermer';
+    this.confirmationMessage = 'Voulez-vous vraiment FERMER ce litige ? Cette action pourrait être irréversible.';
+    this.actionConfirmationModal.open();
+  }
 
-  // Fonctions de gestion d'actions (à implémenter pour la gestion réelle)
-  traiterLitige() {
-    // Dans une application réelle, cela ouvrirait un modal ou une étape de traitement
-    console.log(`Action: Traiter le litige N° ${this.litigeSelectionne()?.no}`);
-  }
+  resoudreLitige(): void {
+    // ⭐ AJOUT : Blocage si déjà dans un état final
+    if (this.isLitigeClosed) return; 
+    
+    this.pendingAction = 'resoudre';
+    this.confirmationMessage = 'Êtes-vous sûr(e) de vouloir RÉSOUDRE ce litige ? Ceci marquera le litige comme terminé.';
+    this.actionConfirmationModal.open();
+  }
 
-  resoudreLitige() {
-    // Dans une application réelle, cela lancerait le processus de résolution finale
-    console.log(`Action: Résoudre le litige N° ${this.litigeSelectionne()?.no}`);
-  }
+  confirmAction(): void {
+    this.actionConfirmationModal.close();
+    
+    // Logique d'action et d'affichage de succès
+    // ... (le reste de la logique reste inchangé) ...
+
+    if (this.pendingAction === 'resoudre') {
+      console.log('Action: Résolution confirmée pour le litige ID:', this.litigeId);
+      // Simuler la mise à jour du statut
+      this.litige.statut = 'Résolu';
+      this.successModal.message = "Litige résolu avec succès !";
+    } else if (this.pendingAction === 'fermer') {
+      console.log('Action: Fermeture confirmée pour le litige ID:', this.litigeId);
+      // Simuler la mise à jour du statut
+      this.litige.statut = 'Fermé';
+      this.successModal.message = "Litige fermé avec succès.";
+    }
+    
+    // 3. Afficher le message de succès (on ne redirige plus pour voir le statut changer)
+    if (this.pendingAction) {
+        this.successModal.open();
+        // setTimeout(() => this.router.navigate(['/litiges']), 2000); // 🚫 Suppression de la redirection pour permettre de voir le statut mis à jour
+    }
+    
+    // 4. Réinitialiser
+    this.pendingAction = null;
+  }
+
+  goBack(): void {
+    this.router.navigate(['/litiges']); 
+  }
 }

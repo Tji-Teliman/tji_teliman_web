@@ -1,9 +1,9 @@
-<div class="sidebar-container">
+<div class="sidebar-container" [class.collapsed]="isCollapsed">
   <div class="logo-section">
     <div class="logo-circle">
       <img src="images/LOGO_TJI_TELIMAN.png" alt="Teliman Logo" class="sidebar-logo" />
     </div>
-  </div>
+    </div>
 
   <nav class="navigation-menu">
     <ul>
@@ -170,7 +170,7 @@
     </ul>
   </nav>
 
-  <div class="toggle-icon">
+  <div class="toggle-icon" (click)="toggleSidebar()" [class.rotated]="isCollapsed">
     <svg
       class="icon"
       xmlns="http://www.w3.org/2000/svg"
@@ -201,7 +201,7 @@
         <polyline points="16 17 21 12 16 7"></polyline>
         <line x1="21" y1="12" x2="9" y2="12"></line>
       </svg>
-      <span>Déconnexion</span>
+      <span>{{ isCollapsed ? '' : 'Déconnexion' }}</span>
     </div>
   </div>
 </div>

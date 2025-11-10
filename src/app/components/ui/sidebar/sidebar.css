@@ -16,6 +16,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: Arial, sans-serif;
+  transition: width 0.3s ease; /* AJOUT : Animation de rétraction */
 }
 
 /* -------------------- LOGO SECTION -------------------- */
@@ -93,38 +94,25 @@
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* -------------------- STYLE DE L'ÉLÉMENT ACTIF (CORRECTION FINALE STABLE) -------------------- */
+/* -------------------- STYLE DE L'ÉLÉMENT ACTIF -------------------- */
 
 .navigation-menu li.active-link {
   background-color: transparent;
-}
-
-/* Suppression de la barre orange (confirmé) */
-.navigation-menu li.active-link::before {
-  content: none;
+  position: relative; /* ESSENTIEL pour positionner les pseudo-éléments de coupure */
 }
 
 .navigation-menu li.active-link .link-content {
   background-color: var(--color-light-gray); /* Fond gris clair */
   color: var(--color-blue);
-
   padding: 12px 20px;
 
-  /*  ARRONDIS UNIQUEMENT CÔTÉ GAUCHE (comme sur la maquette) */
-  /* Le bord droit est droit, mais la fin du div parent donne l'impression d'une coupe. */
+  /* ARRONDIS UNIQUEMENT CÔTÉ GAUCHE */
   border-radius: 20px 0 0 20px;
-
-  /* Décalage des deux côtés pour s'assurer que le cadre est contenu dans le bleu */
-  /* La largeur sera automatiquement ajustée par le flexbox/margin pour rester DANS le parent */
   margin-left: 10px;
-  margin-right: 0; /* Assurez-vous qu'il touche le bord droit du LI parent */
-
-  /* Nous allons utiliser la largeur par défaut pour rester dans le parent */
+  margin-right: 0;
   width: auto;
-
-  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
   position: relative;
-  z-index: 1;
+  z-index: 1; 
 }
 
 /* Les icônes et le texte actif deviennent orange */
@@ -137,9 +125,68 @@
   stroke: var(--color-orange);
 }
 
-/* Suppression des pseudo-éléments de coin coupé */
-.navigation-menu li.active-link .link-content::before,
-.navigation-menu li.active-link .link-content::after {
+/* --- CORRECTION: EFFET DE BORDURE COUPÉE (Concave) --- */
+
+/* COIN SUPÉRIEUR (Coupure) */
+.navigation-menu li.active-link::before {
+  content: "";
+  position: absolute;
+  top: -20px; 
+  right: 0;
+  width: 10px;
+  height: 20px;
+  background-color: var(--color-blue);
+  z-index: 2;
+  border-bottom-right-radius: 20px; 
+}
+
+/* COIN INFÉRIEUR (Coupure) */
+.navigation-menu li.active-link::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  right: 0;
+  width: 10px;
+  height: 20px;
+  background-color: var(--color-blue);
+  z-index: 2;
+  border-top-right-radius: 20px;
+}
+
+
+/* -------------------- STYLES POUR L'ÉTAT RÉTRACTÉ (.collapsed) -------------------- */
+
+/* 1. Rétraction du conteneur */
+.sidebar-container.collapsed {
+  width: 80px; /* Nouvelle largeur */
+}
+
+/* 2. Cacher le texte */
+.sidebar-container.collapsed .link-content span,
+.sidebar-container.collapsed .logo-text,
+.sidebar-container.collapsed .logout-section .link-content span {
+  display: none;
+}
+
+/* 3. Ajuster le padding/centrage des icônes */
+.sidebar-container.collapsed .link-content {
+  justify-content: center;
+  padding: 12px 0; /* Réduire le padding horizontal */
+}
+
+.sidebar-container.collapsed .icon {
+  margin-right: 0; /* Retirer la marge à droite de l'icône */
+}
+
+/* 4. Rétablir l'élément actif pour qu'il soit un simple carré coloré */
+.sidebar-container.collapsed .navigation-menu li.active-link .link-content {
+  margin-left: 0;
+  border-radius: 0;
+}
+
+/* 5. Cacher les pseudo-éléments (les coupes) en mode rétracté */
+.sidebar-container.collapsed .navigation-menu li.active-link::before,
+.sidebar-container.collapsed .navigation-menu li.active-link::after {
   content: none;
 }
 
@@ -155,6 +202,15 @@
   margin-bottom: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.toggle-icon .icon {
+  transition: transform 0.3s ease; /* Animation de rotation */
+}
+
+/* Rotation de la flèche lorsque le menu est rétracté */
+.toggle-icon.rotated .icon {
+  transform: rotate(180deg);
 }
 
 .logout-section {

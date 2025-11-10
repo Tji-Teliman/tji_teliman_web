@@ -20,8 +20,8 @@ type FiltreStatut = 'Tous' | 'En Cours' | 'Resolus' | 'Ouvert' | 'Fermé';
     selector: 'app-litiges',
     standalone: true, 
     imports: [CommonModule , AdminHeaderComponent], 
-    templateUrl:'./litiges.html', // Assurez-vous du nom de fichier correct
-    styleUrl: './litiges.css',   // Assurez-vous du nom de fichier correct
+    templateUrl:'./litiges.html', 
+    styleUrl: './litiges.css',   // 
 })
 export class LitigesComponent implements OnInit {
 
