@@ -1,56 +1,68 @@
-<h2 mat-dialog-title> Envoyer une nouvelle notification</h2>
-<mat-dialog-content class="mat-typography">
-  <form [formGroup]="notificationForm" class="notification-form">
-    
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Cible(s) de la notification</mat-label>
-      <mat-select formControlName="target" multiple required>
-        <mat-option value="recruiters">Recruteurs</mat-option>
-        <mat-option value="youth">Jeunes</mat-option>
-        <mat-option value="all">Les deux (Tous les utilisateurs)</mat-option>
+<div class="notification-modal">
+  <h2 class="modal-title">Envoyer une nouvelle notification</h2>
+
+  <form #notificationForm="ngForm" class="notification-form">
+
+    <div class="form-group select-group">
+      <p class="form-label">Cible(s) de la notification *</p>
+      <mat-select 
+        placeholder="Sélectionnez..."
+        [(ngModel)]="notification.target" 
+        name="target" 
+        required
+        class="custom-select"
+      >
+        <mat-option *ngFor="let target of targetOptions" [value]="target.value">
+          {{ target.viewValue }}
+        </mat-option>
       </mat-select>
-      <mat-error *ngIf="notificationForm.get('target')?.hasError('required') && notificationForm.get('target')?.touched">
-        Veuillez sélectionner au moins un groupe.
-      </mat-error>
-    </mat-form-field>
+    </div>
 
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Titre de la notification (max 50)</mat-label>
-      <input matInput formControlName="title" required maxlength="50">
-      <mat-hint align="end">{{ notificationForm.get('title')?.value?.length || 0 }}/50</mat-hint>
-      <mat-error *ngIf="notificationForm.get('title')?.hasError('required') && notificationForm.get('title')?.touched">
-        Le titre est obligatoire.
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Message de la notification (max 500)</mat-label>
-      <textarea matInput formControlName="message" required rows="5" maxlength="500"></textarea>
-      <mat-hint align="end">{{ notificationForm.get('message')?.value?.length || 0 }}/500</mat-hint>
-      <mat-error *ngIf="notificationForm.get('message')?.hasError('required') && notificationForm.get('message')?.touched">
-        Le message est obligatoire.
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Lien à inclure (URL)</mat-label>
-      <input matInput formControlName="linkUrl" type="url" placeholder="Ex: /dashboard/missions">
-      <mat-icon matSuffix>link</mat-icon>
-      <mat-error *ngIf="notificationForm.get('linkUrl')?.hasError('pattern') && notificationForm.get('linkUrl')?.value">
-        Veuillez entrer une URL valide.
-      </mat-error>
-    </mat-form-field>
+    <div class="form-group">
+      <p class="form-label">Titre de la notification (max 50) *</p>
+      <input 
+        type="text" 
+        [(ngModel)]="notification.title" 
+        name="title" 
+        maxlength="50"
+        required
+        class="custom-input"
+        placeholder=""
+      >
+    </div>
+    
+    <div class="form-group message-group">
+      <p class="form-label">Message de la notification (max 500) *</p>
+      <textarea 
+        [(ngModel)]="notification.message" 
+        name="message" 
+        maxlength="500"
+        rows="4"
+        required
+        class="custom-textarea"
+        placeholder=""
+      ></textarea>
+      <div class="char-count">{{ notification.message.length }} / 500</div>
+    </div>
   </form>
-</mat-dialog-content>
 
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Annuler</button>
-  <button 
-    mat-flat-button 
-    color="primary" 
-    [disabled]="notificationForm.invalid" 
-    (click)="sendNotification()"
-  >
-    <mat-icon>send</mat-icon> Envoyer
-  </button>
-</mat-dialog-actions>
+  <div class="modal-actions">
+    <button 
+      mat-button 
+      (click)="onCancel()" 
+      class="btn-cancel"
+    >
+      Annuler
+    </button>
+    
+    <button 
+      mat-flat-button 
+      color="primary" 
+      [disabled]="notificationForm.invalid"
+      (click)="onSend()"
+      class="btn-send"
+    >
+      Envoyer
+    </button>
+  </div>
+</div>

@@ -1,0 +1,128 @@
+'Log files:
+C:\Users\Rama Zolie\Desktop\Tji-TELIMAN-WEB\tji_teliman_web\clean-install\_logs\2025-11-04T23_01_16_647Z-debug-0.log
+
+# npm resolution error report
+
+While resolving: tji-teliman-web@0.0.0
+Found: @angular/compiler@20.3.7
+node_modules/@angular/compiler
+  peer @angular/compiler@"^20.0.0" from @angular/build@20.3.7
+  node_modules/@angular/build
+    dev @angular/build@"^20.3.7" from the root project
+  peer @angular/compiler@"20.3.7" from @angular/compiler-cli@20.3.7
+  node_modules/@angular/compiler-cli
+    peer @angular/compiler-cli@"^20.0.0" from @angular/build@20.3.7
+    node_modules/@angular/build
+      dev @angular/build@"^20.3.7" from the root project
+    dev @angular/compiler-cli@"^20.3.0" from the root project
+  peerOptional @angular/compiler@"20.3.7" from @angular/core@20.3.7
+  node_modules/@angular/core
+    peerOptional @angular/core@"^20.0.0" from @angular/build@20.3.7
+    node_modules/@angular/build
+      dev @angular/build@"^20.3.7" from the root project
+    peer @angular/core@"^20.0.0 || ^21.0.0" from @angular/cdk@20.2.10
+    node_modules/@angular/cdk
+      peer @angular/cdk@"20.2.10" from @angular/material@20.2.10
+      node_modules/@angular/material
+        @angular/material@"^20.2.10" from the root project
+      @angular/cdk@"^20.2.10" from the root project
+    peer @angular/core@"20.3.7" from @angular/common@20.3.7
+    node_modules/@angular/common
+      peer @angular/common@"^20.0.0 || ^21.0.0" from @angular/cdk@20.2.10
+      node_modules/@angular/cdk
+        peer @angular/cdk@"20.2.10" from @angular/material@20.2.10
+        node_modules/@angular/material
+          @angular/material@"^20.2.10" from the root project
+        @angular/cdk@"^20.2.10" from the root project
+      peer @angular/common@"20.3.7" from @angular/forms@20.3.7
+      node_modules/@angular/forms
+        peer @angular/forms@"^20.0.0 || ^21.0.0" from @angular/material@20.2.10
+        node_modules/@angular/material
+          @angular/material@"^20.2.10" from the root project
+        @angular/forms@"^20.3.0" from the root project
+      peer @angular/common@"^20.0.0 || ^21.0.0" from @angular/material@20.2.10
+      node_modules/@angular/material
+        @angular/material@"^20.2.10" from the root project
+      peer @angular/common@"20.3.7" from @angular/platform-browser@20.3.7
+      node_modules/@angular/platform-browser
+        peerOptional @angular/platform-browser@"^20.0.0" from @angular/build@20.3.7
+        node_modules/@angular/build
+          dev @angular/build@"^20.3.7" from the root project
+        peer @angular/platform-browser@"20.3.7" from @angular/forms@20.3.7
+        node_modules/@angular/forms
+          peer @angular/forms@"^20.0.0 || ^21.0.0" from @angular/material@20.2.10
+          node_modules/@angular/material
+            @angular/material@"^20.2.10" from the root project
+          @angular/forms@"^20.3.0" from the root project
+        peer @angular/platform-browser@"^20.0.0 || ^21.0.0" from @angular/material@20.2.10
+        node_modules/@angular/material
+          @angular/material@"^20.2.10" from the root project
+        peer @angular/platform-browser@"20.3.7" from @angular/router@20.3.7
+        node_modules/@angular/router
+          @angular/router@"^20.3.0" from the root project
+        @angular/platform-browser@"^20.3.0" from the root project
+      peer @angular/common@"20.3.7" from @angular/router@20.3.7
+      node_modules/@angular/router
+        @angular/router@"^20.3.0" from the root project
+      @angular/common@"^20.3.0" from the root project
+    peer @angular/core@"20.3.7" from @angular/forms@20.3.7
+    node_modules/@angular/forms
+      peer @angular/forms@"^20.0.0 || ^21.0.0" from @angular/material@20.2.10
+      node_modules/@angular/material
+        @angular/material@"^20.2.10" from the root project
+      @angular/forms@"^20.3.0" from the root project
+    peer @angular/core@"^20.0.0 || ^21.0.0" from @angular/material@20.2.10
+    node_modules/@angular/material
+      @angular/material@"^20.2.10" from the root project
+    peer @angular/core@"20.3.7" from @angular/platform-browser@20.3.7
+    node_modules/@angular/platform-browser
+      peerOptional @angular/platform-browser@"^20.0.0" from @angular/build@20.3.7
+      node_modules/@angular/build
+        dev @angular/build@"^20.3.7" from the root project
+      peer @angular/platform-browser@"20.3.7" from @angular/forms@20.3.7
+      node_modules/@angular/forms
+        peer @angular/forms@"^20.0.0 || ^21.0.0" from @angular/material@20.2.10
+        node_modules/@angular/material
+          @angular/material@"^20.2.10" from the root project
+        @angular/forms@"^20.3.0" from the root project
+      peer @angular/platform-browser@"^20.0.0 || ^21.0.0" from @angular/material@20.2.10
+      node_modules/@angular/material
+        @angular/material@"^20.2.10" from the root project
+      peer @angular/platform-browser@"20.3.7" from @angular/router@20.3.7
+      node_modules/@angular/router
+        @angular/router@"^20.3.0" from the root project
+      @angular/platform-browser@"^20.3.0" from the root project
+    peer @angular/core@"20.3.7" from @angular/router@20.3.7
+    node_modules/@angular/router
+      @angular/router@"^20.3.0" from the root project
+    peer @angular/core@"^20.0.0" from @fortawesome/angular-fontawesome@3.0.0
+    node_modules/@fortawesome/angular-fontawesome
+      @fortawesome/angular-fontawesome@"^3.0.0" from the root project
+    @angular/core@"^20.3.0" from the root project
+  @angular/compiler@"^20.3.0" from the root project
+
+Could not resolve dependency:
+dev @angular-devkit/build-angular@"20.3.8" from the root project
+
+Conflicting peer dependency: @angular/compiler@20.3.9
+node_modules/@angular/compiler
+  peer @angular/compiler@"20.3.9" from @angular/compiler-cli@20.3.9
+  node_modules/@angular/compiler-cli
+    dev @angular/compiler-cli@"^20.3.0" from the root project
+    peer @angular/compiler-cli@"^20.0.0" from @angular-devkit/build-angular@20.3.8
+    node_modules/@angular-devkit/build-angular
+      dev @angular-devkit/build-angular@"20.3.8" from the root project
+    peer @angular/compiler-cli@"20.3.9" from @angular/localize@20.3.9
+    node_modules/@angular/localize
+      peerOptional @angular/localize@"^20.0.0" from @angular-devkit/build-angular@20.3.8
+      node_modules/@angular-devkit/build-angular
+        dev @angular-devkit/build-angular@"20.3.8" from the root project
+    peer @angular/compiler-cli@"^20.0.0" from ng-packagr@20.3.0
+    node_modules/ng-packagr
+      peerOptional ng-packagr@"^20.0.0" from @angular-devkit/build-angular@20.3.8
+      node_modules/@angular-devkit/build-angular
+        dev @angular-devkit/build-angular@"20.3.8" from the root project
+
+Fix the upstream dependency conflict, or retry
+this command with --force or --legacy-peer-deps
+to accept an incorrect (and potentially broken) dependency resolution.

@@ -99,7 +99,7 @@ export const routes: Routes = [
       {
     path: 'mission-candidatures/:id', // Chemin clair pour la gestion des candidatures
     component: CandidaturesComponent,
-    },
+    }, 
     
 
   {

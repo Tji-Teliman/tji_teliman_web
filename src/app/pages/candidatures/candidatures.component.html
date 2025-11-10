@@ -38,7 +38,11 @@
     </div>
 
     <div class="candidatures-grid">
-      <div class="candidature-card" *ngFor="let cand of filteredCandidatures">
+      <div 
+        class="candidature-card" 
+        [class.rejected-card]="cand.status === 'rejeter'" 
+        *ngFor="let cand of filteredCandidatures">
+        
         <img [src]="'images/' + cand.candidatePhoto" alt="Candidat Photo" class="candidate-photo">
         <div class="candidature-meta">
           <div class="candidate-name">{{ cand.candidateName }}</div>
@@ -52,14 +56,62 @@
           </button>
           
           <div class="action-dropdown" *ngIf="selectedCandidatureId === cand.id">
-            <div class="menu-item" (click)="supprimerCandidature(cand.id); selectedCandidatureId = null;">Supprimer la candidature</div>
-            <div class="menu-item" (click)="bloquerCandidat(cand.id); selectedCandidatureId = null;">Bloquer le candidat</div>
+            <div class="menu-item" (click)="confirmDelete(cand.id)">Supprimer la candidature</div>
+            
+            <ng-container *ngIf="cand.status === 'rejeter'; else notRejected">
+              <div class="menu-item" (click)="confirmUnblock(cand.id)">Débloquer le candidat</div>
+            </ng-container>
+            <ng-template #notRejected>
+              <div class="menu-item" (click)="confirmBlock(cand.id)">Bloquer le candidat</div>
+            </ng-template>
           </div>
         </div>
       </div>
     </div>
+    
     <div *ngIf="filteredCandidatures.length === 0" class="empty-state">
         Aucune candidature trouvée pour le filtre actuel.
     </div>
+    
   </div>
 </div>
+
+<app-modal 
+  *ngIf="isDeleteModalOpen" 
+  (closeModal)="isDeleteModalOpen = false"
+  (confirmAction)="supprimerCandidatureConfirm()">
+  
+  <h2 modal-header>Confirmation de suppression</h2>
+  <div modal-body>
+    Êtes-vous sûr de vouloir supprimer la candidature de 
+    **{{ candidatureToDelete?.candidateName }}** (ID: {{ candidatureToDelete?.id }})? 
+    Cette action est irréversible.
+  </div>
+  <div modal-footer></div>
+</app-modal>
+
+<app-modal 
+  *ngIf="isBlockModalOpen" 
+  (closeModal)="isBlockModalOpen = false"
+  (confirmAction)="bloquerCandidatConfirm()">
+  
+  <h2 modal-header>Confirmation de blocage</h2>
+  <div modal-body>
+    Êtes-vous sûr de vouloir bloquer le candidat **{{ candidatureToBlock?.candidateName }}**? 
+    Cela rejettera sa candidature et marquera la carte en rouge.
+  </div>
+  <div modal-footer></div>
+</app-modal>
+
+<app-modal 
+  *ngIf="isUnblockModalOpen" 
+  (closeModal)="isUnblockModalOpen = false"
+  (confirmAction)="debloquerCandidatConfirm()">
+  
+  <h2 modal-header>Confirmation de déblocage</h2>
+  <div modal-body>
+    Voulez-vous vraiment débloquer le candidat **{{ candidatureToUnblock?.candidateName }}**? 
+    Il pourra à nouveau postuler à vos missions.
+  </div>
+  <div modal-footer></div>
+</app-modal>

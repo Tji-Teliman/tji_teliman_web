@@ -117,7 +117,16 @@
   gap: 15px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   position: relative;
+  transition: all 0.3s ease-in-out; /* Pour la transition de couleur */
 }
+
+/* STYLE POUR LA CARTE REJETÉE/BLOQUÉE (Rouge) */
+.candidature-card.rejected-card {
+  border: 2px solid #ef4444; /* Bordure rouge vif */
+  background-color: #fee2e2; /* Fond très légèrement rosé */
+  opacity: 0.8; 
+}
+
 
 .candidate-photo {
   width: 50px;
@@ -198,6 +207,14 @@
   background-color: #f0f4f8;
 }
 
+/* État vide */
+.empty-state {
+  text-align: center;
+  padding: 50px;
+  color: #999;
+  font-size: 1.2em;
+}
+
 /* Media Query pour la responsivité */
 @media (max-width: 768px) {
   .controls-bar {
@@ -214,4 +231,36 @@
   .sidebar-band {
     width: 60px; /* Sidebar plus étroite sur mobile */
   }
+}
+
+/* ************************************************* */
+/* Styles CRITIQUES pour l'affichage des MODAUX */
+/* ************************************************* */
+
+.modal-overlay {
+    /* Couvre tout l'écran */
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Fond semi-transparent */
+    background: rgba(0, 0, 0, 0.6); 
+    /* Ceci est CRITIQUE : Place le modal au-dessus de tout */
+    z-index: 9999; 
+    /* Centrage du contenu du modal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
+}
+
+/* Style du conteneur réel du contenu du modal */
+.modal-container {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 450px; 
+    width: 90%;
 }
