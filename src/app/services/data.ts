@@ -8,19 +8,25 @@ import { Observable } from 'rxjs';
 export class Data {
 
   header = new HttpHeaders();
+  authToken = localStorage.getItem('token');
 
   constructor(private http:HttpClient) {
-    let authToken = localStorage.getItem('token');
     this.header = new HttpHeaders();
     this.header.append('Content-Type', 'application/json');
     this.header.append('Accept', 'application/json');
     this.header.append('Access-Control-Allow-Origin', '*');
     this.header.append('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    this.header.append('Authorization',`Bearer ${authToken}`);
+    this.header.append('Authorization',`Bearer ${this.authToken}`);
   }
 
   getData(url: string) {
-    return this.http.get(url, { headers: this.header });
+    const authToken = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${authToken}`
+    });
+    return this.http.get(url, { headers: headers });
   }
 
   getDataById(url: string, id: number) {
@@ -28,7 +34,13 @@ export class Data {
   }
 
   postData(url: string, body: any) {
-    return this.http.post(url, body, { headers: this.header });
+    const authToken = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${authToken}`
+    });
+    return this.http.post(url, body, { headers: headers });
   }
 
 

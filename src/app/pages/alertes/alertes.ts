@@ -22,7 +22,6 @@ import { Router, RouterModule } from '@angular/router';
     MatDialogModule,
     MatSnackBarModule,
     AdminHeaderComponent,
-    ConfirmationDialogComponent,
     RouterModule
   ],
   templateUrl: './alertes.html',

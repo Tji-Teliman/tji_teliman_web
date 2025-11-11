@@ -1,24 +1,24 @@
 <div class="users-page">
 
   <app-admin-header></app-admin-header>
-   
+
   <div class="stats-row">
     <div class="tab active">Utilisateurs</div>
 
     <div class="cards-container">
       <div class="stat-card total-card">
-        <div class="stat-title">Total</div>
-        <div class="stat-value">2031</div>
+        <div class="stat-title">{{statCards[0].title}}</div>
+        <div class="stat-value">{{statCards[0].value}}</div>
       </div>
 
       <div class="stat-card recruteurs-card">
-        <div class="stat-title">Recruteurs</div>
-        <div class="stat-value">438</div>
+        <div class="stat-title">{{statCards[1].title}}</div>
+        <div class="stat-value">{{statCards[1].value}}</div>
       </div>
 
       <div class="stat-card prestataires-card">
-        <div class="stat-title">Jeunes Prestataires</div>
-        <div class="stat-value">1280</div>
+        <div class="stat-title">{{statCards[2].title}}</div>
+        <div class="stat-value">{{statCards[2].value}}</div>
       </div>
     </div>
   </div>
@@ -37,16 +37,16 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users" [class.blocked-user]="user.isBlocked"> 
+        <tr *ngFor="let user of users" [class.blocked-user]="user.statut == 'DESACTIVER'">
           <td>{{ user.nom }}</td>
           <td>{{ user.prenom }}</td>
           <td>{{ user.genre }}</td>
           <td>{{ user.email }}</td>
           <td>{{ user.role }}</td>
-          <td class="action" 
-              [class.unblock-action]="user.isBlocked" 
+          <td class="action"
+              [class.unblock-action]="user.statut == 'DESACTIVER'"
               (click)="blockUser(user)">
-            {{ user.isBlocked ? 'Débloquer' : 'Bloquer' }} 
+            {{ user.statut == 'DESACTIVER' ? 'Débloquer' : 'Bloquer' }}
           </td>
         </tr>
       </tbody>
