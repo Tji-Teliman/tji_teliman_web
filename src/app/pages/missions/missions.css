@@ -1,0 +1,131 @@
+:host {
+  --color-blue: #2563EB;
+  --color-orange: #f39c12;
+  --color-green: #2ecc71;
+  --color-grey-dark: #bdc3c7; /* Renommé pour plus de clarté */
+  --color-text-dark: #000;
+  --color-text-light: #ffffff;
+  --color-background-card: #ffffff; /* Fond des cartes blanc */
+  --color-row-hover: #f1f1f1;
+}
+.barre{
+    margin-top: 2%;
+}
+/* --- Cartes Statistiques Révisées --- */
+.stats-cards {
+  display: flex;
+  justify-content: space-between;
+  gap: 60px;
+  margin-top: 2.8%;
+  
+}
+
+.stat-card {
+  flex: 1;
+  background-color: var(--color-background-card);
+  border-radius: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Important pour les bords arrondis du header */
+  text-align: center;
+}
+
+.card-header {
+  padding: 10px 15px;
+  color: var(--color-text-light);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Couleurs des headers */
+.blue-bg { background-color: var(--color-blue); }
+.orange-bg { background-color: var(--color-orange); }
+.green-bg { background-color: var(--color-green); }
+.grey-bg { background-color: var(--color-grey-dark); }
+
+.card-body {
+  padding: 15px 15px;
+}
+
+.card-body .value {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--color-text-dark); /* La valeur est sombre sur fond clair */
+  display: block; /* Pour s'assurer qu'il prend toute la place */
+}
+
+/* --- Tableau des Missions --- */
+.missions-table-container {
+  background-color: var(--color-text-light);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Pour contenir les bords arrondis */
+  margin-top: 2%;
+}
+
+.missions-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.missions-table thead {
+  background-color: var(--color-blue);
+  color: white;
+}
+
+.missions-table th {
+  padding: 12px 15px;
+  text-align: left;
+  font-size: 20px;
+  font-weight: 600;
+  
+}
+tr{
+    height: 80px;
+}
+.missions-table tbody tr {
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.missions-table tbody tr:hover {
+  background-color: var(--color-row-hover);
+}
+
+.missions-table td {
+  padding: 10px 15px;
+  font-size: 18px;
+  color: var(--color-text-dark);
+}
+
+/* Styles spécifiques aux colonnes */
+.date-cell, .remuneration-cell {
+  color: var(--color-orange); /* Pour imiter la couleur du texte dans l'image */
+  font-weight: 500;
+}
+
+.remuneration-cell {
+  color: var(--color-green); /* Ajustement pour le montant vert */
+  font-weight: bold;
+}
+
+.action-cell {
+  text-align: center;
+}
+
+.detail-action-button, 
+.action-button {
+  background: none; /* Rendre le fond transparent */
+  border: none;    /* Supprimer la bordure */
+  
+  color: var(--color-blue); 
+  
+  font-size: 1.2em; /* Rendre l'icône légèrement plus grande et visible */
+  cursor: pointer;
+  padding: 5px; /* Petit padding pour faciliter le clic */
+  transition: color 0.2s; /* Effet de transition pour le survol */
+}
+
+.detail-action-button:hover,
+.action-button:hover {
+    color: var(--color-blue-darker); /* Assombrir légèrement au survol */
+}

@@ -1,0 +1,39 @@
+:root {
+  --primary-color: #2196f3;
+  --text-color: #333;
+}
+
+.notification-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 10px; 
+}
+
+mat-dialog-content {
+  padding: 0 24px;
+}
+
+h2.mat-dialog-title {
+  color: var(--text-color);
+  font-weight: 600;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+mat-dialog-actions {
+  padding: 15px 24px;
+}
+
+mat-dialog-actions button {
+  min-width: 100px;
+}
+
+mat-dialog-actions button[color="primary"] {
+  background-color: var(--primary-color);
+  color: white;
+}

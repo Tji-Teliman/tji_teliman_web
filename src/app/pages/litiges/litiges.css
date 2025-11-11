@@ -1,0 +1,166 @@
+:root {
+    /* Couleurs principales */
+    --couleur-primaire: #4285F4; /* Bleu vif pour le bouton actif */
+    --couleur-fond-filtre: #eceff1; /* Fond gris clair des filtres */
+    --couleur-texte-sombre: #1a1a1a;
+    --couleur-texte-clair: #5f6368; /* Texte gris pour les filtres inactifs */
+    --couleur-bordure: #e0e0e0;
+    --montant-couleur: #FF6600; 
+
+    /* Couleurs de statut */
+    --statut-en-cours-bg: #E3F2FD; 
+    --statut-en-cours-text: #1976D2;
+    --statut-en-attente-bg: #FFF3E0; 
+    --statut-en-attente-text: #FF9800;
+    --statut-resolu-bg: #E8F5E9; 
+    --statut-resolu-text: #4CAF50;
+    --statut-ferme-bg: #FCE4EC; 
+    --statut-ferme-text: #C2185B;
+}
+.barre{
+    margin-top: 2%;
+}
+/* ------------------- Conteneur et Titre ------------------- */
+.litiges-container {
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #ffffff;
+}
+
+.titre-litiges {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--couleur-texte-sombre);
+    margin-bottom: 25px;
+}
+
+/* ------------------- Section des Filtres ------------------- */
+.filtres {
+    display: flex;
+    justify-content: flex-end; /* Aligner à droite */
+    margin-bottom: 20px;
+    padding: 6px; /* Espace interne du conteneur des filtres */
+    background-color: var(--couleur-fond-filtre); /* Couleur de fond de la carte des filtres */
+    border-radius: 20px; /* Bordures très arrondies */
+    max-width: fit-content; /* S'adapte à la largeur du contenu */
+    margin-left: auto; /* Permet d'aligner la carte à droite */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Ombre légère */
+    background-color: #2563EB;
+}
+
+.bouton-filtre {
+    padding: 8px 18px; /* Espacement interne des boutons */
+    border: none;
+    background-color: transparent; /* Fond transparent par défaut */
+    color: var(--couleur-texte-sombre); /* Texte noir pour les inactifs */
+    font-size: 15px; /* Taille de police */
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 16px; /* Bordures arrondies des boutons individuels */
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    white-space: nowrap; /* Empêche le texte de se casser sur plusieurs lignes */
+}
+
+.bouton-filtre:hover {
+    background-color: rgba(0, 0, 0, 0.05); /* Légère surbrillance au survol */
+}
+
+.bouton-filtre.actif {
+    background-color: var(--couleur-primaire); /* Bleu vif pour le bouton actif */
+    color: white; /* Texte blanc pour le bouton actif */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Ombre plus prononcée pour l'actif */
+}
+
+/* ------------------- Tableau (inchangé) ------------------- */
+.tableau-litiges {
+    overflow-x: auto;
+    border: 1px solid var(--couleur-bordure);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+
+thead {
+    background-color: #2563EB;
+    color: white;
+}
+
+th {
+    padding: 15px 12px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--couleur-texte-clair);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--couleur-bordure);
+}
+
+td {
+    padding: 12px 12px;
+    font-size: 14px;
+    color: var(--couleur-texte-sombre);
+    border-bottom: 1px solid var(--couleur-bordure);
+    vertical-align: middle; 
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.montant {
+    font-weight: 600;
+    color: var(--montant-couleur);
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+
+.action-btn:hover {
+    background-color: #f0f0f0;
+}
+
+/* ------------------- Badges de Statut (inchangés) ------------------- */
+.statut {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 14px; 
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    min-width: 80px; 
+}
+
+.statut.en-cours {
+    background-color: var(--statut-en-cours-bg);
+    color: var(--statut-en-cours-text);
+}
+
+.statut.en-attente {
+    background-color: var(--statut-en-attente-bg);
+    color: var(--statut-en-attente-text);
+}
+
+.statut.resolu {
+    background-color: var(--statut-resolu-bg);
+    color: var(--statut-resolu-text);
+}
+
+.statut.ferme {
+    background-color: var(--statut-ferme-bg);
+    color: var(--statut-ferme-text);
+}

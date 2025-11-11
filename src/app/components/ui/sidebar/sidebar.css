@@ -1,0 +1,175 @@
+/* src/app/components/ui/navigation/sidebar/sidebar.component.css */
+
+/* COULEURS */
+.sidebar-container {
+  --color-blue: #2563eb;
+  --color-orange: #f59e0b;
+  --color-white: #ffffff;
+  --color-light-gray: #f4f4f4; /* Fond de la page (utilisé pour le cadre actif) */
+
+  width: 250px;
+  height: 100vh;
+  background-color: var(--color-blue);
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* -------------------- LOGO SECTION -------------------- */
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 0 20px 0;
+}
+
+.logo-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 4px var(--color-white);
+  border: 1px solid var(--color-white);
+}
+
+.sidebar-logo {
+  width: 60px;
+  height: auto;
+  object-fit: contain;
+}
+
+.logo-text {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 5px;
+  color: var(--color-white);
+}
+
+/* -------------------- NAVIGATION MENU (Ajustements généraux) -------------------- */
+
+.navigation-menu {
+  flex-grow: 1;
+  padding-top: 10px;
+}
+
+.navigation-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navigation-menu li {
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  margin: 4px 0;
+  transition: background-color 0.3s ease;
+}
+
+/* Contenu du lien (Texte et Icône) - INACTIF */
+.link-content {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  stroke: var(--color-white);
+  fill: none;
+}
+
+.navigation-menu li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* -------------------- STYLE DE L'ÉLÉMENT ACTIF (CORRECTION FINALE STABLE) -------------------- */
+
+.navigation-menu li.active-link {
+  background-color: transparent;
+}
+
+/* Suppression de la barre orange (confirmé) */
+.navigation-menu li.active-link::before {
+  content: none;
+}
+
+.navigation-menu li.active-link .link-content {
+  background-color: var(--color-light-gray); /* Fond gris clair */
+  color: var(--color-blue);
+
+  padding: 12px 20px;
+
+  /*  ARRONDIS UNIQUEMENT CÔTÉ GAUCHE (comme sur la maquette) */
+  /* Le bord droit est droit, mais la fin du div parent donne l'impression d'une coupe. */
+  border-radius: 20px 0 0 20px;
+
+  /* Décalage des deux côtés pour s'assurer que le cadre est contenu dans le bleu */
+  /* La largeur sera automatiquement ajustée par le flexbox/margin pour rester DANS le parent */
+  margin-left: 10px;
+  margin-right: 0; /* Assurez-vous qu'il touche le bord droit du LI parent */
+
+  /* Nous allons utiliser la largeur par défaut pour rester dans le parent */
+  width: auto;
+
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+  position: relative;
+  z-index: 1;
+}
+
+/* Les icônes et le texte actif deviennent orange */
+.navigation-menu li.active-link .link-content span {
+  color: var(--color-orange);
+  font-weight: 700;
+}
+
+.navigation-menu li.active-link .icon {
+  stroke: var(--color-orange);
+}
+
+/* Suppression des pseudo-éléments de coin coupé */
+.navigation-menu li.active-link .link-content::before,
+.navigation-menu li.active-link .link-content::after {
+  content: none;
+}
+
+/* -------------------- DIVERS (Rétraction et Déconnexion) -------------------- */
+
+.toggle-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logout-section {
+  cursor: pointer;
+  padding: 0 0 20px 0;
+}
+
+.logout-section .link-content {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.logout-section:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}

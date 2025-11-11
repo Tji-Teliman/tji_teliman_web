@@ -1,0 +1,122 @@
+<div class="dashboard-page-container">
+  <div class="content-grid">
+    <div class="header-card" style="background-image: url('images/header_home.png')">
+      <div class="header-text">
+        <h2>Heureux de vous revoir, {{ adminName }}</h2>
+        <p>Gérez et optimisez la plateforme Tji Teliman en toute simplicité</p>
+        <button class="btn-primary" routerLink="/users">
+          <svg
+            class="btn-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+          </svg>
+          Gérer les utilisateurs
+        </button>
+      </div>
+      <img src="images/homme.png" alt="Illustration de l'homme" class="header-illustration" />
+    </div>
+
+    <div class="chart-card">
+      <img src="images/cercle.png" alt="Diagramme en cercle" class="pie-chart-image" />
+      <div class="chart-legend">
+        <div class="legend-item blue">
+          <span class="dot" style="background-color: #2563eb"></span>Utilisateurs
+        </div>
+        <div class="legend-item green">
+          <span class="dot" style="background-color: #10b981"></span>Recruteur
+        </div>
+        <div class="legend-item orange">
+          <span class="dot" style="background-color: #f59e0b"></span>Jeunes Prestateur
+        </div>
+        <div class="legend-item black">
+          <span class="dot" style="background-color: #000000"></span>Annonces
+        </div>
+        <div class="legend-item gray">
+          <span class="dot" style="background-color: #e5e7eb"></span>Paiement effectuer
+        </div>
+      </div>
+    </div>
+
+    <div class="overview-section">
+      <div class="section-header">
+        <h3>Vue d'ensemble sur l'application</h3>
+        <div class="search-box">
+          <input type="text" placeholder="Search" />
+          <svg
+            class="search-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </div>
+      </div>
+
+      <div class="stats-cards">
+        <div *ngFor="let stat of stats" class="stat-card">
+          <div class="icon-circle" [style.background-color]="stat.color">
+            <svg
+              class="stat-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+              <path d="M2 17l10 5 10-5"></path>
+              <path d="M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <span class="total-label">{{ stat.title }}</span>
+            <span class="total-value">{{ stat.value }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="activity-section">
+      <h3>Activité récentes</h3>
+      <div class="activity-list">
+        <div class="activity-item">
+          <div class="activity-content">
+            <span class="activity-user-name">Ramatou Konaré</span> s'est inscrite en tant que
+            **jeune prestataire**
+          </div>
+          <span class="activity-time">Il y a 10 heures</span>
+        </div>
+        <div class="activity-item">
+          <div class="activity-content">
+            <span class="activity-user-name">Ramatou Konaré</span> s'est inscrite en tant que
+            **jeune prestataire**
+          </div>
+          <span class="activity-time">Il y a 10 heures</span>
+        </div>
+        <div class="activity-item">
+          <div class="activity-content">
+            <span class="activity-user-name">Ramatou Konaré</span> s'est inscrite en tant que
+            **jeune prestataire**
+          </div>
+          <span class="activity-time">Il y a 10 heures</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

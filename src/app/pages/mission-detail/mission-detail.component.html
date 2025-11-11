@@ -1,0 +1,97 @@
+<div class="mission-page">
+  <!-- Bande bleue gauche -->
+  <div class="sidebar">
+    <button class="back-button" (click)="goBack()">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+  </div>
+  
+<div class="mission-detail-container" *ngIf="mission">
+  <div class="header-band">
+    <div class="header-title">
+      Détail sur la mission: {{ mission.title }}
+    </div>
+  </div>
+
+  <div class="content-area">
+    <div class="recruiter-card">
+      <h2 class="recruiter-title">Recruteur</h2>
+      <div class="recruiter-info">
+        <img [src]="'images/' + mission.recruiter.photo" alt="Recruiter Photo" class="recruiter-photo">
+        <div class="recruiter-meta">
+          <div class="recruiter-name">{{ mission.recruiter.name }}</div>
+          <div class="rating">
+            <i class="fas fa-star" *ngFor="let star of [].constructor(mission.recruiter.rating)"></i>
+            <i class="far fa-star" *ngFor="let star of [].constructor(5 - mission.recruiter.rating)"></i>
+          </div>
+        </div>
+      </div>
+      <button class="delete-mission-button" (click)="openDeleteMissionConfirmation(mission.id)">
+        <i class="fas fa-trash-alt"></i>
+      </button>
+    </div>
+
+    <div class="mission-description-card">
+      <h3>Description de la Mission</h3>
+      <p>{{ mission.description }}</p>
+    </div>
+
+    <div class="mission-details-grid">
+      <div class="detail-item">
+        <i class="fas fa-map-marker-alt icon"></i>
+        <div class="text">
+          <span>Kalaban</span>
+          <span>Coura</span>
+        </div>
+      </div>
+      <div class="detail-item">
+        <i class="far fa-clock icon"></i>
+        <div class="text">
+          <span>Estimé:</span>
+          <span>{{ mission.estimatedTime }}</span>
+        </div>
+      </div>
+      <div class="detail-item">
+        <i class="far fa-calendar-alt icon"></i>
+        <div class="text">
+          <span>Date Limite:</span>
+          <span>{{ mission.dueDate }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="requirements-card">
+      <h3>Exigences Clés</h3>
+      <ul>
+        <li *ngFor="let req of mission.requirements">
+          <i class="fas fa-check-circle check-icon"></i> {{ req }}
+        </li>
+      </ul>
+    </div>
+
+    <button class="view-applications-button" [routerLink]="['/mission-candidatures', mission.id]">
+     Voir les candidatures pour cette mission
+</button>
+  </div>
+</div>
+
+<app-modal
+  #deleteMissionModal
+  type="confirmation"
+  message="Voulez-vous vraiment supprimer cette mission ?"
+  confirmText="Confirmer"
+  cancelText="Annuler"
+  (confirmed)="confirmDeletion()"
+  (dismissed)="missionToDeleteId = null"
+></app-modal>
+
+<app-modal
+  #successDeleteMissionModal
+  type="success"
+  message="Mission supprimée avec succès"
+  [width]="350" 
+></app-modal>
+
+<div *ngIf="!mission" class="loading-message">
+  Chargement des détails de la mission...
+</div>

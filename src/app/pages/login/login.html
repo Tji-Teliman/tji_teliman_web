@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="login-container">
+  <div class="login-card animate">
+    <div class="avatar">
+      <!-- Icône de profil agrandie -->
+      <i class="fa fa-user-circle"></i>
+    </div>
+
+      @if (error) {
+        <p class="error">Adresse email ou mot de passe incorrect</p>
+      }
+    <form [formGroup]="loginData" (ngSubmit)="onSubmit()">
+      <!-- Champ Email -->
+      <div class="input-group">
+        <i class="fa fa-envelope"></i>
+        <input type="email" placeholder="ramatouyy@gmail.com"  formControlName="email"  (click)="changer()"/>
+      </div>
+
+      <!-- Champ Mot de passe (avec interactivité) -->
+      <div class="input-group">
+        <i class="fa fa-lock"></i>
+        <!-- L'input utilise le signal showPassword() pour changer son type -->
+        <input
+          [type]="showPassword() ? 'text' : 'password'"
+          placeholder="Mot de passe" formControlName="motDePasse"  (click)="changer()"
+        />
+        <!-- L'icône de l'œil gère l'action de bascule -->
+        <div class="password-toggle" (click)="togglePasswordVisibility()">
+          <!-- Utilisation d'un @if pour basculer entre l'œil ouvert et barré -->
+          @if (showPassword()) {
+            <i class="fa fa-eye-slash"></i>
+          } @else {
+            <i class="fa fa-eye"></i>
+          }
+        </div>
+      </div>
+
+      <div class="options">
+        <label><input type="checkbox" /> Se souvenir de moi</label>
+        <a href="#">Mot de passe oublié ?</a>
+      </div>
+
+      <!-- Le bouton appelle la soumission du formulaire -->
+      <button type="submit" class="btn-login">Se connecter</button>
+    </form>
+  </div>
+</div>

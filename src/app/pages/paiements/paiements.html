@@ -1,0 +1,86 @@
+<div class="barre"><app-admin-header></app-admin-header></div>
+<div class="dashboard-container">
+  <div class="stats-cards-row">
+    <div class="stat-card blue-card">
+      <div class="card-title">Total des paiements effectué</div>
+      <div class="card-value">{{ totalPaymentsEffected }}</div>
+    </div>
+
+    <div class="stat-card orange-card">
+      <div class="card-title">Paiements en attente</div>
+      <div class="card-value">{{ pendingPayments }}</div>
+    </div>
+
+    <div class="stat-card green-card-failed">
+      <div class="card-title">Paiements échoués</div>
+      <div class="card-value">{{ failedPayments }}</div>
+    </div>
+
+    <div class="stat-card grey-card">
+      <div class="card-title">Paiements validés ce mois-ci</div>
+      <div class="card-value">{{ validatedPaymentsThisMonth }}</div>
+    </div>
+  </div>
+
+  <div class="payments-list-container">
+    <div class="list-header">
+      <div class="list-title">Liste des Paiements</div>
+      <div class="search-bar">
+        <div class="search-input-group">
+          <svg
+            class="search-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input
+            type="text"
+            placeholder="Rechercher par ici (Titre, Statut, Rémunération)"
+            [(ngModel)]="searchQuery"
+          />
+        </div>
+        <button class="search-button">Rechercher</button>
+      </div>
+    </div>
+
+    <div class="payments-table">
+      <div class="table-header">
+        <div class="header-cell mission-title-col">Titre de la mission</div>
+        <div class="header-cell">Recruteur</div>
+        <div class="header-cell">Jeune prestataire</div>
+        <div class="header-cell remuneration-col">Rémunération</div>
+        <div class="header-cell status-col">Statut Paiement</div>
+        <div class="header-cell date-col">Date Paiement</div>
+      </div>
+
+      <div class="table-row" *ngFor="let payment of paymentsList">
+        <div class="row-cell mission-title-col">{{ payment.missionTitle }}</div>
+        <div class="row-cell">{{ payment.recruiter }}</div>
+        <div class="row-cell">{{ payment.contractor }}</div>
+        <div class="row-cell remuneration-col">
+          <span class="remuneration-amount">{{ payment.remuneration }}</span>
+        </div>
+        <div class="row-cell status-col">
+          <span
+            class="status-tag"
+            [ngClass]="{
+              'status-success': payment.paymentStatus === 'Réussi',
+              'status-pending': payment.paymentStatus === 'En attente',
+              'status-failed': payment.paymentStatus === 'Échoué'
+            }"
+          >
+            {{ payment.paymentStatus }}
+          </span>
+        </div>
+        <div class="row-cell date-col">{{ payment.paymentDate }}</div>
+      </div>
+    </div>
+  </div>
+</div>

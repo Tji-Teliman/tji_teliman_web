@@ -1,0 +1,54 @@
+<div class="barre"><app-admin-header></app-admin-header></div>
+<div class="litiges-container">
+    <h2 class="titre-litiges">Litiges</h2>
+
+    <!-- Section des filtres mise à jour --><div class="filtres">
+        <button 
+            *ngFor="let filtre of filtres"
+            class="bouton-filtre"
+            [ngClass]="{'actif': filtreActif === filtre}"
+            (click)="filtrerLitiges(filtre)"
+        >
+            {{ filtre }}
+        </button>
+    </div>
+
+    <div class="tableau-litiges">
+        <table>
+            <thead>
+                <tr>
+                    <th>N°</th>
+                    <th>JEUNE</th>
+                    <th>RECRUTEUR</th>
+                    <th>MISSION</th>
+                    <th>STATUT</th>
+                    <th>MONTANT</th>
+                    <th>DATE DE CRÉATION</th>
+                    <th>ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let litige of litigesAffiches">
+                    <td>{{ litige.no }}</td>
+                    <td>{{ litige.jeune }}</td>
+                    <td>{{ litige.recruteur }}</td>
+                    <td>{{ litige.mission }}</td>
+                    <td><span class="statut" [ngClass]="getStatutClass(litige.statut)">{{ litige.statut }}</span></td>
+                    <td><span class="montant">{{ litige.montant }}</span></td>
+                    <td>{{ litige.dateCreation }}</td>
+                    <td>
+                        <button class="action-btn" (click)="voirDetails(litige)">
+                            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="eye" class="svg-inline--fa fa-eye" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" style="width: 14px; height: 14px; fill: #6c757d;">
+                                <path fill="currentColor" d="M288 80c-65.2 0-144.3 27.5-211 74.3c-11.8 8.4-11.8 25.1 0 33.5c66.7 46.8 145.8 74.3 211 74.3s145.8-27.5 211-74.3c11.8-8.4 11.8-25.1 0-33.5C433.8 107.5 354.7 80 288 80zM288 320a80 80 0 1 1 0-160 80 80 0 1 1 0 160z"/>
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+                
+                <tr *ngIf="litigesAffiches.length === 0">
+                    <td colspan="8" style="text-align: center; color: #757575;">Aucun litige ne correspond au filtre '{{ filtreActif }}'.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
