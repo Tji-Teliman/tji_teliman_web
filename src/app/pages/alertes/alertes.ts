@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog'; 
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar'; 
-import { FormsModule } from '@angular/forms'; 
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
@@ -13,18 +13,18 @@ import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-alertes',
-  standalone: true, 
+  standalone: true,
   imports: [
-    CommonModule, 
-    FormsModule, 
-    MatIconModule, 
-    MatButtonModule, 
+    CommonModule,
+    FormsModule,
+    MatIconModule,
+    MatButtonModule,
     MatDialogModule,
     MatSnackBarModule,
     AdminHeaderComponent,
-    ConfirmationDialogComponent, 
+    ConfirmationDialogComponent,
     RouterModule
-  ], 
+  ],
   templateUrl: './alertes.html',
   styleUrl: './alertes.css',
 })
@@ -45,7 +45,7 @@ export class Alertes implements OnInit {
       { id: 1, title: 'Annonce signalée', description: "L'annonce 'Assistant Marketing' a été signalée comme suspecte par un utilisateur.", isSeen: false, advertisementId: 101 },
       { id: 2, title: 'Annonce signalée', description: "L'annonce 'Développeur Web' a été signalée comme suspecte par un utilisateur.", isSeen: false, advertisementId: 102 },
       { id: 3, title: 'Annonce signalée', description: "L'annonce 'Community Manager' a été signalée comme suspecte par un utilisateur.", isSeen: false, advertisementId: 103 },
-      { id: 4, title: 'Annonce signalée', description: "L'annonce 'Designer UI/UX' a été signalée comme suspecte par un utilisateur.", isSeen: true, advertisementId: 104 }, 
+      { id: 4, title: 'Annonce signalée', description: "L'annonce 'Designer UI/UX' a été signalée comme suspecte par un utilisateur.", isSeen: true, advertisementId: 104 },
       { id: 5, title: 'Alerte Utilisateur', description: 'Signalement de contenu inapproprié dans un profil.', isSeen: false, advertisementId: 0 },
     ];
   }
@@ -55,8 +55,8 @@ export class Alertes implements OnInit {
       return this.alerts;
     }
     const lowerCaseTerm = this.searchTerm.toLowerCase();
-    return this.alerts.filter(alert => 
-      alert.title.toLowerCase().includes(lowerCaseTerm) || 
+    return this.alerts.filter(alert =>
+      alert.title.toLowerCase().includes(lowerCaseTerm) ||
       alert.description.toLowerCase().includes(lowerCaseTerm)
     );
   }
@@ -68,8 +68,8 @@ export class Alertes implements OnInit {
     };
 
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      width: '400px', 
-      data: dialogData, 
+      width: '400px',
+      data: dialogData,
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -86,7 +86,7 @@ export class Alertes implements OnInit {
   deleteAlert(id: number): void {
     const dialogData: ConfirmationDialogData = {
       title: 'Confirmer la Suppression',
-      message: 'Êtes-vous sûr de vouloir supprimer définitivement cette alerte ? Cette action est irréversible.' 
+      message: 'Êtes-vous sûr de vouloir supprimer définitivement cette alerte ? Cette action est irréversible.'
     };
 
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
@@ -111,7 +111,7 @@ export class Alertes implements OnInit {
     if (advertisementId && advertisementId > 0) {
       // Pour éviter les conflits de routes, nous allons utiliser le chemin '/annonce-details'
       // Assurez-vous d'ajouter cette route dans votre fichier de routes (routes.ts)
-      this.router.navigate(['/annonce-details', advertisementId]); 
+      this.router.navigate(['/annonce-details', advertisementId]);
 
       this.snackBar.open(`Redirection vers l'annonce ID ${advertisementId}...`, 'OK', { duration: 2000 });
     } else {
@@ -123,7 +123,7 @@ export class Alertes implements OnInit {
   openSendNotificationDialog(): void {
   // Ouvre le dialogue avec les configurations définies
   const dialogRef = this.dialog.open(SendNotificationDialogComponent, {
-    width: '500px', 
+    width: '500px',
     disableClose: true, // Empêche la fermeture par clic en dehors ou Échap
     panelClass: 'notification-dialog-panel',
   });
@@ -134,8 +134,8 @@ export class Alertes implements OnInit {
 
     if (result) {
       // Cas : ENVOYER (result contient les données)
-      const notificationData = result; 
-      
+      const notificationData = result;
+
       // Ici, vous implémenteriez la logique d'envoi à votre backend/API.
       // Par exemple : this.notificationService.send(notificationData).subscribe(...);
 
@@ -143,8 +143,8 @@ export class Alertes implements OnInit {
 
       // Afficher un message de succès après l'envoi simulé
       this.snackBar.open(
-        `Notification envoyée aux ${notificationData.target === 'both' ? 'jeunes et recruteurs' : notificationData.target === 'youngs' ? 'jeunes' : 'recruteurs'} !`, 
-        'Fermer', 
+        `Notification envoyée aux ${notificationData.target === 'both' ? 'jeunes et recruteurs' : notificationData.target === 'youngs' ? 'jeunes' : 'recruteurs'} !`,
+        'Fermer',
         { duration: 5000, panelClass: ['snackbar-success'] }
       );
 

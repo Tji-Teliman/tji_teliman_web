@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { Data } from '../../services/data';
+import { Env } from '../../env';
 
 // Interface pour définir la structure d'une mission
 interface Mission {
@@ -22,9 +24,9 @@ interface Mission {
   imports: [AdminHeaderComponent, CommonModule, FaIconComponent,RouterModule],
   templateUrl: './missions.html',
   styleUrl: './missions.css',
-  
+
 })
-export class Missions {
+export class Missions implements OnInit {
 faEye = faEye; // Exposer l'icône au template
   // Données pour les cartes statistiques (si elles ne viennent pas d'un service)
   totalMissions = 850;
@@ -35,7 +37,7 @@ faEye = faEye; // Exposer l'icône au template
   // Données pour le tableau des missions
   missions: Mission[] = [
 {
-    id: '101', 
+    id: '101',
     titre: 'Aide Menagère',
     recruteur: 'Aminata Diallo',
     dateDebut: '10/01/2025',
@@ -44,7 +46,7 @@ faEye = faEye; // Exposer l'icône au template
     categorie: 'Aide domestique'
   },
   {
-    id: '102', 
+    id: '102',
     titre: 'Cours de Maths (3e)',
     recruteur: 'Fatou Diarra',
     dateDebut: '05/02/2025',
@@ -53,7 +55,7 @@ faEye = faEye; // Exposer l'icône au template
     categorie: 'Éducation & Soutien'
   },
   {
-    id: '103', 
+    id: '103',
     titre: 'Déménagement (2e étage)',
     recruteur: 'Amadou B.',
     dateDebut: '20/02/2025',
@@ -62,7 +64,7 @@ faEye = faEye; // Exposer l'icône au template
     categorie: 'Manutention & Logistique'
   },
   {
-    id: '104', 
+    id: '104',
     titre: 'Développement Web (Junior)',
     recruteur: 'Moussa Tech SARL',
     dateDebut: '01/03/2025',
@@ -71,7 +73,7 @@ faEye = faEye; // Exposer l'icône au template
     categorie: 'Informatique & IT'
   },
   {
-    id: '105', 
+    id: '105',
     titre: 'Réparation Climatiseur',
     recruteur: 'Société IMMO',
     dateDebut: '15/03/2025',
@@ -80,7 +82,7 @@ faEye = faEye; // Exposer l'icône au template
     categorie: 'Réparation & Maintenance'
   },
   {
-    id: '106', 
+    id: '106',
     titre: 'Traduction Français-Anglais',
     recruteur: 'Agence Global',
     dateDebut: '01/04/2025',
@@ -90,11 +92,17 @@ faEye = faEye; // Exposer l'icône au template
   },
   ];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private data:Data) { }
 
   ngOnInit(): void {
-    // Ici, vous feriez typiquement un appel à un service pour récupérer les données.
-    // this.missionService.getMissions().subscribe(data => this.missions = data);
+    this.data.getData(Env.ADMIN+'missions').subscribe({
+      next(res) {
+          console.log(res)
+      },
+      error(err) {
+          console.log(err);
+      },
+    })
   }
 
   // Fonction pour gérer le clic sur le bouton d'action (l'œil)

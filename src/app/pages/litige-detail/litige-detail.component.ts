@@ -14,14 +14,14 @@ import { ModalComponent } from '../../components/modal/modal.component'; // Ajus
   templateUrl: './litige-detail.component.html',
   styleUrls: ['./litige-detail.component.css']
 })
-export class LitigesDetailComponent implements OnInit { 
+export class LitigesDetailComponent implements OnInit {
   litigeId: string | null = null;
-  litige: any = null; 
-  
+  litige: any = null;
+ 
   // 1. Références aux modals de confirmation
   @ViewChild('actionConfirmationModal') actionConfirmationModal!: ModalComponent;
-  @ViewChild('successModal') successModal!: ModalComponent; 
-  
+  @ViewChild('successModal') successModal!: ModalComponent;
+ 
   // 2. Propriétés pour stocker l'état et le message du modal
   pendingAction: 'fermer' | 'resoudre' | null = null;
   confirmationMessage: string = '';
@@ -31,12 +31,12 @@ export class LitigesDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      const id = params.get('no'); 
+      const id = params.get('no');
       if (id) {
         this.litigeId = id;
         this.loadLitigeDetails(this.litigeId);
       } else {
-        this.router.navigate(['/litiges']); 
+        this.router.navigate(['/litiges']);
       }
     });
   }
@@ -44,12 +44,12 @@ export class LitigesDetailComponent implements OnInit {
   loadLitigeDetails(id: string): void {
     // CORRECTION 2: Logique pour simuler un statut variable basé sur l'ID numérique
     const numericId = parseInt(id, 10); // Conversion en nombre
-    let statutLitige = 'En attente'; 
+    let statutLitige = 'En attente';
 
     if (numericId === 1) {
-        statutLitige = 'Résolu'; 
+        statutLitige = 'Résolu';
     } else if (numericId === 2) {
-        statutLitige = 'Ouvert'; 
+        statutLitige = 'Ouvert';
     } else if (numericId === 3) {
         statutLitige = 'Résolu';
     } else if (numericId === 4) {
@@ -62,7 +62,7 @@ export class LitigesDetailComponent implements OnInit {
 
     // Simuler le chargement des données
     this.litige = {
-      numero: id, 
+      numero: id,
       objet: 'Livraison',
       description: "Le jeune n'a pas été payé pour la mission effectuée.",
       statut: statutLitige, // Utilisation du statut variable
@@ -73,12 +73,12 @@ export class LitigesDetailComponent implements OnInit {
       jeune: {
         nom: 'Ramatou Konare',
         email: 'rama@gmail.com',
-        avatarUrl: 'images/hommepro.png' 
+        avatarUrl: 'images/hommepro.png'
       },
       recruteur: {
         nom: 'Amadou Bakagoyo',
         email: 'amadou@gmail.com',
-        avatarUrl: 'images/profil.png' 
+        avatarUrl: 'images/profil.png'
       },
       missionAssociee: {
         numero: id,
@@ -99,8 +99,8 @@ export class LitigesDetailComponent implements OnInit {
 
   fermerLitige(): void {
     // ⭐ AJOUT : Blocage si déjà dans un état final
-    if (this.isLitigeClosed) return; 
-    
+    if (this.isLitigeClosed) return;
+   
     this.pendingAction = 'fermer';
     this.confirmationMessage = 'Voulez-vous vraiment FERMER ce litige ? Cette action pourrait être irréversible.';
     this.actionConfirmationModal.open();
@@ -108,8 +108,8 @@ export class LitigesDetailComponent implements OnInit {
 
   resoudreLitige(): void {
     // ⭐ AJOUT : Blocage si déjà dans un état final
-    if (this.isLitigeClosed) return; 
-    
+    if (this.isLitigeClosed) return;
+   
     this.pendingAction = 'resoudre';
     this.confirmationMessage = 'Êtes-vous sûr(e) de vouloir RÉSOUDRE ce litige ? Ceci marquera le litige comme terminé.';
     this.actionConfirmationModal.open();
@@ -117,7 +117,7 @@ export class LitigesDetailComponent implements OnInit {
 
   confirmAction(): void {
     this.actionConfirmationModal.close();
-    
+   
     // Logique d'action et d'affichage de succès
     // ... (le reste de la logique reste inchangé) ...
 
@@ -132,18 +132,18 @@ export class LitigesDetailComponent implements OnInit {
       this.litige.statut = 'Fermé';
       this.successModal.message = "Litige fermé avec succès.";
     }
-    
+   
     // 3. Afficher le message de succès (on ne redirige plus pour voir le statut changer)
     if (this.pendingAction) {
         this.successModal.open();
         // setTimeout(() => this.router.navigate(['/litiges']), 2000); // 🚫 Suppression de la redirection pour permettre de voir le statut mis à jour
     }
-    
+   
     // 4. Réinitialiser
     this.pendingAction = null;
   }
 
   goBack(): void {
-    this.router.navigate(['/litiges']); 
+    this.router.navigate(['/litiges']);
   }
 }

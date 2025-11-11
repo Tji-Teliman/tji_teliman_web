@@ -4,9 +4,9 @@
     background-color: #fff;
     border-radius: 12px; /* Bords arrondis pour le pop-up */
     /* Ombre plus visible pour l'effet flottant */
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05); 
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
     font-family: 'Inter', sans-serif;
-    max-width: 480px; 
+    max-width: 480px;
 }
 
 /* Titre principal */
@@ -40,7 +40,7 @@
 .custom-textarea {
     width: 100%;
     padding: 12px 16px; /* Padding légèrement augmenté */
-    border: 1px solid #d1d5db; 
+    border: 1px solid #d1d5db;
     border-radius: 10px; /* Bords arrondis pour les inputs */
     font-size: 16px;
     color: #1f2937;
@@ -53,7 +53,7 @@
 .custom-input:focus,
 .custom-textarea:focus {
     outline: none;
-    border-color: #2563eb; 
+    border-color: #2563eb;
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3); /* Ombre au focus plus prononcée */
 }
 
@@ -61,12 +61,12 @@
 
 /* Cible le trigger du mat-select pour l'encadré */
 :host ::ng-deep .custom-select .mat-mdc-select-trigger {
-    height: 40px; 
+    height: 40px;
     min-width: 100%;
     padding: 0 16px; /* Aligné avec le padding des inputs */
-    border: 1px solid #d1d5db; 
+    border: 1px solid #d1d5db;
     border-radius: 10px !important; /* Bords arrondis sur le select */
-    box-sizing: border-box; 
+    box-sizing: border-box;
     background-color: #f9fafb;
 }
 
@@ -91,8 +91,8 @@
 
 .char-count {
     position: absolute;
-    bottom: 0px; 
-    right: 5px; 
+    bottom: 0px;
+    right: 5px;
     font-size: 12px;
     color: #6b7280;
 }
@@ -100,16 +100,16 @@
 /* --- Boutons d'Action --- */
 .modal-actions {
     display: flex;
-    justify-content: flex-end; 
+    justify-content: flex-end;
     gap: 15px;
-    margin-top: 35px; 
+    margin-top: 35px;
 }
 
 /* Bouton Annuler (Gris, Plat/Transparent) */
 .btn-cancel {
     color: #4b5563;
     background-color: transparent;
-    border-radius: 8px; 
+    border-radius: 8px;
     font-weight: 500;
     padding: 10px 20px;
     text-transform: none; /* Enlever la majuscule par défaut de Material */
@@ -124,7 +124,7 @@
     border-radius: 8px;
     font-weight: 600;
     padding: 10px 20px;
-    text-transform: none; 
+    text-transform: none;
     background-color: #2563eb !important;
     color: white !important;
     box-shadow: 0 4px 10px rgba(37, 99, 235, 0.4); /* Ombre accentuée pour l'effet 3D */
@@ -133,4 +133,43 @@
 .btn-send:hover:not([disabled]) {
     background-color: #1d4ed8 !important;
     box-shadow: 0 6px 12px rgba(37, 99, 235, 0.5);
+}
+:root {
+  --primary-color: #2196f3;
+  --text-color: #333;
+}
+
+.notification-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+mat-dialog-content {
+  padding: 0 24px;
+}
+
+h2.mat-dialog-title {
+  color: var(--text-color);
+  font-weight: 600;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+mat-dialog-actions {
+  padding: 15px 24px;
+}
+
+mat-dialog-actions button {
+  min-width: 100px;
+}
+
+mat-dialog-actions button[color="primary"] {
+  background-color: var(--primary-color);
+  color: white;
 }

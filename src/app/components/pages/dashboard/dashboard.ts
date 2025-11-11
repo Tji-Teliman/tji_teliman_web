@@ -1,8 +1,8 @@
-// src/app/components/pages/dashboard/dashboard.component.ts
-
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Nécessaire pour les directives Angular standard
-import { RouterLink } from '@angular/router'; // Si vous avez des liens internes
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { Data } from '../../../services/data';
+import { Env } from '../../../env';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,7 +21,18 @@ export class DashboardComponent implements OnInit {
     { title: 'Total Missions', value: '420', color: '#000000', iconClass: 'fa-location-arrow' },
   ];
 
-  constructor() {}
+  constructor(private data:Data) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.data.getData(Env.STATISTIQUE).subscribe(
+      {
+        next: (res:any)=>{
+          console.log(res);
+        },
+        error : (err)=>{
+          console.log(err);
+        }
+      }
+    )
+  }
 }

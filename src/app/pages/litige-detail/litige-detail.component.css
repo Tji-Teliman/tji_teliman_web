@@ -61,7 +61,7 @@
 .main-detail-card {
   flex: 1 1 65%; /* Carte principale prend ~65% */
   min-width: 350px;
-  
+
 }
 
 .side-panel-cards {
@@ -84,7 +84,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   /* Ajouter une marge après la grille pour séparer des boutons */
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 .card-header {
   display: flex;
@@ -128,7 +128,7 @@
   grid-template-columns: repeat(2, 1fr);
   margin-bottom: 20px;
   margin-left: 11px;
-  
+
 }
 
 .detail-item {
@@ -171,7 +171,7 @@
 
 .btn-fermer {
   /* Pour qu'il utilise le style mat-button de base */
-  background-color:#adb7bf  !important; 
+  background-color:#adb7bf  !important;
   color: #6c757d;
   min-width: 120px;
   border-radius: 8px;
@@ -181,11 +181,11 @@
 
 .btn-resoudre {
   /*CRITIQUE : Ajoutez la couleur de fond pour le bouton "Résoudre" */
-  background-color: #2563eb !important; 
+  background-color: #2563eb !important;
   color: white !important;
   border-radius: 8px;
   min-width: 120px;
-  height: 40px; 
+  height: 40px;
   /* Le padding 0 20px est déjà géré par mat-flat-button */
 }
 
@@ -305,15 +305,15 @@
     justify-content: flex-start;
     padding-top: 0; /* Annule le padding vertical */
   }
-  
+
   .back-button {
       margin-top: 0;
   }
-  
+
   .mission-detail-container {
       padding: 20px;
   }
-  
+
   .litige-layout-container {
       flex-direction: column; /* Les cartes s'empilent */
       gap: 20px;

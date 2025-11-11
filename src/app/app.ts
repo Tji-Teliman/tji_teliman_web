@@ -7,8 +7,7 @@ import { AdminHeaderComponent } from './components/admin-header/admin-header.com
 
 @Component({
   selector: 'app-root',
-  // Ajoutez SidebarComponent aux imports pour qu'il soit utilisable dans le template
-  imports: [RouterOutlet, SidebarComponent, AdminHeaderComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
@@ -39,6 +38,6 @@ export class App implements OnInit {
 
     //   console.log(`Navigation vers: ${url}. Sidebar visible: ${this.showSidebar()}`);
     // });
-    
+
   }
 }

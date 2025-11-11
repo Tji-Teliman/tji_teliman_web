@@ -1,17 +1,17 @@
 // src/app/pages/categories/categories.component.ts
 
-import { Component, signal, ViewChild } from '@angular/core'; 
+import { Component, signal, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // NgModel n'est plus nécessaire ici
 import { CommonModule } from '@angular/common';
 import { AdminHeaderComponent } from '../../components/admin-header/admin-header.component';
-import { ModalComponent } from '../../components/modal/modal.component'; 
+import { ModalComponent } from '../../components/modal/modal.component';
 
 interface Category {
   id: number;
   name: string;
   description: string;
   photo: string;
-  iconClass: string; 
+  iconClass: string;
   iconColorClass: string;
   missions: number;
   active: boolean;
@@ -19,18 +19,18 @@ interface Category {
 
 @Component({
   selector: 'app-categories',
-  imports: [CommonModule, FormsModule ,AdminHeaderComponent, ModalComponent], 
+  imports: [CommonModule, FormsModule ,AdminHeaderComponent, ModalComponent],
   templateUrl: './categories.html',
   styleUrls: ['./categories.css'],
 })
 export class CategoriesComponent {
-  
+ 
   @ViewChild('deleteModal') deleteModal!: ModalComponent;
   @ViewChild('successModal') successModal!: ModalComponent;
-  
-  categoryToDeleteId: number | null = null; 
+ 
+  categoryToDeleteId: number | null = null;
   // VARIABLE POUR LE MODE ÉDITION
-  categoryToEditId: number | null = null; 
+  categoryToEditId: number | null = null;
 
   // Données initiales
   categories = signal<Category[]>([
@@ -43,7 +43,7 @@ export class CategoriesComponent {
 
   // Définition d'icônes pour l'ajout rapide
   defaultIcon = {
-    class: 'fa-tag', 
+    class: 'fa-tag',
     color: 'icon-default'
   };
 
@@ -62,10 +62,10 @@ export class CategoriesComponent {
 
     // 1. CAS: MISE À JOUR (Mode Édition actif)
     if (this.categoryToEditId !== null) {
-        
-      this.categories.update(list => 
+       
+      this.categories.update(list =>
         list.map(c => c.id === this.categoryToEditId ? {
-            ...c, 
+            ...c,
             name,
             description: this.newCategoryDescription.trim() || c.description,
             photo: this.newCategoryPhoto.trim() || c.photo,
@@ -80,7 +80,7 @@ export class CategoriesComponent {
         name,
         description: this.newCategoryDescription.trim() || 'Nouvelle catégorie',
         photo: this.newCategoryPhoto.trim() || 'placeholder.png',
-        iconClass: this.defaultIcon.class, 
+        iconClass: this.defaultIcon.class,
         iconColorClass: this.defaultIcon.color,
         missions: 0,
         active: !!this.newCategoryActive,
@@ -92,17 +92,17 @@ export class CategoriesComponent {
     // Réinitialisation du formulaire et sortie du mode édition
     this.resetForm();
   }
-  
+
   /** * Active le mode édition et pré-remplit le formulaire.
    * @param id L'ID de la catégorie à éditer.
    */
   updateCategory(id: number) {
     const categoryToEdit = this.categories().find(c => c.id === id);
-    
+   
     if (categoryToEdit) {
         // 1. Mémoriser l'ID pour le mode MÀJ
-        this.categoryToEditId = id; 
-        
+       this.categoryToEditId = id;
+       
         // 2. Pré-remplir le formulaire
         this.newCategoryName = categoryToEdit.name;
         this.newCategoryPhoto = categoryToEdit.photo;
@@ -119,14 +119,14 @@ export class CategoriesComponent {
     this.newCategoryPhoto = '';
     this.newCategoryDescription = '';
     this.newCategoryActive = true;
-    this.categoryToEditId = null; 
+    this.categoryToEditId = null;
   }
 
   // --- Méthodes de Suppression et Toggle ---
 
   deleteCategory(id: number) {
-    this.categoryToDeleteId = id; 
-    this.deleteModal.open(); 
+    this.categoryToDeleteId = id;
+    this.deleteModal.open();
   }
 
   confirmDeletion() {
@@ -135,8 +135,8 @@ export class CategoriesComponent {
     this.categories.update(list => list.filter(c => c.id !== this.categoryToDeleteId));
 
     this.successModal.open();
-    
-    this.categoryToDeleteId = null; 
+   
+    this.categoryToDeleteId = null;
   }
 
   toggleCategory(cat: Category) {
@@ -151,6 +151,6 @@ export class CategoriesComponent {
   }
 
   get newThisMonth() {
-    return 3; 
+    return 3;
   }
 }

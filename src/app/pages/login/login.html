@@ -6,12 +6,14 @@
       <i class="fa fa-user-circle"></i>
     </div>
 
-    <!-- On intercepte la soumission du formulaire -->
-    <form (submit)="onLogin()">
+      @if (error) {
+        <p class="error">Adresse email ou mot de passe incorrect</p>
+      }
+    <form [formGroup]="loginData" (ngSubmit)="onSubmit()">
       <!-- Champ Email -->
       <div class="input-group">
         <i class="fa fa-envelope"></i>
-        <input type="email" placeholder="ramatouyy@gmail.com" />
+        <input type="email" placeholder="ramatouyy@gmail.com"  formControlName="email"  (click)="changer()"/>
       </div>
 
       <!-- Champ Mot de passe (avec interactivité) -->
@@ -20,7 +22,7 @@
         <!-- L'input utilise le signal showPassword() pour changer son type -->
         <input
           [type]="showPassword() ? 'text' : 'password'"
-          placeholder="Mot de passe"
+          placeholder="Mot de passe" formControlName="motDePasse"  (click)="changer()"
         />
         <!-- L'icône de l'œil gère l'action de bascule -->
         <div class="password-toggle" (click)="togglePasswordVisibility()">

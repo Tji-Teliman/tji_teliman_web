@@ -124,7 +124,7 @@
 .candidature-card.rejected-card {
   border: 2px solid #ef4444; /* Bordure rouge vif */
   background-color: #fee2e2; /* Fond très légèrement rosé */
-  opacity: 0.8; 
+  opacity: 0.8;
 }
 
 
@@ -239,15 +239,15 @@
 
 .modal-overlay {
     /* Couvre tout l'écran */
-    position: fixed; 
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     /* Fond semi-transparent */
-    background: rgba(0, 0, 0, 0.6); 
+    background: rgba(0, 0, 0, 0.6);
     /* Ceci est CRITIQUE : Place le modal au-dessus de tout */
-    z-index: 9999; 
+    z-index: 9999;
     /* Centrage du contenu du modal */
     display: flex;
     justify-content: center;
@@ -261,6 +261,6 @@
     padding: 25px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    max-width: 450px; 
+    max-width: 450px;
     width: 90%;
 }

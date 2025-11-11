@@ -5,10 +5,10 @@
 
     <div class="form-group select-group">
       <p class="form-label">Cible(s) de la notification *</p>
-      <mat-select 
+      <mat-select
         placeholder="Sélectionnez..."
-        [(ngModel)]="notification.target" 
-        name="target" 
+        [(ngModel)]="notification.target"
+        name="target"
         required
         class="custom-select"
       >
@@ -20,22 +20,22 @@
 
     <div class="form-group">
       <p class="form-label">Titre de la notification (max 50) *</p>
-      <input 
-        type="text" 
-        [(ngModel)]="notification.title" 
-        name="title" 
+      <input
+        type="text"
+        [(ngModel)]="notification.title"
+        name="title"
         maxlength="50"
         required
         class="custom-input"
         placeholder=""
       >
     </div>
-    
+
     <div class="form-group message-group">
       <p class="form-label">Message de la notification (max 500) *</p>
-      <textarea 
-        [(ngModel)]="notification.message" 
-        name="message" 
+      <textarea
+        [(ngModel)]="notification.message"
+        name="message"
         maxlength="500"
         rows="4"
         required
@@ -47,17 +47,17 @@
   </form>
 
   <div class="modal-actions">
-    <button 
-      mat-button 
-      (click)="onCancel()" 
+    <button
+      mat-button
+      (click)="onCancel()"
       class="btn-cancel"
     >
       Annuler
     </button>
-    
-    <button 
-      mat-flat-button 
-      color="primary" 
+
+    <button
+      mat-flat-button
+      color="primary"
       [disabled]="notificationForm.invalid"
       (click)="onSend()"
       class="btn-send"

@@ -1,7 +1,9 @@
 // Importations nécessaires pour les composants Angular autonomes
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminHeaderComponent } from '../../components/admin-header/admin-header.component';
+import { Data } from '../../services/data';
+import { Env } from '../../env';
 
 // Interface pour définir la structure des données utilisateur
 interface User {
@@ -11,9 +13,9 @@ interface User {
   email: string;
   role: 'Recruteur' | 'Prestataire' | 'Admin';
   id: number;
-  
+
   // 💡 CORRECTION 1 : AJOUT DE LA PROPRIÉTÉ MANQUANTE POUR TS2339
-  isBlocked: boolean; 
+  isBlocked: boolean;
 }
 
 // Interface pour les cartes de statistiques
@@ -26,14 +28,14 @@ interface StatCard {
 @Component({
   selector: 'app-users-page',
   standalone: true,
-  // NOTE : Si vous utilisez d'autres modules (MatIcon, MatButton, etc.) dans le HTML, 
+  // NOTE : Si vous utilisez d'autres modules (MatIcon, MatButton, etc.) dans le HTML,
   // ils doivent être ajoutés ici.
   imports: [CommonModule , AdminHeaderComponent],
   templateUrl: './users-page-component.html',
   styleUrls: ['./users-page-component.css']
 })
-export class UsersPageComponent {
-  
+export class UsersPageComponent implements OnInit {
+
   // Données de simulation pour les cartes statistiques
   statCards: StatCard[] = [
     { title: 'Total', value: 2031, cssClass: 'blue-card' },
@@ -54,6 +56,19 @@ export class UsersPageComponent {
     { nom: 'Coulibaly', prenom: 'Aminata', genre: 'Féminin', email: 'a.couli@data.io', role: 'Prestataire', id: 8, isBlocked: false },
     { nom: 'Kane', prenom: 'Sekou', genre: 'Masculin', email: 's.kane@service.com', role: 'Recruteur', id: 9, isBlocked: false },
   ];
+
+  constructor(private data:Data){}
+
+  ngOnInit(): void {
+      this.data.getData(Env.ADMIN+'utilisateurs').subscribe({
+        next(res) {
+            console.log(res)
+        },
+        error(err) {
+            console.log(err);
+        },
+      })
+  }
 
   blockUser(user: User): void {
     // Logique pour bloquer/débloquer l'utilisateur (toggle)

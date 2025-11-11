@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
 import { AdminHeaderComponent } from '../../components/admin-header/admin-header.component';
 import { Router } from '@angular/router';
 // Définition du type de données
@@ -8,20 +8,20 @@ interface Litige {
     jeune: string;
     recruteur: string;
     mission: string;
-    statut: 'En Cours' | 'En attente' | 'Resolu' | 'Fermé'; 
-    montant: string; 
+    statut: 'En Cours' | 'En attente' | 'Resolu' | 'Fermé';
+    montant: string;
     dateCreation: string;
 }
 
 // Les statuts affichés sur les boutons de filtre, dans l'ordre du design
-type FiltreStatut = 'Tous' | 'En Cours' | 'Resolus' | 'Ouvert' | 'Fermé'; 
+type FiltreStatut = 'Tous' | 'En Cours' | 'Resolus' | 'Ouvert' | 'Fermé';
 
 @Component({
     selector: 'app-litiges',
-    standalone: true, 
-    imports: [CommonModule , AdminHeaderComponent], 
-    templateUrl:'./litiges.html', 
-    styleUrl: './litiges.css',   // 
+    standalone: true,
+    imports: [CommonModule , AdminHeaderComponent],
+    templateUrl:'./litiges.html', // Assurez-vous du nom de fichier correct
+    styleUrl: './litiges.css',   // Assurez-vous du nom de fichier correct
 })
 export class LitigesComponent implements OnInit {
 
@@ -49,7 +49,7 @@ export class LitigesComponent implements OnInit {
         // Au démarrage du composant, afficher tous les litiges
         this.litigesAffiches = [...this.donneesLitiges];
     }
-    
+
     /**
      * Gère la logique de filtrage du tableau en fonction du bouton cliqué.
      * Met à jour `litigesAffiches` et `filtreActif`.
@@ -62,19 +62,19 @@ export class LitigesComponent implements OnInit {
             this.litigesAffiches = [...this.donneesLitiges];
         } else {
             let statutRecherche: Litige['statut'] | null = null;
-            
+
             // Mapping du libellé du filtre vers la valeur de statut dans les données
             switch (statut) {
                 case 'Resolus': statutRecherche = 'Resolu'; break;
                 // 'Ouvert' peut être mappé à 'En Cours' ou à un autre statut si défini
-                case 'Ouvert': statutRecherche = 'En Cours'; break; 
+                case 'Ouvert': statutRecherche = 'En Cours'; break;
                 case 'En Cours': statutRecherche = 'En Cours'; break;
                 case 'Fermé': statutRecherche = 'Fermé'; break;
                 default: statutRecherche = statut as Litige['statut'];
             }
-            
+
             if (statutRecherche) {
-                this.litigesAffiches = this.donneesLitiges.filter(litige => 
+                this.litigesAffiches = this.donneesLitiges.filter(litige =>
                     litige.statut === statutRecherche
                 );
             }

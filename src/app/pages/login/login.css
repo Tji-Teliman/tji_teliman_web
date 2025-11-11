@@ -9,6 +9,10 @@
   background: linear-gradient(135deg, #8ebae4, #8cddc5);
 }
 
+.error{
+  color: red;
+}
+
 /* Carte principale */
 .login-card {
   background: white;

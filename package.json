@@ -43,15 +43,21 @@
     "@angular/cli": "^20.3.7",
     "@angular/compiler-cli": "^20.3.0",
     "@types/jasmine": "~5.1.0",
+<<<<<<< HEAD
     "autoprefixer": "^10.4.21",
+=======
+>>>>>>> d45c4d58f5a98badcc567a0f259ea40e2adcdb29
     "jasmine-core": "~5.9.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+<<<<<<< HEAD
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.14",
+=======
+>>>>>>> d45c4d58f5a98badcc567a0f259ea40e2adcdb29
     "typescript": "~5.9.2"
   }
 }

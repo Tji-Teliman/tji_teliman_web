@@ -112,7 +112,7 @@
   margin-right: 0;
   width: auto;
   position: relative;
-  z-index: 1; 
+  z-index: 1;
 }
 
 /* Les icônes et le texte actif deviennent orange */
@@ -131,13 +131,13 @@
 .navigation-menu li.active-link::before {
   content: "";
   position: absolute;
-  top: -20px; 
+  top: -20px;
   right: 0;
   width: 10px;
   height: 20px;
   background-color: var(--color-blue);
   z-index: 2;
-  border-bottom-right-radius: 20px; 
+  border-bottom-right-radius: 20px;
 }
 
 /* COIN INFÉRIEUR (Coupure) */

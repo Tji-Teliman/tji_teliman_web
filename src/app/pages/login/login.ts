@@ -1,35 +1,59 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterOutlet } from '@angular/router'; // Importez RouterOutlet ici (et Router)
+import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators, ɵInternalFormsSharedModule, ReactiveFormsModule } from '@angular/forms';
+import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-login',
-  // Ajout de RouterOutlet aux imports pour résoudre l'erreur du Router
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule,
+    ReactiveFormsModule],
   templateUrl: './login.html',
-  styleUrl: './login.css',
-  standalone: true
+  styleUrl: './login.css'
 })
-export class Login {
-  // 1. Logique de l'icône d'œil (utilisée dans login.html)
+export class Login implements OnInit {
+
+
+  error: boolean = false;
+  loginData!: FormGroup;
+
+  constructor(
+    private fb:FormBuilder,
+    private data:Auth,
+    private router:Router
+  ) {}
+
+  ngOnInit() {
+    this.loginData = this.fb.group({
+      email: ['',Validators.required],
+      motDePasse: ['',Validators.required]
+    });
+    console.log("Chuis la !!!")
+  }
+  onSubmit() {
+    console.log(this.loginData.value);
+    if (this.loginData.valid) {
+      this.data.login(this.loginData.value).subscribe(
+        (res)=>{
+          Auth.saveToken(res.data.token);
+          this.router.navigateByUrl("/");
+        },
+        (error)=>{
+          this.error = true;
+          console.log(error);
+        }
+      )
+    } else {
+      this.error = true;
+    }
+  }
+  changer(){
+    this.error = false;
+  }
+
   showPassword = signal(false);
-
-  // 2. Injection du Router pour la navigation
-  constructor(private router: Router) {}
-
-  // Fonction appelée par le clic sur l'icône d'œil
   togglePasswordVisibility() {
     this.showPassword.update(value => !value);
   }
 
-  // 3. Fonction appelée par la soumission du formulaire (submit)
-  onLogin() {
-    // NOTE : Normalement, ici, vous vérifieriez l'email et le mot de passe
-    // contre un service d'authentification.
-
-    console.log("Connexion réussie simulée. Redirection vers le tableau de bord.");
-
-    // Redirige l'utilisateur vers la route '/dashboard'
-    this.router.navigate(['/dashboard']);
-  }
 }
