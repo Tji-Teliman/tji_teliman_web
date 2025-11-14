@@ -1,99 +1,172 @@
 <div class="mission-page">
-  <div class="sidebar">
-    <button class="back-button" (click)="goBack()">
-      <i class="fas fa-arrow-left"></i>
-    </button>
-  </div>
+<div class="sidebar">
+  <button class="back-button" (click)="goBack()">
+    <i class="fas fa-arrow-left"></i>
+  </button>
+</div>
 
   <div class="mission-detail-container" *ngIf="litige">
-    <div class="header-band">
-      <div class="header-title">
-        Détails du Litige N° {{ litige.numero }}
-      </div>
-    </div>
 
-    <div class="content-area">
+    <div class="main-detail-card">
 
-      <div class="litige-layout-container">
+      <mat-card class="litige-data-card" style="height: auto; max-height: 230px; overflow: hidden; position: relative;">
+        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+          <h3>Litige N° {{ litige.numero }} - {{ litige.objet }}</h3>
+          <span class="status-badge" [ngClass]="{'pending': litige.statut === 'En attente' || litige.statut === 'Ouvert', 'in-progress': litige.statut === 'En Cours', 'resolved': litige.statut === 'Résolu', 'closed': litige.statut === 'Fermé'}">
+            {{ litige.statut }}
+          </span>
+        </div>
+        <p class="description">{{ litige.descriptionCourte }}</p>
 
-        <div class="main-detail-card">
-          <mat-card class="litige-data-card">
+        <div class="litige-details-grid full-width-grid">
+          <div class="detail-item">
+            <span class="label">Montant du litige</span>
+            <span class="value amount">{{ litige.montant }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Date de création</span>
+            <span class="value">{{ litige.dateCreation }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Dernière mise à jour</span>
+            <span class="value">{{ litige.derniereMiseAJour }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Résolution prévue</span>
+            <span class="value">{{ litige.resolutionPrevued }}</span>
+          </div>
+        </div>
+      </mat-card>
 
-            <div class="card-header">
-              <h3>Litige concernant la mission "{{ litige.objet }}"</h3>
-              <span class="status-badge" [ngClass]="{'pending': litige.statut === 'En attente'}">
-                {{ litige.statut }}
-              </span>
-            </div>
+      <mat-card class="admin-detail-card">
+        <h4 class="card-subtitle">Description Complète & Preuves</h4>
+        <p class="full-description" style="white-space: pre-wrap;">{{ litige.descriptionComplete }}</p>
 
-            <p class="description">{{ litige.description }}</p>
+        <h5 class="attachments-title" style="font-size: 1em; margin-top: 20px; font-weight: bold;">Documents joints ({{ litige.documentsJoints?.length || 0 }})</h5>
+        <div class="attachments-list">
+          <div class="attachment-item" *ngFor="let doc of litige.documentsJoints" style="display: flex; align-items: center; margin-bottom: 5px;">
+            <i class="fas fa-file-alt"></i>
+            <span>{{ doc.nom }}</span>
+            <button mat-icon-button (click)="telechargerDocument(doc.url)" style="margin-left: 10px;">
+              <i class="fas fa-download"></i>
+            </button>
+          </div>
+        </div>
+        <!-- IMPORTANT: J'ai supprimé les deux icônes de téléchargement orphelines qui traînaient ici. -->
+      </mat-card>
 
-            <div class="litige-details-grid">
-              <div class="detail-item">
-                <span class="label">Montant du litige</span>
-                <span class="value amount">{{ litige.montant }}</span>
-              </div>
-              <div class="detail-item">
-                <span class="label">Date de création</span>
-                <span class="value">{{ litige.dateCreation }}</span>
-              </div>
-              <div class="detail-item">
-                <span class="label">Dernière mise à jour</span>
-                <span class="value">{{ litige.derniereMiseAJour }}</span>
-              </div>
-              <div class="detail-item">
-                <span class="label">Résolution prévue</span>
-                <span class="value">{{ litige.resolutionPrevued }}</span>
-              </div>
-            </div>
-
-            <div class="card-actions">
-              <button mat-button class="btn-fermer" (click)="fermerLitige()">Fermer litige</button>
-              <button mat-flat-button color="primary" class="btn-resoudre" (click)="resoudreLitige()">Résoudre le litige</button>
-            </div>
-          </mat-card>
+      <mat-card class="admin-detail-card">
+        <h4 class="card-subtitle">Journal d'Activité & Notes Internes</h4>
+        <div class="activity-log">
+          <div class="log-entry" *ngFor="let log of litige.journalActivite">
+            <i class="fas fa-circle" [ngClass]="{'status-change': log.type === 'statut', 'admin-note': log.type === 'note', 'admin-msg': log.type === 'message'}"></i>
+            <span class="log-date">{{ log.date }}</span>
+            <span class="log-text">{{ log.texte }}</span>
+          </div>
         </div>
 
+        <h4 class="card-subtitle" style="margin-top: 20px;">Communication & Notes</h4>
 
-        <div class="side-panel-cards">
+        <mat-form-field appearance="outline" class="full-width-input" style="width: 100%;">
+          <mat-label>Écrire un message aux utilisateurs ou une note interne...</mat-label>
+          <textarea matInput [(ngModel)]="adminCommentaire" [disabled]="isLitigeClosed"></textarea>
+        </mat-form-field>
 
-          <mat-card class="party-card">
-            <h2 class="party-title">Jeune</h2>
-            <div class="party-info">
-              <img [src]="litige.jeune.avatarUrl" alt="Avatar Jeune" class="avatar-circle">
-              <div>
-                <span class="party-name">{{ litige.jeune.nom }}</span>
-                <span class="party-email">{{ litige.jeune.email }}</span>
-              </div>
-            </div>
-          </mat-card>
+        <div class="communication-actions">
+          <mat-radio-group [(ngModel)]="communicationType" class="communication-type-radio" [disabled]="isLitigeClosed">
+            <mat-radio-button value="interne">Note Interne</mat-radio-button>
+            <mat-radio-button value="jeune">Message au Jeune</mat-radio-button>
+            <mat-radio-button value="recruteur">Message au Recruteur</mat-radio-button>
+          </mat-radio-group>
 
-          <mat-card class="party-card">
-            <h2 class="party-title">Recruteur</h2>
-            <div class="party-info">
-              <img [src]="litige.recruteur.avatarUrl" alt="Avatar Recruteur" class="avatar-circle">
-              <div>
-                <span class="party-name">{{ litige.recruteur.nom }}</span>
-                <span class="party-email">{{ litige.recruteur.email }}</span>
-              </div>
-            </div>
-          </mat-card>
+          <button
+            mat-flat-button
+            color="primary"
+            [disabled]="!adminCommentaire || isLitigeClosed"
+            (click)="preparerEnvoiCommunication()">
+            Envoyer
+          </button>
+        </div>
+      </mat-card>
+    </div>
 
-          <mat-card class="mission-associee-card">
-            <h2 class="mission-associee-title">Mission Associée</h2>
-            <div class="mission-associee-content">
-              <i class="fas fa-briefcase mission-icon"></i>
-              <div>
-                <span class="mission-number">Mission {{ litige.missionAssociee.numero }}</span>
-                <span class="mission-name">{{ litige.missionAssociee.titre }}</span>
-              </div>
-            </div>
-          </mat-card>
 
-        </div> </div> </div> </div> <div *ngIf="!litige" class="loading-message">
+    <div class="side-panel-cards">
+
+      <mat-card class="party-card">
+        <h4 class="card-subtitle">Jeune</h4>
+        <div class="party-info">
+          <img [src]="litige.jeune.avatarUrl" class="avatar-circle" alt="Avatar Jeune">
+          <div>
+            <span class="party-name">{{ litige.jeune.nom }}</span>
+            <span class="party-email">{{ litige.jeune.email }}</span>
+          </div>
+        </div>
+      </mat-card>
+
+      <mat-card class="party-card">
+        <h4 class="card-subtitle">Recruteur</h4>
+        <div class="party-info">
+          <img [src]="litige.recruteur.avatarUrl" class="avatar-circle" alt="Avatar Recruteur">
+          <div>
+            <span class="party-name">{{ litige.recruteur.nom }}</span>
+            <span class="party-email">{{ litige.recruteur.email }}</span>
+          </div>
+        </div>
+      </mat-card>
+
+      <mat-card class="mission-associee-card">
+        <h4 class="card-subtitle">Mission Associée</h4>
+        <div class="mission-associee-content">
+          <div class="mission-icon">
+            <i class="fas fa-briefcase mission-icon"></i>
+          </div>
+          <div>
+            <span class="mission-name">{{ litige.missionAssociee.titre }}</span>
+            <span class="mission-number">Mission N°{{ litige.missionAssociee.numero }}</span>
+          </div>
+        </div>
+      </mat-card>
+
+      <mat-card class="admin-tool-card">
+        <h4 class="card-subtitle">Outils de Résolution</h4>
+
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Statut du Litige</mat-label>
+          <mat-select
+            [(ngModel)]="litige.statut"
+            [disabled]="isLitigeClosed"
+            (selectionChange)="onStatusChange()"
+          >
+            <mat-option value="Ouvert">Ouvert</mat-option>
+            <mat-option value="En Cours">En Cours (Enquête)</mat-option>
+            <mat-option value="En attente">En attente (Documents)</mat-option>
+            <mat-option value="Résolu">Résolu</mat-option>
+            <mat-option value="Fermé">Fermé (Sans résolution)</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <h5 class="card-subtitle" style="font-size: 1em; margin-top: 15px;">Actions de Clôture</h5>
+
+        <mat-checkbox [(ngModel)]="ajusterNote" [disabled]="isLitigeClosed">Ajuster la note du Jeune/Recruteur</mat-checkbox>
+        <mat-checkbox [(ngModel)]="actionFinanciere" [disabled]="isLitigeClosed">Rembourser / Payer un montant</mat-checkbox>
+
+        <div class="card-actions action-tool-buttons">
+          <button mat-button class="btn-fermer" [disabled]="isLitigeClosed" (click)="fermerLitige()">Fermer litige</button>
+          <button mat-flat-button color="primary" class="btn-resoudre" [disabled]="isLitigeClosed" (click)="resoudreLitige()">Résoudre le litige</button>
+        </div>
+
+      </mat-card>
+
+    </div>
+  </div>
+
+  <div *ngIf="!litige" class="loading-message">
     Chargement des détails du litige...
   </div>
-</div> <app-modal
+
+</div>
+<app-modal
   #actionConfirmationModal
   type="confirmation"
   [message]="confirmationMessage"

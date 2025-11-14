@@ -1,331 +1,469 @@
-/* --- BASE DE LA PAGE (Réutilise le simulateur) --- */
+/* --- MISE EN PAGE GLOBALE --- */
 .mission-page {
-  display: flex;
-  min-height: 100vh;
-  background-color: #f8fafc;
-}
-
-/* SIDEBAR (Bande Bleue) */
-.sidebar {
-  background-color: #2563eb; /* Couleur de votre simulateur */
-  width: 150px;
-  min-width: 80px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start; /* Aligne le bouton en haut */
-  padding-top: 50px; /* Espace pour le bouton */
-}
-
-/* Bouton Retour (Mat Icon - Adapté) */
-.back-button {
-  background: white;
-  color: #2563eb;
-  border: none;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: unset;
-  padding: 0;
-}
-.back-button i {
-  font-size: 24px; /* Taille de l'icône */
-  width: 24px;
-  height: 24px;
+    padding: 20px;
+    background-color: #f4f7f9;
+    min-height: 100vh;
 }
 
 .mission-detail-container {
-  flex: 1;
-  padding: 30px;
+    display: flex;
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-.header-title {
-  font-size: 35px;
-  font-weight: 600;
-  margin-bottom: 30px;
+/* Colonne Principale (Gauche) */
+.main-detail-card {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Panneau Latéral (Droite) */
+.side-panel-cards {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* --- STYLES DE LA BARRE LATÉRALE BLEUE --- (Laissés tels quels) */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 160px;
+    height: 100%;
+    background-color: #2563eb;
+    padding: 20px 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+}
+
+.back-button {
+    background: white;
+    color: #2563eb;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+/* --- AJUSTEMENT DE LA ZONE DE CONTENU PRINCIPALE --- */
+.mission-page {
+    padding: 20px;
+    padding-left: 190px; /* Augmenté à 190px: 160px (sidebar) + 30px de marge */
+    background-color: #f4f7f9;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Media Queries (Laissés tels quels) */
+@media (max-width: 768px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 10px 0;
+        flex-direction: row;
+        justify-content: flex-start;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .mission-page {
+        padding-left: 20px;
+    }
+    .back-button {
+        margin-left: 10px;
+    }
+}
+/* --- STYLE DES CARTES (mat-card) --- */
+mat-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    background: white;
+}
+/* --- STYLES SPÉCIFIQUES POUR LA PREMIÈRE CARTE (`litige-data-card`) --- */
+.litige-data-card {
+    padding: 25px 30px;
+    margin-bottom: 20px;
+    /* Suppression des styles de hauteur: la carte est gérée par le contenu */
+}
+
+/* En-tête de la carte avec titre et statut (Laissés tels quels) */
+.litige-data-card .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* ... (autres styles pour .litige-data-card .card-header h3 et .status-badge laissés tels quels) */
+/* --- BADGES DE STATUT --- */
+.status-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.8em;
+    color: white;
+    /* Assurez-vous que cette règle est bien présente et n'est pas écrasée */
+}
+
+.status-badge.pending {
+    background-color: #f5a623; /* Orange/Jaune pour En attente/Ouvert */
+}
+
+.status-badge.in-progress {
+    background-color: #4a90e2; /* Bleu pour En Cours */
+}
+
+.status-badge.resolved {
+    background-color: #7ed321; /* Vert pour Résolu */
+}
+
+.status-badge.closed {
+    background-color: #9b9b9b; /* Gris pour Fermé */
+}
+
+.litige-data-card .description {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 15px; /* Espace sous la description */
+}
+
+/* GRILLE D'INFORMATIONS - CORRECTION DE L'ALIGNEMENT */
+.litige-details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 0;
+    font-size: 1em;
+    margin-top: 0; /* Assuré par le margin-bottom de .description */
+}
+
+.litige-details-grid .detail-item {
+    display: flex;
+    flex-direction: column;
+    /* Par défaut, tout est aligné à gauche */
+}
+
+/* **CORRECTION MAJEURE** : Aligner les éléments de la colonne de droite à droite */
+.litige-details-grid .detail-item:nth-child(even) {
+    /* Cible le 2e et le 4e élément (Date de création, Résolution prévue) */
+    align-items: flex-end; /* Aligner tout le contenu du .detail-item à droite */
+    text-align: right;
+}
+
+.litige-details-grid .detail-item .label {
+    font-weight: 500;
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    text-align: inherit; /* Utilise l'alignement parent (gauche ou droite) */
+}
+
+.litige-details-grid .detail-item .value {
+    font-weight: bold;
+    color: #333;
+    font-size: 1em;
+    text-align: inherit; /* Utilise l'alignement parent (gauche ou droite) */
+}
+
+.litige-details-grid .detail-item .amount {
+    color: #f5a623; /* Couleur orange comme sur votre image */
+    font-size: 1.1em;
+}
+/* ... (autres styles de grille et de badge laissés tels quels) ... */
+
+
+/* --- SECTION DOCUMENS JOINTS - CORRECTION DE L'ICÔNE --- */
+
+.attachments-list {
+  margin-top: 15px;
+}
+
+.attachment-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.attachment-item:last-child {
+  border-bottom: none;
+}
+
+.attachment-item i.fa-file-alt {
+  color: #4a90e2;
+  font-size: 1.2em;
+  margin-right: 10px;
+  flex-shrink: 0; /* Assure que l'icône ne bouge pas */
+}
+
+/* **CORRECTION MAJEURE** : litie span prend tout l'espace et pousse le bouton */
+.attachment-item span {
+  flex-grow: 1; /* C'est l'élément CRUCIAL pour l'alignement à droite */
+  font-size: 0.95em;
   color: #333;
 }
 
-/* --- STRUCTURE PRINCIPALE DU LITIGE (Gauche/Droite) --- */
-
-
-.litige-layout-container {
-  display: flex;
-  gap: 20px;
+.attachment-item button {
+  color: #666;
+  flex-shrink: 0; /* Assure que le bouton ne bouge pas */
 }
 
-.main-detail-card {
-  flex: 1 1 65%; /* Carte principale prend ~65% */
-  min-width: 350px;
+/* --- Journal d'Activité et le reste (Laissés tels quels) --- */
 
+/* ... (le reste de vos styles CSS n'a pas été modifié) ... */
+
+/* --- JOURNAL D'ACTIVITÉ --- */
+.activity-log {
+    max-height: 250px;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: #fafafa;
+    border-radius: 8px;
 }
 
-.side-panel-cards {
-  flex: 1 1 30%; /* Colonne latérale prend ~30% */
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.log-entry {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    font-size: 0.85em;
 }
 
-/* --- CARTE PRINCIPALE (Détails) --- */
-.litige-data-card {
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.log-entry i.fa-circle {
+    font-size: 8px;
+    margin-right: 10px;
+    margin-top: 6px;
+    flex-shrink: 0;
 }
 
-/* S'assurer que les détails ne sont pas collés */
-.litige-details-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  /* Ajouter une marge après la grille pour séparer des boutons */
-  margin-bottom: 20px;
-}
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-top: 25px;
-  margin-left: 15px;
-  margin-bottom: 22px;
-
+.log-entry .log-date {
+    font-weight: bold;
+    color: #4a90e2;
+    width: 140px; /* Fixe la largeur de la date */
+    flex-shrink: 0;
 }
 
-.card-header h3 {
-  font-size: 35px;
-  font-weight: 500;
-  margin: 0;
+/* Couleurs des icônes du journal */
+.log-entry i.status-change { color: #4a90e2; } /* Bleu pour statut */
+.log-entry i.admin-note { color: #f5a623; } /* Orange pour note */
+.log-entry i.admin-msg { color: #7ed321; } /* Vert pour message envoyé */
+
+
+/* --- COMMUNICATIONS & OUTILS ADMIN --- */
+.communication-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
 }
 
-.description {
-  margin-top: 0;
-  margin-bottom: 22px;
-  color: #6c757d;
-  font-size: 25px;
-  margin-left: 15px;
+.communication-type-radio {
+    display: flex;
+    gap: 20px;
+}
+/* --- CORRECTION DE LA CARTE OUTILS DE RÉSOLUTION --- */
 
+/* Modification du conteneur des boutons d'action */
+.action-tool-buttons {
+    display: flex;
+    /* AJOUTER LE GAP ICI : espace entre les boutons */
+    gap: 15px; /* Ajustez cette valeur si vous voulez plus ou moins d'espace */
+    /* Aligner les boutons à droite de la carte */
+    justify-content: flex-end;
+    margin-top: 25px; /* Marge au-dessus de la ligne de boutons */
 }
 
-.status-badge {
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 25px;
-  font-weight: 600;
-  color: #6D4C41; /* Texte Brun */
-  background-color: #FFECB3; /* Jaune clair (En attente) */
-  white-space: nowrap;
-  margin-right: 20px;
+/* Style général des deux boutons pour l'effet "flottant" */
+.action-tool-buttons button {
+    /* Ajoute une légère ombre pour l'effet "flottant" */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* S'assurer que les boutons ont une hauteur uniforme */
+    height: 40px;
+    line-height: 40px;
+    /* Assurez-vous qu'ils aient une bonne taille */
+    padding: 0 20px;
+    font-weight: 600;
 }
 
-/* GRILLE DE DÉTAILS (Montant, Date) */
-.litige-details-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  margin-bottom: 20px;
-  margin-left: 11px;
-
-}
-
-.detail-item {
-  display: flex;
-  flex-direction: column;
-  margin-top: 15px;
-  margin-left: 15px;
-}
-
-.detail-item .label {
-  font-size: 25px;
-  color: #6c757d;
-  margin-bottom: 4px;
-  margin-left: 15px;
-
-}
-
-.detail-item .value {
-  font-size: 20px;
-  font-weight: 500;
-  margin-left: 15px;
-}
-
-.detail-item .value.amount {
-  color: #FF5722; /* Couleur d'alerte/montant */
-  font-weight: 700;
-  margin-left: 15px;
-  font-size: 25px;
-
-}
-
-/* Actions */
-.card-actions {
-  padding-top: 20px;
-  padding-bottom: 0px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-}
-
+/* Style spécifique du bouton FERMER LITIGE (gris) */
 .btn-fermer {
-  /* Pour qu'il utilise le style mat-button de base */
-  background-color:#adb7bf  !important;
-  color: #6c757d;
-  min-width: 120px;
-  border-radius: 8px;
-  /* Assurer que le texte n'est pas trop écrasé */
-  height: 40px;
+    background-color: #9b9b9b !important;
+    color: white !important;
+    border: none !important; /* Retirer la bordure si elle existe */
 }
 
+/* Style spécifique du bouton RÉSOUDRE LE LITIGE (bleu) */
 .btn-resoudre {
-  /*CRITIQUE : Ajoutez la couleur de fond pour le bouton "Résoudre" */
-  background-color: #2563eb !important;
-  color: white !important;
-  border-radius: 8px;
-  min-width: 120px;
-  height: 40px;
-  /* Le padding 0 20px est déjà géré par mat-flat-button */
+    background-color: #4a90e2 !important;
+    color: white !important;
+    border: none !important; /* Retirer la bordure si elle existe */
+}
+/* Checkbox */
+mat-checkbox {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 0.95em;
+}
+/* --- COMMUNICATIONS & NOTES --- */
+
+/* Assure la séparation entre les radios et le bouton Envoyer */
+.communication-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
 }
 
-
-/* --- CARTES LATÉRALES (Jeune, Recruteur, Mission) --- */
-.party-card, .mission-associee-card {
-  padding: 45px 6px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+/* Règle pour le bouton "Envoyer" */
+.communication-actions button {
+    /* Style du bouton Envoyer (mat-flat-button color="primary") */
+    background-color: #4a90e2 !important; /* Bleu principal */
+    color: white !important;
+    padding: 8px 20px;
+    font-weight: bold;
+    border-radius: 4px;
+    height: 40px; /* Aligner la hauteur avec les boutons de résolution si nécessaire */
+    line-height: 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ajouter l'effet flottant */
 }
 
-.party-card .party-title, .mission-associee-card .mission-associee-title {
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 15px;
-  padding: 0;
-  margin-top: 0;
+/* Conserver la mise en page des boutons radio */
+.communication-type-radio {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+/* --- CARTES UTILISATEURS / MISSION (PANNEAU LATÉRAL) --- */
+.party-info {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
 }
 
-.party-info, .mission-associee-content {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+.party-info .avatar-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: cover;
 }
 
-.avatar-circle {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background-color: #e0e0e0;
-  object-fit: cover;
-  flex-shrink: 0;
+.party-info > div {
+    display: flex;
+    flex-direction: column;
 }
 
 .party-name {
-  font-weight: 600;
-  font-size: 22px;
-  display: block;
+    font-weight: bold;
+    font-size: 1em;
 }
 
 .party-email {
-  font-size: 22px;
-  color: #6c757d;
-  display: block;
+    color: #666;
+    font-size: 0.85em;
+}
+
+.mission-associee-content {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
 }
 
 .mission-icon {
-  font-size: 75px;
+  font-size: 25px;
   color: #2563eb;
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   background-color: #DDE5F9;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
+
 }
 
 .mission-name {
-  font-weight: 600;
-  font-size: 24px;
-  display: block;
+    font-weight: bold;
+    font-size: 1em;
 }
 
 .mission-number {
-  font-size: 28px;
-  color: #6c757d;
-  display: block;
+    color: #666;
+    font-size: 0.85em;
+}
+/* --- NOUVELLE RÈGLE : ALIGNEMENT DES HAUTEURS --- */
+.aligned-cards-group {
+    display: flex; /* Active Flexbox */
+    gap: 20px; /* Espace entre les deux cartes */
+    /* Pour que les cartes aient la même hauteur */
+    align-items: stretch;
 }
 
-.form-actions-buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px; /* Pour un peu d'espace avec la checkbox */
+/* Les cartes doivent pouvoir grandir dans ce conteneur */
+.aligned-cards-group mat-card {
+    flex: 1; /* Chaque carte prend une part égale de l'espace (50/50) */
+    margin: 0 !important; /* Retirer les marges verticales inutiles */
 }
 
-.btn-add {
-    flex-grow: 1; /* Le bouton Ajouter/Modifier prend le plus d'espace */
-    /* Styles existants */
+/* --- CORRECTION DE LA GRILLE (pour assurer l'alignement dans la première carte) --- */
+.litige-details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 0;
+    font-size: 1em;
+    margin-top: 25px; /* Espace sous la description */
+    margin-bottom: 0;
 }
 
-/* ⭐ NOUVEAU : Style pour le bouton Annuler */
-.btn-cancel {
-    padding: 12px;
-    border-radius: 999px;
-    border: 1px solid #E5E7EB;
-    background-color: #F3F4F6;
-    color: #374151;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    font-size: 14px;
+/* Cibler spécifiquement les éléments de la colonne de DROITE (2ème et 4ème) */
+.litige-details-grid .detail-item:nth-child(2),
+.litige-details-grid .detail-item:nth-child(4) {
+    text-align: right;
 }
 
-.btn-cancel:hover {
-    background-color: #E5E7EB;
-}
+/* Suppression des styles de hauteur inutiles */
+.litige-data-card {
+    padding: 25px 30px;
 
-/* Ajustement du bouton Ajouter pour qu'il soit à côté d'Annuler */
-.form-actions-buttons .btn-add {
-    margin-top: 0; /* Écrase le margin-top existant */
 }
 
 
-/* --- RÉACTIVITÉ --- */
-@media (max-width: 960px) {
-  .mission-page {
-    flex-direction: column; /* La page passe en colonne */
-  }
+@media (max-width: 1200px) {
+    .aligned-cards-group {
+        flex-direction: column; /* Revenir à l'empilement sur les petits écrans */
+        gap: 20px;
+    }
+}
+@media (max-width: 992px) {
+    .mission-detail-container {
+        flex-direction: column;
+    }
+    .main-detail-card, .side-panel-cards {
+        min-width: 100%;
+        flex: auto;
+    }
+}
 
-  .sidebar {
-    width: 100%;
-    height: 60px;
-    padding: 0 20px;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    padding-top: 0; /* Annule le padding vertical */
-  }
-
-  .back-button {
-      margin-top: 0;
-  }
-
-  .mission-detail-container {
-      padding: 20px;
-  }
-
-  .litige-layout-container {
-      flex-direction: column; /* Les cartes s'empilent */
-      gap: 20px;
-  }
-
-  .main-detail-card, .side-panel-cards {
-      flex-basis: 100%; /* Prennent toute la largeur */
-      min-width: unset;
-  }
-
-  .litige-details-grid {
-    grid-template-columns: 1fr; /* La grille des données passe en colonne simple */
-    gap: 15px;
-  }
+@media (max-width: 600px) {
+    .litige-details-grid {
+        grid-template-columns: 1fr; /* Une colonne sur mobile */
+    }
+    .communication-actions {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
 }
