@@ -17,14 +17,14 @@ interface Skill {
 interface QuickAddForm {
   name: string;
   category: string;
-  level: string; 
+  level: string;
   description: string;
   isActive: boolean;
 }
 
 @Component({
   // Le sélecteur doit être 'app-root' pour que l'application démarre dans cet environnement
-  selector: 'app-root', 
+  selector: 'app-root',
   // IMPORTANT : Ajout des modules nécessaires (CommonModule, FormsModule)
   imports: [CommonModule, FormsModule ,AdminHeaderComponent,ModalComponent ],
   // Le TEMPLATE est intégré directement (remplace templateUrl: './competences.html')
@@ -32,7 +32,7 @@ interface QuickAddForm {
     <!-- Note : La librairie Font Awesome est chargée via le CSS ci-dessous -->
          <div class="barre"><app-admin-header></app-admin-header></div>
     <div class="main-content">
-        
+
         <!-- Colonne de gauche: Liste des Compétences -->
         <div class="skills-list-section card">
             <h2>Liste des Compétences</h2>
@@ -48,7 +48,7 @@ interface QuickAddForm {
             <div class="skill-item"
                  *ngFor="let skill of skills; let i = index"
                  [class.inactive-row]="skill.status === 'Inactive'">
-                 
+
                 <!-- Colonne Nom -->
                 <span class="col-name">
                     <!-- Utilisation des classes d'icônes -->
@@ -58,14 +58,14 @@ interface QuickAddForm {
                         <small>{{ skill.description }}</small>
                     </div>
                 </span>
-                
+
                 <span class="col-category">{{ skill.category }}</span>
-                
+
                 <!-- Statut avec classes dynamiques -->
                 <span class="col-status" [ngClass]="skill.status === 'Active' ? 'active' : 'inactive'">
                     {{ skill.status }}
                 </span>
-                
+
                 <!-- Actions -->
                 <span class="col-actions">
                     <i class="fas fa-pencil-alt icon-action" (click)="editSkill(i)"></i>
@@ -73,7 +73,7 @@ interface QuickAddForm {
                     <i class="fas fa-trash-alt icon-action red" (click)="deleteSkill(i)"></i>
                 </span>
             </div>
-            
+
         </div>
 
         <!-- Colonne de droite: Ajout Rapide -->
@@ -144,10 +144,10 @@ interface QuickAddForm {
     :host {
         display: block;
         padding: 20px;
-        background-color: #f7f9fc;
+        background-color: White;
         font-family: 'Inter', sans-serif;
     }
-    
+
     .main-content {
         display: grid;
         grid-template-columns: 2fr 1fr; /* 2/3 pour la liste, 1/3 pour l'ajout */
@@ -429,17 +429,17 @@ export class CompetencesComponent {
       category: this.quickAddForm.category,
       status: this.quickAddForm.isActive ? 'Active' : 'Inactive',
       iconClass: 'fa-user-cog', // Icône par défaut
-      iconColorClass: 'icon-default' 
+      iconColorClass: 'icon-default'
     };
 
     // Ajout de la nouvelle compétence à la liste
     this.skills.push(newSkill);
-    
+
     // Réinitialisation du formulaire
     this.quickAddForm = {
       name: '',
-      category: this.categoriesOptions[0], 
-      level: this.levelOptions[0],     
+      category: this.categoriesOptions[0],
+      level: this.levelOptions[0],
       description: '',
       isActive: true
     };
@@ -470,12 +470,12 @@ export class CompetencesComponent {
 
     // Suppression de la compétence
     this.skills.splice(this.skillToDeleteIndex, 1);
-    
+
     // Affichage du modal de succès
     this.successModal.open();
-    
+
     console.log(`Compétence "${skillName}" supprimée.`);
-    
+
     // Réinitialisation de l'index après la suppression
     this.skillToDeleteIndex = null;
   }
@@ -495,7 +495,7 @@ export class CompetencesComponent {
         description: skillToEdit.description,
         isActive: skillToEdit.status === 'Active'
     };
-    
+
     console.log(`Le formulaire est pré-rempli pour éditer "${skillToEdit.name}"`);
   }
 }

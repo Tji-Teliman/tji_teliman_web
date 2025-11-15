@@ -1,200 +1,167 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
-/* Styles pour le conteneur de l'icône */
-.icon-circle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-}
 
-/* Style de l'icône Font Awesome */
-.icon-circle i {
-    font-size: 32px;
-    color: #ffffff;
-    border-radius: 8%;
-}
-
-/* ⬅️ CLASSES DE COULEURS À COPIER DU COMPOSANT COMPÉTENCES */
-.icon-delivery { background-color: #4299e1; } /* Bleu */
-.icon-math { background-color: #f6ad55; } /* Orange */
-.icon-cleaning { background-color: #38b2ac; } /* Teal */
-.icon-design { background-color: #e53e3e; } /* Rouge */
-.icon-electric { background-color: #ecc94b; } /* Jaune */
-.icon-event, .icon-default { background-color: #6b46c1; } /* Violet */
-
-/* ... (le reste de vos styles CSS) ... */
+/* PAGE */
 :host {
-  --bg: #F9FAFB;
-  --card: #FFFFFF;
-  --text: #0F172A;
-  --muted: #6B7280;
-  --blue: #2563EB;
-  --green: #10B981;
+  --bg: #White;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #6b7280;
+  --blue: #2563eb;
+  --green: #16a34a;
+  --red: #ef4444;
+
   display: block;
-  box-sizing: border-box;
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  color: var(--text);
-  background: var(--bg);
   padding: 24px;
+  background: var(--bg);
+  font-family: 'Inter', sans-serif;
 }
 
-/* Layout principal */
-:host .page {
+/* LAYOUT */
+.page {
   display: flex;
-  gap: 24px;
+  gap: 28px;
   align-items: flex-start;
-  min-height: 100vh;
-  box-sizing: border-box;
   margin-top: 2%;
 }
 
-:host .left { flex: 1; }
-:host .right { width: 360px; display: flex; flex-direction: column; gap: 20px; }
-
-/* Card général */
-:host .card {
+/* LEFT CARD */
+.card {
   background: var(--card);
   border-radius: 14px;
-  padding: 18px;
-  box-shadow: 0 8px 24px rgba(15,23,42,0.06);
-  border: 1px solid rgba(15,23,42,0.06);
-  box-sizing: border-box;
+  padding: 22px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
 }
 
-/* Titre de la liste */
-:host .list-card .title {
-  margin: 0 0 12px 0;
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--text);
-}
-
-/* Table */
-:host .table-wrap { overflow-x: auto; }
-:host .table {
+/* TABLE */
+.table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 720px;
 }
-:host .table thead th {
+
+.table th {
   text-align: left;
-  font-size: 18px;
+  font-size: 14px;
   color: var(--muted);
   padding: 12px 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
-  padding-right: 20px;
-  
-}
-:host .table tbody .row {
-  border-top: 1px solid #EEF2F5;
-  transition: background 120ms ease-in-out;
-}
-:host .table tbody .row:hover { background: #FBFCFD; }
-:host .table td { padding: 12px 10px; vertical-align: middle; }
-
-/* Nom + icone */
-:host .row-name { display:flex; align-items:center; gap:12px; }
-:host .icon-circle {
-  width:42px; height:42px; border-radius:10px; display:flex; align-items:center; justify-content:center;
-  background: linear-gradient(180deg, rgba(37,99,235,0.12), rgba(16,185,129,0.06));
-  overflow:hidden;
-}
-:host .icon-circle img { width:22px; height:22px; object-fit:contain; }
-:host .meta .name { font-weight:600; color:var(--text); }
-:host .meta .desc { font-size:18px; color:var(--muted); max-width:320px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-
-/* Thumb */
-:host .photo-thumb {
-  width:48px; height:36px; object-fit:cover; border-radius:8px; border:1px solid rgba(15,23,42,0.04);
+  border-bottom: 1px solid #e5e7eb;
 }
 
-/* Missions */
-:host .missions { font-weight:700; color:var(--text); }
-
-/* Badge statut */
-:host .badge {
-  display:inline-block; padding:6px 12px; border-radius:999px; font-weight:600; font-size:18px; cursor:pointer;
+.table td {
+  padding: 14px 10px;
+  vertical-align: middle;
 }
-:host .badge.active { background:#ECFDF5; color:#16A34A; }
-:host .badge.inactive { background:#FFF1F2; color:#EF4444; }
 
-/* --- Uniformisation des Styles d'Actions avec CompetencesComponent --- */
+/* LIGNES */
+.row {
+  border-bottom: 1px solid #f1f5f9;
+}
 
-/* Style général pour toutes les icônes d'action */
+.row:hover {
+  background: #f9fafb;
+}
+
+/* NAME + DESC */
+.row-name {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.meta .name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.meta .desc {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* PHOTO — EXACTEMENT COMME TON SCREEN */
+.photo-thumb {
+  width: 46px;
+  height: 46px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+/* BADGES */
+.badge {
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 999px;
+  font-weight: 600;
+  border: none;
+}
+
+.badge.active {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.badge.inactive {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+/* ACTIONS */
 .actions {
-    display: flex;
-    gap: 8px; /* Espace entre les icônes */
+  display: flex;
+  gap: 10px;
 }
 
 .icon-action {
-    cursor: pointer;
-    color: #a0aec0; /* Couleur par défaut (gris) */
-    font-size: 16px; /* Taille standard */
-    transition: color 0.2s;
+  cursor: pointer;
+  color: #9ca3af;
+  transition: 0.2s;
 }
 
-/* Effet au survol (bleu) */
 .icon-action:hover {
-    color: #2b6cb0; 
+  color: var(--blue);
 }
 
-/* Cas spécifique du bouton Supprimer (couleur rouge au survol) */
 .icon-action.red:hover {
-    color: #e53e3e; 
+  color: var(--red);
 }
 
-/* Couleurs spécifiques pour le Toggle (actif/inactif) */
-.fa-toggle-on {
-    color: #48bb78; /* Vert pour Actif (pour écraser le gris par défaut) */
+/* RIGHT SIDE */
+.right {
+  width: 330px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
-.fa-toggle-off {
-    color: #e53e3e; /* Rouge pour Inactif */
+/* STAT CARD */
+.stat-number {
+  font-size: 28px;
+  font-weight: 700;
 }
 
-/* Le survol du toggle actif/inactif peut garder sa couleur de base ou devenir plus foncé */
-.fa-toggle-on:hover, .fa-toggle-off:hover {
-    opacity: 0.8;
+/* FORM */
+.input, .textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
 }
 
-/* (Retirez ou commentez les anciens styles des boutons .action s'ils sont encore présents) */
-
-/* Right column */
-:host .stat-card .stat-title { font-size:18px; color:var(--muted); margin-bottom:6px; }
-:host .stat-number { font-size:28px; font-weight:800; color:var(--text); }
-:host .stat-sub { margin-top:6px; font-size:18px; color:var(--green); }
-
-/* Form */
-:host .form-title { margin:0 0 8px 0; font-size:20px; font-weight:700; color:var(--text); }
-:host .form .label { display:block; font-size:18px; color:#374151; margin-bottom:6px; }
-:host .input, :host .textarea {
-  width:100%; padding:10px 12px; border-radius:10px; border:1px solid #E6EDF3; outline:none; box-sizing:border-box; font-size:14px; color:var(--text);
-}
-:host .textarea { min-height:88px; resize:none; }
-:host .input:focus, :host .textarea:focus {
-  box-shadow: 0 0 0 4px rgba(37,99,235,0.06); border-color: var(--blue);
+textarea {
+  resize: none;
+  min-height: 80px;
 }
 
-/* Checkbox & button add */
-:host .checkbox-row { display:flex; align-items:center; gap:8px; margin-top:8px; margin-bottom:6px; }
-:host .checkbox-label { font-size:18px; color:#374151; }
-
-:host .btn-add {
-  display:block; width:100%; padding:12px 14px; border-radius:999px; border:none; font-weight:700; color:#fff;
-  background: linear-gradient(90deg, var(--blue), var(--green)); cursor:pointer; margin-top:12px;
-  box-shadow: 0 8px 20px rgba(16,185,129,0.08);
+.btn-add {
+  width: 100%;
+  background: linear-gradient(90deg, #2563eb, #16a34a);
+  color: white;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 10px;
 }
-:host .btn-add:disabled { opacity:0.6; cursor:not-allowed; }
 
-/* Empty state */
-:host .empty { text-align:center; padding:40px 0; color:var(--muted); font-size:18px; }
-
-/* Responsive */
-@media (max-width: 980px) {
-  :host .page { flex-direction: column; }
-  :host .right { width:100%; }
-  :host .table { min-width: 0; }
-  :host .meta .desc { max-width:200px; }
+.btn-add:hover {
+  opacity: 0.9;
 }
