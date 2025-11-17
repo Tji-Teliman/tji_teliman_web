@@ -18,15 +18,15 @@
         </button>
         <button
           class="tab"
-          [class.active]="currentFilter === 'valider'"
-          (click)="filterCandidatures('valider')">
-          Valider (**{{ validatedCount }}**)
+          [class.active]="currentFilter === 'ACCEPTEE'"
+          (click)="filterCandidatures('ACCEPTEE')">
+          Valider ({{ validatedCount }})
         </button>
         <button
           class="tab"
-          [class.active]="currentFilter === 'rejeter'"
-          (click)="filterCandidatures('rejeter')">
-          Rejeter (**{{ rejectedCount }}**)
+          [class.active]="currentFilter === 'REFUSEE'"
+          (click)="filterCandidatures('REFUSEE')">
+          Rejeter ({{ rejectedCount }})
         </button>
       </div>
 
@@ -40,14 +40,14 @@
     <div class="candidatures-grid">
       <div
         class="candidature-card"
-        [class.rejected-card]="cand.status === 'rejeter'"
+        [class.rejected-card]="cand.statut === 'REFUSEE'"
         *ngFor="let cand of filteredCandidatures">
 
-        <img [src]="'images/' + cand.candidatePhoto" alt="Candidat Photo" class="candidate-photo">
+        <img [src]="'images/' +candidatePhoto" alt="Candidat Photo" class="candidate-photo">
         <div class="candidature-meta">
-          <div class="candidate-name">{{ cand.candidateName }}</div>
+          <div class="candidate-name">{{ cand.jeunePrestateurPrenom }} {{ cand.jeunePrestateurNom }}</div>
           <div class="motivation-badge">Motivation</div>
-          <p class="motivation-text">{{ cand.motivation }}...</p>
+          <p class="motivation-text">{{ cand.motivationContenu }}...</p>
         </div>
 
         <div class="action-menu-container">
@@ -58,7 +58,7 @@
           <div class="action-dropdown" *ngIf="selectedCandidatureId === cand.id">
             <div class="menu-item" (click)="confirmDelete(cand.id)">Supprimer la candidature</div>
 
-            <ng-container *ngIf="cand.status === 'rejeter'; else notRejected">
+            <ng-container *ngIf="cand.statut === 'ACCEPTEE'; else notRejected">
               <div class="menu-item" (click)="confirmUnblock(cand.id)">Débloquer le candidat</div>
             </ng-container>
             <ng-template #notRejected>

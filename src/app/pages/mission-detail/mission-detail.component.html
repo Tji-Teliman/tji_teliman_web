@@ -5,11 +5,11 @@
       <i class="fas fa-arrow-left"></i>
     </button>
   </div>
-  
+
 <div class="mission-detail-container" *ngIf="mission">
   <div class="header-band">
     <div class="header-title">
-      Détail sur la mission: {{ mission.title }}
+      Détail sur la mission: {{ mission.titre }}
     </div>
   </div>
 
@@ -17,12 +17,12 @@
     <div class="recruiter-card">
       <h2 class="recruiter-title">Recruteur</h2>
       <div class="recruiter-info">
-        <img [src]="'images/' + mission.recruiter.photo" alt="Recruiter Photo" class="recruiter-photo">
+        <img [src]="'images/' + mission.recruteurUrlPhoto" alt="Recruiter Photo" class="recruiter-photo">
         <div class="recruiter-meta">
-          <div class="recruiter-name">{{ mission.recruiter.name }}</div>
+          <div class="recruiter-name">{{ mission.recruteurPrenom }} {{ mission.recruteurNom }}</div>
           <div class="rating">
-            <i class="fas fa-star" *ngFor="let star of [].constructor(mission.recruiter.rating)"></i>
-            <i class="far fa-star" *ngFor="let star of [].constructor(5 - mission.recruiter.rating)"></i>
+            <i class="fas fa-star" *ngFor="let star of [].constructor(mission.etoile??5)"></i>
+            <i class="far fa-star" *ngFor="let star of [].constructor(5 -(mission.etoile??5))"></i>
           </div>
         </div>
       </div>
@@ -40,22 +40,22 @@
       <div class="detail-item">
         <i class="fas fa-map-marker-alt icon"></i>
         <div class="text">
-          <span>Kalaban</span>
-          <span>Coura</span>
+          <span>{{mission.adresse}}</span>
+          <!-- <span></span> -->
         </div>
       </div>
       <div class="detail-item">
         <i class="far fa-clock icon"></i>
         <div class="text">
           <span>Estimé:</span>
-          <span>{{ mission.estimatedTime }}</span>
+          <span>{{ mission.dureHeures }} H</span>
         </div>
       </div>
       <div class="detail-item">
         <i class="far fa-calendar-alt icon"></i>
         <div class="text">
           <span>Date Limite:</span>
-          <span>{{ mission.dueDate }}</span>
+          <span>{{ mission.dateFin }}</span>
         </div>
       </div>
     </div>
@@ -63,8 +63,8 @@
     <div class="requirements-card">
       <h3>Exigences Clés</h3>
       <ul>
-        <li *ngFor="let req of mission.requirements">
-          <i class="fas fa-check-circle check-icon"></i> {{ req }}
+        <li>
+          <i class="fas fa-check-circle check-icon"></i> {{ mission.exigence }}
         </li>
       </ul>
     </div>
@@ -89,7 +89,7 @@
   #successDeleteMissionModal
   type="success"
   message="Mission supprimée avec succès"
-  [width]="350" 
+  [width]="350"
 ></app-modal>
 
 <div *ngIf="!mission" class="loading-message">

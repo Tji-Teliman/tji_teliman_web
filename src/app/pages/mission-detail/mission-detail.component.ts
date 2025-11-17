@@ -5,6 +5,8 @@ import { ModalComponent } from '../../components/modal/modal.component'; // Ajus
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { Data } from '../../services/data';
+import { Env } from '../../env';
 
 @Component({
   selector: 'app-mission-detail',
@@ -20,11 +22,11 @@ export class MissionDetailComponent implements OnInit {
   // Références aux modals pour la suppression
   @ViewChild('deleteMissionModal') deleteMissionModal!: ModalComponent;
   @ViewChild('successDeleteMissionModal') successDeleteMissionModal!: ModalComponent;
-  
+
   missionToDeleteId: number | null = null;
 
   // Injectez ActivatedRoute et Router pour la navigation
-  constructor(private route: ActivatedRoute, private router: Router /*, private missionService: MissionService */) { } 
+  constructor(private route: ActivatedRoute, private router: Router, private data:Data) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -32,9 +34,20 @@ export class MissionDetailComponent implements OnInit {
       if (id) {
         this.missionId = +id;
         this.loadMissionDetails(this.missionId);
+        this.data.getDataById(Env.MISSION+'/',this.missionId).subscribe(
+          {
+            next:(res:any)=>{
+              this.mission = res.data;
+              console.log(res.data)
+            },
+            error(err) {
+              console.log(err);
+            },
+          }
+        )
       } else {
         // Gérer le cas où l'ID est manquant, par exemple rediriger
-        this.router.navigate(['/missions']); 
+        this.router.navigate(['/missions']);
       }
     });
   }
@@ -63,7 +76,7 @@ export class MissionDetailComponent implements OnInit {
   }
 
   // --- LOGIQUE DE SUPPRESSION ---
-  
+
   // Ouvre le modal de confirmation de suppression
   openDeleteMissionConfirmation(missionId: number): void {
     this.missionToDeleteId = missionId;
@@ -80,12 +93,12 @@ export class MissionDetailComponent implements OnInit {
       // Simuler la suppression réussie
       this.deleteMissionModal.close();
       this.successDeleteMissionModal.open();
-      
+
       // Après un court délai, rediriger vers la liste des missions
       setTimeout(() => {
         this.successDeleteMissionModal.close();
-        this.router.navigate(['/missions']); 
-      }, 1500); 
+        this.router.navigate(['/missions']);
+      }, 1500);
     }
   }
 

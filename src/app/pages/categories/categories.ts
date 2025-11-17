@@ -61,8 +61,6 @@ export class CategoriesComponent {
 
     if (input.files && input.files.length > 0) {
       this.newCategoryFile = input.files[0];
-      // Pour l'affichage dans la table, on peut utiliser le nom du fichier.
-      // Si le composant était lié à un service d'upload, c'est ici qu'on appellerait la méthode d'upload.
     } else {
       this.newCategoryFile = null;
     }
@@ -86,7 +84,6 @@ export class CategoriesComponent {
             ...c,
             name,
             description: this.newCategoryDescription.trim() || c.description,
-            // Met à jour 'photo' si un nouveau fichier a été sélectionné, sinon garde l'ancienne valeur
             photo: this.newCategoryFile ? photoName : c.photo,
             active: !!this.newCategoryActive,
         } : c)

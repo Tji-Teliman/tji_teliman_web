@@ -61,25 +61,25 @@
       </div>
 
       <div class="table-row" *ngFor="let payment of paymentsList">
-        <div class="row-cell mission-title-col">{{ payment.missionTitle }}</div>
-        <div class="row-cell">{{ payment.recruiter }}</div>
-        <div class="row-cell">{{ payment.contractor }}</div>
+        <div class="row-cell mission-title-col">{{ payment.missionTitre }}</div>
+        <div class="row-cell">{{ payment.recruteurPrenom }} {{ payment.recruteurNom }}</div>
+        <div class="row-cell">{{ payment.jeunePrestateurPrenom }} {{ payment.jeunePrestateurNom }}</div>
         <div class="row-cell remuneration-col">
-          <span class="remuneration-amount">{{ payment.remuneration }}</span>
+          <span class="remuneration-amount">{{ payment.missionRemuneration }}</span>
         </div>
         <div class="row-cell status-col">
           <span
             class="status-tag"
             [ngClass]="{
-              'status-success': payment.paymentStatus === 'Réussi',
-              'status-pending': payment.paymentStatus === 'En attente',
-              'status-failed': payment.paymentStatus === 'Échoué'
+              'status-success': payment.statutPaiement === 'REUSSIE',
+              'status-pending': payment.statutPaiement === 'EN_ATTENTE',
+              'status-failed': payment.statutPaiement === 'ECHEC'
             }"
           >
-            {{ payment.paymentStatus }}
+            {{ payment.statutPaiement }}
           </span>
         </div>
-        <div class="row-cell date-col">{{ payment.paymentDate }}</div>
+        <div class="row-cell date-col">{{ payment.datePaiement }}</div>
       </div>
     </div>
   </div>

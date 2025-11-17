@@ -68,7 +68,7 @@ export class UsersPageComponent implements OnInit {
     user.statut = user.statut =='ACTIVER' ? 'DESACTIVER' : 'ACTIVER';
     const action = user.statut =='ACTIVER' ? 'bloqué' : 'débloqué';
     console.log(`L'utilisateur ${user.prenom} ${user.nom} est maintenant ${action}.`);
-    if(user.statut =='DESACTIVER'){
+    if(user.statut =='ACTIVER'){
       this.data.postData(Env.USER+'/'+user.id+'/debloquer',{}).subscribe({
         next: (res:any)=>{
           console.log(res);

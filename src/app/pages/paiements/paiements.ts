@@ -2,9 +2,19 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AdminHeaderComponent } from '../../components/admin-header/admin-header.component';
+import { Data } from '../../services/data';
+import { Env } from '../../env';
 
 
 export interface Payment {
+recruteurPrenom: any;
+recruteurNom: any;
+jeunePrestateurPrenom: any;
+jeunePrestateurNom: any;
+missionRemuneration: any;
+statutPaiement: any;
+datePaiement: any;
+missionTitre: any;
   missionTitle: string;
   recruiter: string;
   contractor: string;
@@ -23,31 +33,65 @@ export interface Payment {
 export class Paiements {
 
   // Propriétés des cartes (inchangées)
-  totalPaymentsEffected = 850;
-  pendingPayments = 420;
-  failedPayments = 310;
-  validatedPaymentsThisMonth = 95;
+  totalPaymentsEffected = 0;
+  pendingPayments = 0;
+  failedPayments = 0;
+  validatedPaymentsThisMonth = 0;
 
-  // Variable liée à la barre de recherche ([(ngModel)]="searchQuery")
   searchQuery: string = '';
 
   // Liste complète des données (la source)
-  paymentsList: Payment[] = [
-    // Vos données (la liste est la même que dans la réponse précédente)
-    { missionTitle: 'Aide Menagere', recruiter: 'Moussa Cisse', contractor: 'Mohamed Traoré', remuneration: '15.000 FCFA', paymentStatus: 'Réussi', paymentDate: '10/01/2025' },
-    { missionTitle: 'Jardinage', recruiter: 'Mme Jeanne', contractor: 'Koffi Paul', remuneration: '10.000 FCFA', paymentStatus: 'En attente', paymentDate: '11/01/2025' },
-    { missionTitle: 'Livraison express', recruiter: 'Ali Traoré', contractor: 'Saliou Diallo', remuneration: '5.000 FCFA', paymentStatus: 'Réussi', paymentDate: '12/01/2025' },
-    { missionTitle: 'Plomberie simple', recruiter: 'Moussa Cisse', contractor: 'Mohamed Traoré', remuneration: '20.000 FCFA', paymentStatus: 'Réussi', paymentDate: '13/01/2025' },
-    { missionTitle: 'Cours de Maths', recruiter: 'Université', contractor: 'Aicha Diallo', remuneration: '50.000 FCFA', paymentStatus: 'En attente', paymentDate: '14/01/2025' },
-    { missionTitle: 'Aide Menagere', recruiter: 'Fatou Diop', contractor: 'Mohamed Traoré', remuneration: '15.000 FCFA', paymentStatus: 'Réussi', paymentDate: '15/01/2025' },
-    // Ajoutez plus de données pour tester le filtre
-  ];
+  paymentsList: Payment[] = [];
+
+  constructor(private data:Data){}
+
+  ngOnInit(): void {
+
+    this.data.getData(Env.PAIEMENT+'/all').subscribe({
+      next:(value:any) =>{
+        console.log(value);
+        this.paymentsList = value;
+        this.calculateStats();
+      },
+      error(err) {
+        console.log(err);
+      },
+    })
+
+  }
+
+  calculateStats(): void {
+    // Total paiements réussis
+    this.totalPaymentsEffected = this.paymentsList
+      .filter(p => p.statutPaiement?.toLowerCase() === 'reussie')
+      .length;
+
+    // Paiements en attente
+    this.pendingPayments = this.paymentsList
+      .filter(p => p.statutPaiement?.toLowerCase() === 'en_attente')
+      .length;
+
+    // Paiements échoués
+    this.failedPayments = this.paymentsList
+      .filter(p => p.statutPaiement?.toLowerCase() === 'echec')
+      .length;
+
+    // Paiements validés pour le mois en cours
+    const now = new Date();
+    const currentMonth = now.getMonth();
+    const currentYear = now.getFullYear();
+
+    this.validatedPaymentsThisMonth = this.paymentsList.filter(p => {
+      const datePaiement = new Date(p.datePaiement);
+      return (
+        p.statutPaiement?.toLowerCase() === 'reussie' &&
+        datePaiement.getMonth() === currentMonth &&
+        datePaiement.getFullYear() === currentYear
+      );
+    }).length;
+  }
 
 
-  /**
-   * Logique de filtrage : retourne la liste des paiements filtrés.
-   * Cette méthode est appelée par le *ngFor dans le template.
-   */
   get filteredPaymentsList(): Payment[] {
     // Si le champ de recherche est vide, on affiche la liste complète
     if (!this.searchQuery) {
@@ -64,13 +108,7 @@ export class Paiements {
     });
   }
 
-  /**
-   * Fonction pour simuler la recherche au clic du bouton "Rechercher".
-   * (Peut être laissée vide si le filtrage se fait automatiquement via le getter)
-   */
   searchPayments(): void {
-    // Comme nous utilisons un getter, le template se mettra à jour automatiquement
-    // dès que `this.searchQuery` change (via ngModel), donc cette fonction est optionnelle.
     console.log(`Recherche lancée pour : ${this.searchQuery}`);
   }
 }

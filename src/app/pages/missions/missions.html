@@ -6,7 +6,7 @@
         Missions Totales Publiées
       </div>
       <div class="card-body">
-        <span class="value">850</span>
+        <span class="value">{{totalMissions}}</span>
       </div>
     </div>
 
@@ -15,7 +15,7 @@
         Missions Terminées
       </div>
       <div class="card-body">
-        <span class="value">420</span>
+        <span class="value">{{missionsTerminees}}</span>
       </div>
     </div>
 
@@ -24,7 +24,7 @@
         Missions Non Terminées
       </div>
       <div class="card-body">
-        <span class="value">310</span>
+        <span class="value">{{missionsNonTerminees}}</span>
       </div>
     </div>
 
@@ -33,7 +33,7 @@
         Publiées ce mois-ci
       </div>
       <div class="card-body">
-        <span class="value">95</span>
+        <span class="value">{{publieesCeMois}}</span>
       </div>
     </div>
   </div>
@@ -53,18 +53,20 @@
       </thead>
       <tbody>
         <tr *ngFor="let mission of missions">
-         <td>{{ mission.titre }}</td>
-      <td>{{ mission.recruteur }}</td>
-      <td>{{ mission.dateDebut }}</td>
-      <td>{{ mission.dateFin }}</td>
-      <td>{{ mission.remuneration }}</td>
-      <td>{{ mission.categorie }}</td>
-      <td>
-        <button (click)="voirDetailsMission(mission)" class="detail-action-button">
-          <fa-icon [icon]="faEye"></fa-icon> 
-          
-          </button>
-    </td>
+          <td>{{ mission.titre }}</td>
+          <td>
+            {{ mission.recruteurPrenom }} <br>
+            {{ mission.recruteurNom }}
+          </td>
+          <td>{{ mission.dateDebut }}</td>
+          <td>{{ mission.dateFin }}</td>
+          <td>{{ mission.remuneration }}</td>
+          <td>{{ mission.categorieNom }}</td>
+          <td>
+            <button (click)="voirDetailsMission(mission)" class="detail-action-button">
+              <fa-icon [icon]="faEye"></fa-icon>
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>

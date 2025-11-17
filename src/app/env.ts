@@ -17,6 +17,8 @@ export class Env {
 
     public static MISSION = this.ADMIN + "missions";
 
-    public static PAIEMENT = this.ADMIN + "paiements";
+    public static CANDIDATURE_MISSION = this.API_URL + "candidatures/mission/";
+
+    public static PAIEMENT = this.API_URL + "paiements";
 
 }

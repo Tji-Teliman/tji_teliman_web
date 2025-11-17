@@ -3,14 +3,19 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { FormsModule } from '@angular/forms';
+import { Data } from '../../services/data';
+import { Env } from '../../env';
 
 interface Candidature {
+motivationContenu: any;
+jeunePrestateurPrenom: any;
+jeunePrestateurNom: any;
   id: number;
   candidateName: string;
   candidatePhoto: string;
   motivation: string;
   // 'rejeter' = Bloqué (carte rouge). 'tout' = Débloqué/En attente (carte blanche).
-  status: 'tout' | 'valider' | 'rejeter';
+  statut: "REFUSEE" | "ACCEPTEE";
 }
 
 @Component({
@@ -26,8 +31,9 @@ export class CandidaturesComponent implements OnInit {
   missionTitle: string = 'Chargement...';
   candidatures: Candidature[] = [];
   filteredCandidatures: Candidature[] = [];
-  currentFilter: 'tout' | 'valider' | 'rejeter' = 'tout';
+  currentFilter: 'tout' | 'REFUSEE' | 'ACCEPTEE' = 'tout';
   selectedCandidatureId: number | null = null;
+  candidatePhoto= 'profil.png';
 
   // LOGIQUE MODAL DE SUPPRESSION
   isDeleteModalOpen: boolean = false;
@@ -44,14 +50,14 @@ export class CandidaturesComponent implements OnInit {
 
   // Getters pour les compteurs des onglets
   get validatedCount(): number {
-    return this.candidatures ? this.candidatures.filter(c => c.status === 'valider').length : 0;
+    return this.candidatures ? this.candidatures.filter(c => c.statut === "REFUSEE").length : 0;
   }
 
   get rejectedCount(): number {
-    return this.candidatures ? this.candidatures.filter(c => c.status === 'rejeter').length : 0;
+    return this.candidatures ? this.candidatures.filter(c => c.statut === "ACCEPTEE").length : 0;
   }
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router,private data:Data) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -60,6 +66,7 @@ export class CandidaturesComponent implements OnInit {
         this.missionId = +id;
         this.loadMissionDetails(this.missionId);
         this.loadCandidatures(this.missionId);
+
       } else {
         this.router.navigate(['/missions']);
       }
@@ -67,43 +74,45 @@ export class CandidaturesComponent implements OnInit {
   }
 
   loadMissionDetails(id: number): void {
-    this.missionTitle = 'Aide Ménagère';
+    this.data.getDataById(Env.MISSION+'/',id).subscribe(
+      {
+        next:(res:any)=>{
+          this.missionTitle = res.data.titre;
+        },
+        error(err) {
+        },
+      }
+    )
   }
 
   loadCandidatures(id: number): void {
-    const baseCandidatures: Candidature[] = [
-      // 1 validé, 11 rejetés/bloqués initialement
-      { id: 1, candidateName: 'Sophie Marc', candidatePhoto: 'profil.png', motivation: 'Candidature validée par le système...', status: 'valider' },
-      { id: 2, candidateName: 'Jean Dupont', candidatePhoto: 'profil.png', motivation: 'J\'ai l\'expérience nécessaire pour ce type de...', status: 'rejeter' },
-      { id: 3, candidateName: 'Jean Dupont', candidatePhoto: 'profil.png', motivation: 'Je suis très motivée par cette mission, j...', status: 'rejeter' },
-      { id: 4, candidateName: 'Jean Dupont', candidatePhoto: 'profil.png', motivation: 'Je suis très motivée par cette mission, j...', status: 'rejeter' },
-      { id: 5, candidateName: 'Jean Dupont', candidatePhoto: 'profil.png', motivation: 'Je suis très motivée par cette mission, j...', status: 'rejeter' },
-      { id: 6, candidateName: 'Jean Dupont', candidatePhoto: 'profil.png', motivation: 'Je suis très motivée par cette mission, j...', status: 'rejeter' },
-      { id: 7, candidateName: 'Jean Dupont', candidatePhoto: 'profil.png', motivation: 'Je suis très motivée par cette mission, j...', status: 'rejeter' },
-      { id: 8, candidateName: 'Jean Dupont', candidatePhoto: 'profil.png', motivation: 'Je suis très motivée par cette mission, j...', status: 'rejeter' },
-      { id: 9, candidateName: 'Jean Dupont', candidatePhoto: 'profil.png', motivation: 'Je suis très motivée par cette mission, j...', status: 'rejeter' },
-      { id: 10, candidateName: 'Jean Dupont', candidatePhoto: 'profil.png', motivation: 'Je suis très motivée par cette mission, j...', status: 'rejeter' },
-      { id: 11, candidateName: 'Jean Dupont', candidatePhoto: 'profil.png', motivation: 'Je suis très motivée par cette mission, j...', status: 'rejeter' },
-      { id: 12, candidateName: 'Jean Dupont', candidatePhoto: 'profil.png', motivation: 'Je suis très motivée par cette mission, j...', status: 'rejeter' },
-    ];
-
-    this.candidatures = baseCandidatures;
-    this.filterCandidatures(this.currentFilter);
+    this.data.getDataById(Env.CANDIDATURE_MISSION,id).subscribe({
+      next:(res:any)=>{
+        console.log(res)
+        this.candidatures = res;
+        this.filteredCandidatures = res;
+      },
+      error(err){
+        console.log(err);
+      }
+    });
+    // this.filterCandidatures('tout');
   }
 
-  filterCandidatures(filter: 'tout' | 'valider' | 'rejeter'): void {
-    this.currentFilter = filter;
+  filterCandidatures(filter: 'tout' | 'REFUSEE' | 'ACCEPTEE'): void {
+    this.currentFilter = filter ;
 
     let tempCandidatures = this.candidatures;
 
     if (filter !== 'tout') {
-      tempCandidatures = tempCandidatures.filter(c => c.status === filter);
+      tempCandidatures = tempCandidatures.filter(c => c.statut === filter);
     }
 
     if (this.searchText) {
         const searchLower = this.searchText.toLowerCase();
         tempCandidatures = tempCandidatures.filter(c =>
-            c.candidateName.toLowerCase().includes(searchLower) ||
+            c.jeunePrestateurNom.toLowerCase().includes(searchLower) ||
+            c.jeunePrestateurPrenom.toLowerCase().includes(searchLower) ||
             c.motivation.toLowerCase().includes(searchLower)
         );
     }
