@@ -5,44 +5,37 @@
 
     <div class="form-group select-group">
       <p class="form-label">Cible(s) de la notification *</p>
-      <mat-select
-        placeholder="Sélectionnez..."
+      <select
         [(ngModel)]="notification.target"
         name="target"
-        required
-        class="custom-select"
+        class="custom-input"
       >
-        <mat-option *ngFor="let target of targetOptions" [value]="target.value">
+        <option *ngFor="let target of targetOptions" [value]="target.value">
           {{ target.viewValue }}
-        </mat-option>
-      </mat-select>
+        </option>
+      </select>
     </div>
 
     <div class="form-group">
-      <p class="form-label">Titre de la notification (max 50) *</p>
+      <p class="form-label">Titre de la notification</p>
       <input
         type="text"
         [(ngModel)]="notification.title"
         name="title"
-        maxlength="50"
-        required
         class="custom-input"
         placeholder=""
       >
     </div>
 
     <div class="form-group message-group">
-      <p class="form-label">Message de la notification (max 500) *</p>
+      <p class="form-label">Message de la notification</p>
       <textarea
         [(ngModel)]="notification.message"
         name="message"
-        maxlength="500"
         rows="4"
-        required
         class="custom-textarea"
         placeholder=""
       ></textarea>
-      <div class="char-count">{{ notification.message.length }} / 500</div>
     </div>
   </form>
 
@@ -58,7 +51,6 @@
     <button
       mat-flat-button
       color="primary"
-      [disabled]="notificationForm.invalid"
       (click)="onSend()"
       class="btn-send"
     >

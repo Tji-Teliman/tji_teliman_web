@@ -33,11 +33,22 @@ export class MissionDetailComponent implements OnInit {
       const id = params.get('id');
       if (id) {
         this.missionId = +id;
-        this.loadMissionDetails(this.missionId);
         this.data.getDataById(Env.MISSION+'/',this.missionId).subscribe(
           {
             next:(res:any)=>{
               this.mission = res.data;
+              // Adapter certaines propriétés pour le template
+              this.mission.etoile = this.mission.recruteurNote ?? 5;
+
+              // Normaliser le chemin de la photo du recruteur en URL HTTP
+              if (this.mission.recruteurUrlPhoto) {
+                const rawPath: string = this.mission.recruteurUrlPhoto;
+                const uploadIndex = rawPath.toLowerCase().indexOf('uploads');
+                const relativePath = uploadIndex >= 0 ? rawPath.substring(uploadIndex) : rawPath;
+                const normalized = relativePath.replace(/\\/g, '/');
+                const baseUrl = 'http://localhost:8080/';
+                this.mission.recruteurUrlPhoto = baseUrl + normalized;
+              }
               console.log(res.data)
             },
             error(err) {
@@ -52,28 +63,7 @@ export class MissionDetailComponent implements OnInit {
     });
   }
 
-  loadMissionDetails(id: number): void {
-    // Simuler le chargement des données pour l'exemple
-    // Normalement, vous feriez un appel à votre MissionService ici.
-    this.mission = {
-      id: id,
-      recruiter: {
-        name: 'Amadou B.',
-        photo: 'hommepro.png',
-        rating: 4 // Nombre d'étoiles
-      },
-      title: 'Aide Ménagère', // Titre de la mission (utilisé dans le header)
-      description: 'Déménagement d’un appartement situé au 2e étage sans ascenseur.\nAide au transport de cartons et de quelques meubles démontés jusqu’au camion de déménagement.\nUne autre personne sera présente pour prêter main-forte.',
-      requirements: [
-        'Force physique à sécurité',
-        'Disponibilité le matin'
-      ],
-      location: 'Kalaban Coura',
-      estimatedTime: '3 heures',
-      dueDate: '25/10/25',
-      status: 'active' // Pourrait être 'active', 'completed', 'canceled'
-    };
-  }
+  // Les détails de la mission sont désormais entièrement chargés depuis l'API.
 
   // --- LOGIQUE DE SUPPRESSION ---
 

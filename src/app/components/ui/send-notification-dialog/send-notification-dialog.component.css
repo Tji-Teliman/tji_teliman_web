@@ -34,6 +34,11 @@
     margin-bottom: 5px;
 }
 
+/* Plus d'espace sous le select pour éviter que le contenu suivant soit collé */
+.select-group {
+    margin-bottom: 20px;
+}
+
 /* --- Style des Inputs/Textarea/Select Custom avec BORDURES AMÉLIORÉES --- */
 
 .custom-input,
@@ -68,6 +73,11 @@
     border-radius: 10px !important; /* Bords arrondis sur le select */
     box-sizing: border-box;
     background-color: #f9fafb;
+}
+
+/* S'assure que le panneau de sélection est au-dessus du reste du formulaire */
+:host ::ng-deep .mat-mdc-select-panel {
+    z-index: 1000;
 }
 
 /* Texte sélectionné et placeholder du select */

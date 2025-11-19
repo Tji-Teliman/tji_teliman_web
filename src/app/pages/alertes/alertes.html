@@ -19,26 +19,44 @@
 
   <!-- Liste des alertes -->
   <div class="alerts-list">
-    <div 
-    class="alert-card" 
-    *ngFor="let alert of filteredAlerts" 
-    [class.new]="!alert.isSeen"
-  >
-    <div class="alert-info">
-      <strong>{{ alert.title }}</strong>
-      <p>{{ alert.description }}</p>
-    </div>
-      <div class="alert-actions">
-      <button class="btn-action primary" (click)="viewAdvertisement(alert.advertisementId)">Voir l'annonce</button>
-      <button class="btn-action danger" (click)="deleteAlert(alert.id)">Supprimer l'annonce</button>
-      <button *ngIf="!alert.isSeen" class="btn-action secondary" (click)="markAsSeen(alert)">
-    Ignorer
-  </button>
+
+    <ng-container *ngIf="filteredAlerts.length; else emptyState">
+      <div
+        class="alert-card"
+        *ngFor="let alert of filteredAlerts"
+        [class.new]="!alert.isSeen"
+      >
+        <div class="alert-info">
+          <strong>Annonce signalée</strong>
+          <p class="alert-description">
+            L'annonce "{{ alert.missionTitle || alert.title }}" a été signalée comme suspecte
+            par {{ alert.jeunePrenom }} {{ alert.jeuneNom }}.
+          </p>
+        </div>
+        <div class="alert-actions">
+          <button class="btn-action primary" (click)="viewAdvertisement(alert.advertisementId)">Voir l'annonce</button>
+          <button class="btn-action danger" (click)="deleteAlert(alert.id)">Supprimer l'annonce</button>
+          <button *ngIf="!alert.isSeen" class="btn-action secondary" (click)="markAsSeen(alert)">
+            Ignorer
+          </button>
+
+          <span *ngIf="alert.isSeen" class="status traite">
+            Traité
+          </span>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #emptyState>
+      <div class="empty-alerts">
   
-  <span *ngIf="alert.isSeen" class="status traite">
-    Traité
-  </span>
-    </div>
-    </div>
+        <h3>Aucun signalement pour le moment</h3>
+        <p>
+          Aucune mission signalée. Vous serez averti ici dès qu'une mission sera signalée
+          par les utilisateurs.
+        </p>
+      </div>
+    </ng-template>
+
   </div>
 </div>

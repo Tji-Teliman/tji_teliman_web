@@ -139,29 +139,88 @@
   font-weight: 700;
 }
 
-/* FORM */
-.input, .textarea {
-  width: 100%;
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
+/* FORMULAIRE AJOUT RAPIDE (style aligné sur CompetencesComponent) */
+
+.form-card h3 {
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 20px;
 }
 
-textarea {
-  resize: none;
+.form-card .form-group {
+  margin-bottom: 15px;
+}
+
+.form-card .form-group label {
+  display: block;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 5px;
+}
+
+.form-card input[type="text"],
+.form-card input[type="file"],
+.form-card textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-card input[type="text"]:focus,
+.form-card input[type="file"]:focus,
+.form-card textarea:focus {
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+  outline: none;
+}
+
+.form-card textarea {
+  resize: vertical;
   min-height: 80px;
 }
 
-.btn-add {
-  width: 100%;
-  background: linear-gradient(90deg, #2563eb, #16a34a);
-  color: white;
-  font-weight: 600;
-  padding: 10px;
-  border-radius: 8px;
-  margin-top: 10px;
+.form-card .form-checkbox {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 25px;
 }
 
-.btn-add:hover {
-  opacity: 0.9;
+.form-card .form-checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.form-card .form-checkbox label {
+  margin-bottom: 0;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.form-card .add-skill-button {
+  width: 100%;
+  background-color: #48bb78; /* Vert */
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  box-shadow: 0 4px 6px rgba(72, 187, 120, 0.4);
+}
+
+.form-card .add-skill-button:hover {
+  background-color: #38a169;
+}
+
+.form-card .add-skill-button i {
+  margin-right: 8px;
 }

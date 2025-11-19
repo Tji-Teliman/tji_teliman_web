@@ -1,14 +1,17 @@
-import { Component, signal, ViewChild } from '@angular/core';
+import { Component, OnInit, signal, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AdminHeaderComponent } from '../../components/admin-header/admin-header.component';
 import { ModalComponent } from '../../components/modal/modal.component';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Data } from '../../services/data';
+import { Env } from '../../env';
 
 interface Category {
   id: number;
   name: string;
   description: string;
-  photo: string; // Maintenant, il s'agira du nom du fichier ou d'un lien
+  photo: string; // URL complète de la photo renvoyée par le backend
   iconClass: string;
   iconColorClass: string;
   missions: number;
@@ -21,22 +24,21 @@ interface Category {
   templateUrl: './categories.html',
   styleUrls: ['./categories.css'],
 })
-export class CategoriesComponent {
+export class CategoriesComponent implements OnInit {
 
   @ViewChild('deleteModal') deleteModal!: ModalComponent;
   @ViewChild('successModal') successModal!: ModalComponent;
 
+  constructor(private data: Data, private http: HttpClient) {}
+
   categoryToDeleteId: number | null = null;
   categoryToEditId: number | null = null;
 
-  // Données initiales
-  categories = signal<Category[]>([
-    { id: 1, name: 'Livraison', description: 'Transport de colis et courses', photo: 'camion.png', missions: 156, active: true, iconClass: 'fa-truck', iconColorClass: 'icon-delivery' },
-    { id: 2, name: 'Enseignement', description: 'Cours particuliers et soutien scolaire', photo: 'prof.png', missions: 89, active: true, iconClass: 'fa-calculator', iconColorClass: 'icon-math' },
-    { id: 3, name: 'Aide domestique', description: 'Ménage, cuisine, jardinage', photo: 'nettoyer.png', missions: 124, active: true, iconClass: 'fa-broom', iconColorClass: 'icon-cleaning' },
-    { id: 4, name: 'Événementiel', description: 'Animation, DJ, organisation', photo: 'fete.png', missions: 45, active: false, iconClass: 'fa-music', iconColorClass: 'icon-event' },
-    { id: 5, name: 'Manutention', description: 'Déménagement, manutention, aide aux tâches', photo: 'aide.png', missions: 124, active: true, iconClass: 'fa-wrench', iconColorClass: 'icon-default' },
-  ]);
+  // Données chargées depuis le backend
+  categories = signal<Category[]>([]);
+
+  loading = false;
+  error: string | null = null;
 
   // Définition d'icônes pour l'ajout rapide
   defaultIcon = {
@@ -51,6 +53,39 @@ export class CategoriesComponent {
 
   // NOUVELLE VARIABLE: Stocke le fichier réel
   newCategoryFile: File | null = null;
+
+  ngOnInit(): void {
+    this.loadCategories();
+  }
+
+  loadCategories(): void {
+    this.loading = true;
+    this.error = null;
+
+    this.data.getData(Env.ADMIN + 'categories').subscribe({
+      next: (res: any) => {
+        const baseUrl = 'http://localhost:8080';
+        const mapped: Category[] = (res || []).map((item: any) => ({
+          id: item.id,
+          name: item.nom,
+          description: item.description,
+          photo: baseUrl + item.urlPhoto,
+          iconClass: this.defaultIcon.class,
+          iconColorClass: this.defaultIcon.color,
+          missions: item.missionsCount,
+          active: true,
+        }));
+
+        this.categories.set(mapped);
+        this.loading = false;
+      },
+      error: (err) => {
+        console.log(err);
+        this.error = 'Erreur lors du chargement des catégories';
+        this.loading = false;
+      },
+    });
+  }
 
   /**
    * Intercepte la sélection du fichier par l'utilisateur.
@@ -72,41 +107,72 @@ export class CategoriesComponent {
   addCategory() {
     const name = this.newCategoryName.trim();
     if (!name) return;
-
-    // Déterminer le nom de la photo/du fichier pour la sauvegarde
-    const photoName = this.newCategoryFile ? this.newCategoryFile.name : 'placeholder.png';
-
-    // 1. CAS: MISE À JOUR (Mode Édition actif)
-    if (this.categoryToEditId !== null) {
-
-      this.categories.update(list =>
-        list.map(c => c.id === this.categoryToEditId ? {
-            ...c,
-            name,
-            description: this.newCategoryDescription.trim() || c.description,
-            photo: this.newCategoryFile ? photoName : c.photo,
-            active: !!this.newCategoryActive,
-        } : c)
-      );
-
-    } else {
-      // 2. CAS: AJOUT (Mode Édition inactif)
-      const newCat: Category = {
-        id: Date.now(),
-        name,
-        description: this.newCategoryDescription.trim() || 'Nouvelle catégorie',
-        photo: photoName,
-        iconClass: this.defaultIcon.class,
-        iconColorClass: this.defaultIcon.color,
-        missions: 0,
-        active: !!this.newCategoryActive,
-      };
-
-      this.categories.update(list => [newCat, ...list]);
+    const formData = new FormData();
+    formData.append('nom', name);
+    formData.append('description', this.newCategoryDescription.trim());
+    if (this.newCategoryFile) {
+      formData.append('photo', this.newCategoryFile);
     }
 
-    // Réinitialisation du formulaire et sortie du mode édition
-    this.resetForm();
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    // Mode édition : PUT /admin/categories/{id}
+    if (this.categoryToEditId !== null) {
+      this.http.put<any>(`${Env.ADMIN}categories/${this.categoryToEditId}`, formData, { headers }).subscribe({
+        next: (res: any) => {
+          const baseUrl = 'http://localhost:8080';
+          if (res && res.data) {
+            const item = res.data;
+            this.categories.update(list => list.map(c =>
+              c.id === this.categoryToEditId
+                ? {
+                    id: item.id,
+                    name: item.nom,
+                    description: item.description,
+                    photo: baseUrl + item.urlPhoto,
+                    iconClass: this.defaultIcon.class,
+                    iconColorClass: this.defaultIcon.color,
+                    missions: item.missionsCount,
+                    active: c.active,
+                  }
+                : c
+            ));
+          }
+          this.resetForm();
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+    } else {
+      // Mode création : POST /admin/categories
+      this.http.post<any>(Env.ADMIN + 'categories', formData, { headers }).subscribe({
+        next: (res: any) => {
+          const baseUrl = 'http://localhost:8080';
+          if (res && res.data) {
+            const item = res.data;
+            const newCat: Category = {
+              id: item.id,
+              name: item.nom,
+              description: item.description,
+              photo: baseUrl + item.urlPhoto,
+              iconClass: this.defaultIcon.class,
+              iconColorClass: this.defaultIcon.color,
+              missions: item.missionsCount,
+              active: true,
+            };
+            this.categories.update(list => [newCat, ...list]);
+          }
+          this.resetForm();
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+    }
   }
 
   /** * Active le mode édition et pré-remplit le formulaire.
@@ -155,12 +221,21 @@ export class CategoriesComponent {
 
   confirmDeletion() {
     if (this.categoryToDeleteId === null) return;
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
 
-    this.categories.update(list => list.filter(c => c.id !== this.categoryToDeleteId));
-
-    this.successModal.open();
-
-    this.categoryToDeleteId = null;
+    this.http.delete<any>(`${Env.ADMIN}categories/${this.categoryToDeleteId}`, { headers }).subscribe({
+      next: () => {
+        this.categories.update(list => list.filter(c => c.id !== this.categoryToDeleteId));
+        this.successModal.open();
+        this.categoryToDeleteId = null;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 
   toggleCategory(cat: Category) {

@@ -61,10 +61,7 @@ export class SendNotificationDialogComponent implements OnInit {
    * Ferme la modale et envoie les données du formulaire.
    */
   onSend(): void {
-    if (this.notification.title && this.notification.message) {
-      // Ferme la modale et retourne les données du formulaire pour traitement
-      this.dialogRef.close(this.notification);
-    }
-    // Note: Ajouter une logique de validation côté UI (désactiver le bouton ou message) si besoin
+    // Ferme la modale et retourne les données du formulaire pour traitement
+    this.dialogRef.close(this.notification);
   }
 }

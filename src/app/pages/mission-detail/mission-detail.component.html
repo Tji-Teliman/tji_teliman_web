@@ -17,7 +17,17 @@
     <div class="recruiter-card">
       <h2 class="recruiter-title">Recruteur</h2>
       <div class="recruiter-info">
-        <img [src]="'images/' + mission.recruteurUrlPhoto" alt="Recruiter Photo" class="recruiter-photo">
+        <img
+          *ngIf="mission.recruteurUrlPhoto; else defaultAvatar"
+          [src]="mission.recruteurUrlPhoto"
+          alt="Recruiter Photo"
+          class="recruiter-photo"
+        >
+        <ng-template #defaultAvatar>
+          <div class="recruiter-photo default-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+        </ng-template>
         <div class="recruiter-meta">
           <div class="recruiter-name">{{ mission.recruteurPrenom }} {{ mission.recruteurNom }}</div>
           <div class="rating">
@@ -31,31 +41,33 @@
       </button>
     </div>
 
-    <div class="mission-description-card">
-      <h3>Description de la Mission</h3>
-      <p>{{ mission.description }}</p>
-    </div>
+    <div class="info-row">
+      <div class="mission-description-card">
+        <h3>Description de la Mission</h3>
+        <p>{{ mission.description }}</p>
+      </div>
 
-    <div class="mission-details-grid">
-      <div class="detail-item">
-        <i class="fas fa-map-marker-alt icon"></i>
-        <div class="text">
-          <span>{{mission.adresse}}</span>
-          <!-- <span></span> -->
+      <div class="mission-details-grid">
+        <div class="detail-item">
+          <i class="fas fa-map-marker-alt icon"></i>
+          <div class="text">
+            <span>{{mission.adresse}}</span>
+            <!-- <span></span> -->
+          </div>
         </div>
-      </div>
-      <div class="detail-item">
-        <i class="far fa-clock icon"></i>
-        <div class="text">
-          <span>Estimé:</span>
-          <span>{{ mission.dureHeures }} H</span>
+        <div class="detail-item">
+          <i class="far fa-clock icon"></i>
+          <div class="text">
+            <span>Estimé:</span>
+            <span>{{ mission.dureHeures }} H</span>
+          </div>
         </div>
-      </div>
-      <div class="detail-item">
-        <i class="far fa-calendar-alt icon"></i>
-        <div class="text">
-          <span>Date Limite:</span>
-          <span>{{ mission.dateFin }}</span>
+        <div class="detail-item">
+          <i class="far fa-calendar-alt icon"></i>
+          <div class="text">
+            <span>Date Limite:</span>
+            <span>{{ mission.dateFin }}</span>
+          </div>
         </div>
       </div>
     </div>

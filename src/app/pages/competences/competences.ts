@@ -1,13 +1,15 @@
-import { Component , ViewChild } from '@angular/core';
+import { Component , ViewChild, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Nécessaire pour *ngFor, *ngIf, [ngClass]
 import { FormsModule } from '@angular/forms'; // Nécessaire pour [(ngModel)]
 import { AdminHeaderComponent } from '../../components/admin-header/admin-header.component';
 import { ModalComponent } from '../../components/modal/modal.component'; // ⬅IMPORT NÉCESSAIRE
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Env } from '../../env';
 // Interface pour définir la structure d'une compétence (bonne pratique TypeScript)
 interface Skill {
+  id: number;
   name: string;
   description: string;
-  category: string;
   status: 'Active' | 'Inactive'; // Statut précis
   iconClass: string; // Pour l'icône Font Awesome
   iconColorClass: string; // Pour la couleur de fond de l'icône
@@ -16,7 +18,6 @@ interface Skill {
 // Interface pour le modèle du formulaire (Ajout Rapide)
 interface QuickAddForm {
   name: string;
-  category: string;
   level: string;
   description: string;
   isActive: boolean;
@@ -39,7 +40,6 @@ interface QuickAddForm {
 
             <div class="table-header">
                 <span class="col-name">Nom</span>
-                <span class="col-category">Catégorie</span>
                 <span class="col-status">Statut</span>
                 <span class="col-actions">Actions</span>
             </div>
@@ -59,8 +59,6 @@ interface QuickAddForm {
                     </div>
                 </span>
 
-                <span class="col-category">{{ skill.category }}</span>
-
                 <!-- Statut avec classes dynamiques -->
                 <span class="col-status" [ngClass]="skill.status === 'Active' ? 'active' : 'inactive'">
                     {{ skill.status }}
@@ -68,9 +66,14 @@ interface QuickAddForm {
 
                 <!-- Actions -->
                 <span class="col-actions">
-                    <i class="fas fa-pencil-alt icon-action" (click)="editSkill(i)"></i>
-                    <!-- Utilisation de console.log pour la suppression (car alert()/confirm() sont interdits) -->
-                    <i class="fas fa-trash-alt icon-action red" (click)="deleteSkill(i)"></i>
+                    <i class="fas fa-pencil-alt icon-action"
+                       (click)="editSkill(i)"></i>
+
+                    <i class="fas fa-trash-alt icon-action red"
+                       (click)="deleteSkill(i)"></i>
+
+                    <i class="fas fa-toggle-{{ skill.status === 'Active' ? 'on' : 'off' }} icon-action"
+                       (click)="toggleStatus(i)"></i>
                 </span>
             </div>
 
@@ -84,13 +87,6 @@ interface QuickAddForm {
                 <div class="form-group">
                     <label for="skill-name">Nom de la compétence</label>
                     <input type="text" id="skill-name" placeholder="Ex: Photographie" [(ngModel)]="quickAddForm.name" name="skillName" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="skill-category">Catégorie</label>
-                    <select id="skill-category" [(ngModel)]="quickAddForm.category" name="skillCategory" required>
-                        <option *ngFor="let cat of categoriesOptions" [value]="cat">{{ cat }}</option>
-                    </select>
                 </div>
 
                 <div class="form-group">
@@ -374,41 +370,69 @@ interface QuickAddForm {
   `]
 })
 // La classe doit rester 'App' pour le démarrage de l'application
-export class CompetencesComponent {
+export class CompetencesComponent implements OnInit {
 
   // 1. Déclarer les références aux modals
   @ViewChild('deleteModal') deleteModal!: ModalComponent;
   @ViewChild('successModal') successModal!: ModalComponent;
 
+  constructor(private http: HttpClient) {}
+
   // 2. Variable pour stocker l'index de la compétence à supprimer
   skillToDeleteIndex: number | null = null;
+  skillToEditIndex: number | null = null;
   /** Liste des compétences affichées dans le tableau. */
-  public skills: Skill[] = [
-    // Données initiales
-    { name: 'Livraison rapide', description: 'Livraison de colis en ville', category: 'Livraison', status: 'Active', iconClass: 'fa-truck', iconColorClass: 'icon-delivery' },
-    { name: 'Mathématiques', description: 'Cours de mathématiques niveau collégial/lycée', category: 'Enseignement', status: 'Active', iconClass: 'fa-calculator', iconColorClass: 'icon-math' },
-    { name: 'Ménage résidentiel', description: 'nettoyage de maisons et appartements', category: 'Aide domestique', status: 'Active', iconClass: 'fa-broom', iconColorClass: 'icon-cleaning' },
-    { name: 'Design graphique', description: 'Création de logos et supports visuels', category: 'Création & Design', status: 'Active', iconClass: 'fa-palette', iconColorClass: 'icon-design' },
-    { name: 'Réparation électrique', description: 'Dépannage électrique domestique', category: 'Réparation & Bricolage', status: 'Active', iconClass: 'fa-bolt', iconColorClass: 'icon-electric' },
-    // Les lignes inactives pour compléter
-    { name: 'Animation musicale', description: 'DJ et animation d\'événements', category: 'Événementiel', status: 'Inactive', iconClass: 'fa-music', iconColorClass: 'icon-event' },
-    { name: 'Conduite de VTC', description: 'Transport de passagers VTC', category: 'Transport', status: 'Inactive', iconClass: 'fa-car', iconColorClass: 'icon-default' },
-    { name: 'Photographie de mariage', description: 'Reportage photo complet', category: 'Création & Design', status: 'Inactive', iconClass: 'fa-camera', iconColorClass: 'icon-design' },
-    { name: 'Montage de meubles', description: 'Assemblage de meubles IKEA/Similaires', category: 'Aide domestique', status: 'Inactive', iconClass: 'fa-wrench', iconColorClass: 'icon-default' },
-  ];
+  public skills: Skill[] = [];
 
   /** Modèle de données pour le formulaire d'Ajout Rapide. */
   public quickAddForm: QuickAddForm = {
     name: '',
-    category: 'Livraison', // Valeur par défaut
     level: 'Débutant',     // Valeur par défaut
     description: '',
     isActive: true
   };
 
   /** Liste des options pour les sélecteurs du formulaire */
-  public categoriesOptions: string[] = ['Livraison', 'Enseignement', 'Aide domestique', 'Création & Design', 'Réparation & Bricolage', 'Événementiel', 'Transport'];
   public levelOptions: string[] = ['Débutant', 'Intermédiaire', 'Expert'];
+
+  // 4 icônes de compétences utilisées en rotation
+  private skillIcons = [
+    { iconClass: 'fa-tools', iconColorClass: 'icon-electric' },      // Technique / bricolage
+    { iconClass: 'fa-book', iconColorClass: 'icon-math' },           // Connaissances / enseignement
+    { iconClass: 'fa-code', iconColorClass: 'icon-default' },        // Informatique
+    { iconClass: 'fa-paint-brush', iconColorClass: 'icon-design' },  // Créatif
+  ];
+
+  ngOnInit(): void {
+    this.loadCompetences();
+  }
+
+  private loadCompetences(): void {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    this.http.get<any>(Env.ADMIN + 'competences', { headers }).subscribe({
+      next: (res: any) => {
+        const items = res || [];
+        this.skills = items.map((item: any, index: number) => {
+          const icon = this.skillIcons[index % this.skillIcons.length];
+          return {
+            id: item.id,
+            name: item.nom,
+            description: item.description,
+            status: 'Active',
+            iconClass: icon.iconClass,
+            iconColorClass: icon.iconColorClass,
+          };
+        });
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
 
 
   // --- LOGIQUE DU FORMULAIRE ---
@@ -418,31 +442,70 @@ export class CompetencesComponent {
    */
   public addSkill(): void {
     // Gestion d'erreur (affiche un message dans la console si le nom est manquant)
-    if (!this.quickAddForm.name || !this.quickAddForm.category) {
-      console.error('Erreur: Le nom et la catégorie sont obligatoires.');
+    if (!this.quickAddForm.name) {
+      console.error('Erreur: Le nom est obligatoire.');
       return;
     }
 
-    const newSkill: Skill = {
-      name: this.quickAddForm.name,
-      description: this.quickAddForm.description,
-      category: this.quickAddForm.category,
-      status: this.quickAddForm.isActive ? 'Active' : 'Inactive',
-      iconClass: 'fa-user-cog', // Icône par défaut
-      iconColorClass: 'icon-default'
+    const body = {
+      nom: this.quickAddForm.name,
+      description: this.quickAddForm.description
     };
 
-    // Ajout de la nouvelle compétence à la liste
-    this.skills.push(newSkill);
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
 
-    // Réinitialisation du formulaire
+    // Mode édition
+    if (this.skillToEditIndex !== null) {
+      const skill = this.skills[this.skillToEditIndex];
+
+      this.http.put<any>(`${Env.ADMIN}competences/${skill.id}`, body, { headers }).subscribe({
+        next: (res: any) => {
+          const item = res.data;
+          this.skills[this.skillToEditIndex!] = {
+            ...skill,
+            id: item.id,
+            name: item.nom,
+            description: item.description,
+          };
+          this.resetForm();
+        },
+        error: (err) => console.log(err),
+      });
+
+    } else {
+      // Création
+      this.http.post<any>(Env.ADMIN + 'competences', body, { headers }).subscribe({
+        next: (res: any) => {
+          const item = res.data;
+          const icon = this.skillIcons[this.skills.length % this.skillIcons.length];
+          const newSkill: Skill = {
+            id: item.id,
+            name: item.nom,
+            description: item.description,
+            status: this.quickAddForm.isActive ? 'Active' : 'Inactive',
+            iconClass: icon.iconClass,
+            iconColorClass: icon.iconColorClass,
+          };
+          this.skills.push(newSkill);
+          this.resetForm();
+        },
+        error: (err) => console.log(err),
+      });
+    }
+  }
+
+  private resetForm(): void {
     this.quickAddForm = {
       name: '',
-      category: this.categoriesOptions[0],
       level: this.levelOptions[0],
       description: '',
       isActive: true
     };
+    this.skillToEditIndex = null;
   }
 
   // --- LOGIQUE DES ACTIONS DE LA LISTE ---
@@ -465,19 +528,21 @@ export class CompetencesComponent {
    */
   public confirmDeletion(): void {
     if (this.skillToDeleteIndex === null || this.skillToDeleteIndex < 0) return;
+    const skill = this.skills[this.skillToDeleteIndex];
 
-    const skillName = this.skills[this.skillToDeleteIndex].name;
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
 
-    // Suppression de la compétence
-    this.skills.splice(this.skillToDeleteIndex, 1);
-
-    // Affichage du modal de succès
-    this.successModal.open();
-
-    console.log(`Compétence "${skillName}" supprimée.`);
-
-    // Réinitialisation de l'index après la suppression
-    this.skillToDeleteIndex = null;
+    this.http.delete<any>(`${Env.ADMIN}competences/${skill.id}`, { headers }).subscribe({
+      next: () => {
+        this.skills.splice(this.skillToDeleteIndex!, 1);
+        this.successModal.open();
+        this.skillToDeleteIndex = null;
+      },
+      error: (err) => console.log(err),
+    });
   }
 
   /**
@@ -487,15 +552,25 @@ export class CompetencesComponent {
   public editSkill(index: number): void {
     const skillToEdit = this.skills[index];
 
+    this.skillToEditIndex = index;
+
     // Remplir le formulaire d'ajout rapide pour la modification
     this.quickAddForm = {
         name: skillToEdit.name,
-        category: skillToEdit.category,
         level: 'Débutant', // Valeur par défaut (à adapter si un niveau était sauvegardé)
         description: skillToEdit.description,
         isActive: skillToEdit.status === 'Active'
     };
 
     console.log(`Le formulaire est pré-rempli pour éditer "${skillToEdit.name}"`);
+  }
+
+  /**
+   * Bascule le statut d'une compétence entre Active et Inactive (local uniquement).
+   */
+  public toggleStatus(index: number): void {
+    const current = this.skills[index];
+    const newStatus = current.status === 'Active' ? 'Inactive' : 'Active';
+    this.skills[index] = { ...current, status: newStatus };
   }
 }
