@@ -21,4 +21,6 @@ export class Env {
 
     public static PAIEMENT = this.API_URL + "paiements";
 
+    public static LITIGE = this.API_URL +"litiges"
+
 }

@@ -3,7 +3,7 @@
     <h2 class="titre-litiges">Litiges</h2>
 
     <!-- Section des filtres mise à jour --><div class="filtres">
-        <button 
+        <button
             *ngFor="let filtre of filtres"
             class="bouton-filtre"
             [ngClass]="{'actif': filtreActif === filtre}"
@@ -28,14 +28,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let litige of litigesAffiches">
-                    <td>{{ litige.no }}</td>
-                    <td>{{ litige.jeune }}</td>
-                    <td>{{ litige.recruteur }}</td>
-                    <td>{{ litige.mission }}</td>
+                <tr *ngFor="let litige of litigesAffiches; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ litige.jeunePrestateurNom }}</td>
+                    <td>{{ litige.recruteurNom }}</td>
+                    <td>{{ litige.missionTitre }}</td>
                     <td><span class="statut" [ngClass]="getStatutClass(litige.statut)">{{ litige.statut }}</span></td>
-                    <td><span class="montant">{{ litige.montant }}</span></td>
-                    <td>{{ litige.dateCreation }}</td>
+                    <td><span class="montant">{{ litige.montant ?? '...'}}</span></td>
+                    <td>{{ litige.dateCreation | date:'dd/MM/yyyy'}}</td>
                     <td>
                         <button class="action-btn" (click)="voirDetails(litige)">
                             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="eye" class="svg-inline--fa fa-eye" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" style="width: 14px; height: 14px; fill: #6c757d;">
@@ -44,7 +44,7 @@
                         </button>
                     </td>
                 </tr>
-                
+
                 <tr *ngIf="litigesAffiches.length === 0">
                     <td colspan="8" style="text-align: center; color: #757575;">Aucun litige ne correspond au filtre '{{ filtreActif }}'.</td>
                 </tr>

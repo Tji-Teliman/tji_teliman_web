@@ -46,7 +46,6 @@ export class Paiements {
   constructor(private data:Data){}
 
   ngOnInit(): void {
-
     this.data.getData(Env.PAIEMENT+'/all').subscribe({
       next:(value:any) =>{
         console.log(value);

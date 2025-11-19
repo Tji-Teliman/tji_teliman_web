@@ -11,21 +11,22 @@
 
       <mat-card class="litige-data-card" style="height: auto; max-height: 230px; overflow: hidden; position: relative;">
         <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
-          <h3>Litige N° {{ litige.numero }} - {{ litige.objet }}</h3>
-          <span class="status-badge" [ngClass]="{'pending': litige.statut === 'En attente' || litige.statut === 'Ouvert', 'in-progress': litige.statut === 'En Cours', 'resolved': litige.statut === 'Résolu', 'closed': litige.statut === 'Fermé'}">
+          <h3>Litige N° {{ litige.id }} - </h3>
+          <!-- {{ litige.objet }} -->
+          <span class="status-badge" [ngClass]="{'pending': litige.statut === 'EN_ATTENTE' || litige.statut === 'OUVERT', 'in-progress': litige.statut === 'EN_COURS', 'resolved': litige.statut === 'RESOLU', 'closed': litige.statut === 'FERME'}">
             {{ litige.statut }}
           </span>
         </div>
-        <p class="description">{{ litige.descriptionCourte }}</p>
+        <p class="description">{{ litige.description }}</p>
 
         <div class="litige-details-grid full-width-grid">
           <div class="detail-item">
             <span class="label">Montant du litige</span>
-            <span class="value amount">{{ litige.montant }}</span>
+            <span class="value amount">{{ litige.montant ?? '...' }}</span>
           </div>
           <div class="detail-item">
             <span class="label">Date de création</span>
-            <span class="value">{{ litige.dateCreation }}</span>
+            <span class="value">{{ litige.dateCreation | date:'dd/mm/yyyy'}}</span>
           </div>
           <div class="detail-item">
             <span class="label">Dernière mise à jour</span>
@@ -33,14 +34,14 @@
           </div>
           <div class="detail-item">
             <span class="label">Résolution prévue</span>
-            <span class="value">{{ litige.resolutionPrevued }}</span>
+            <span class="value">{{ litige.dateResolution | date:'dd/mm/yyyy' }}</span>
           </div>
         </div>
       </mat-card>
 
       <mat-card class="admin-detail-card">
-        <h4 class="card-subtitle">Description Complète & Preuves</h4>
-        <p class="full-description" style="white-space: pre-wrap;">{{ litige.descriptionComplete }}</p>
+        <h4 class="card-subtitle">Decision Administrative</h4>
+        <p class="full-description" style="white-space: pre-wrap;">{{ litige.decisionAdministrateur ?? 'Pas de decision pour ce litige'}}</p>
 
         <h5 class="attachments-title" style="font-size: 1em; margin-top: 20px; font-weight: bold;">Documents joints ({{ litige.documentsJoints?.length || 0 }})</h5>
         <div class="attachments-list">
@@ -96,10 +97,10 @@
       <mat-card class="party-card">
         <h4 class="card-subtitle">Jeune</h4>
         <div class="party-info">
-          <img [src]="litige.jeune.avatarUrl" class="avatar-circle" alt="Avatar Jeune">
+          <img [src]="avatarUrl1" class="avatar-circle" alt="Avatar Jeune">
           <div>
-            <span class="party-name">{{ litige.jeune.nom }}</span>
-            <span class="party-email">{{ litige.jeune.email }}</span>
+            <span class="party-name">{{ litige.jeunePrestateurNom }}</span>
+            <span class="party-email">{{ litige.jeunePrestateurEmail}}</span>
           </div>
         </div>
       </mat-card>
@@ -107,10 +108,10 @@
       <mat-card class="party-card">
         <h4 class="card-subtitle">Recruteur</h4>
         <div class="party-info">
-          <img [src]="litige.recruteur.avatarUrl" class="avatar-circle" alt="Avatar Recruteur">
+          <img [src]="avatarUrl2" class="avatar-circle" alt="Avatar Recruteur">
           <div>
-            <span class="party-name">{{ litige.recruteur.nom }}</span>
-            <span class="party-email">{{ litige.recruteur.email }}</span>
+            <span class="party-name">{{ litige.recruteurNom}}</span>
+            <span class="party-email">{{ litige.recruteurEmail }}</span>
           </div>
         </div>
       </mat-card>
@@ -122,8 +123,8 @@
             <i class="fas fa-briefcase mission-icon"></i>
           </div>
           <div>
-            <span class="mission-name">{{ litige.missionAssociee.titre }}</span>
-            <span class="mission-number">Mission N°{{ litige.missionAssociee.numero }}</span>
+            <span class="mission-name">{{ litige.missionTitre }}</span><br>
+            <span class="mission-number">Mission N°{{ litige.missionId }}</span>
           </div>
         </div>
       </mat-card>
@@ -138,11 +139,11 @@
             [disabled]="isLitigeClosed"
             (selectionChange)="onStatusChange()"
           >
-            <mat-option value="Ouvert">Ouvert</mat-option>
-            <mat-option value="En Cours">En Cours (Enquête)</mat-option>
-            <mat-option value="En attente">En attente (Documents)</mat-option>
-            <mat-option value="Résolu">Résolu</mat-option>
-            <mat-option value="Fermé">Fermé (Sans résolution)</mat-option>
+            <mat-option value="OUVERT">Ouvert</mat-option>
+            <mat-option value="EN_COURS">En Cours (Enquête)</mat-option>
+            <mat-option value="EN_ATTENTE">En attente (Documents)</mat-option>
+            <mat-option value="RESOLU">Résolu</mat-option>
+            <mat-option value="FERME">Fermé (Sans résolution)</mat-option>
           </mat-select>
         </mat-form-field>
 

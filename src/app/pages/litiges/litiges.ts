@@ -2,15 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminHeaderComponent } from '../../components/admin-header/admin-header.component';
 import { Router } from '@angular/router';
+import { Data } from '../../services/data';
+import { Env } from '../../env';
 // Définition du type de données
 interface Litige {
+    id: any;
     no: number;
     jeune: string;
     recruteur: string;
     mission: string;
-    statut: 'En Cours' | 'En attente' | 'Resolu' | 'Fermé';
+    statut: 'EN_COURS'|'FERME'|'OUVERT'|'RESOLU';
     montant: string;
     dateCreation: string;
+    jeunePrestateurNom?:string;
+    recruteurNom?:string;
+    missionTitre?:string;
 }
 
 // Les statuts affichés sur les boutons de filtre, dans l'ordre du design
@@ -26,27 +32,37 @@ type FiltreStatut = 'Tous' | 'En Cours' | 'Resolus' | 'Ouvert' | 'Fermé';
 export class LitigesComponent implements OnInit {
 
     // Les statuts des boutons de filtre, dans l'ordre spécifié par le design
-    constructor(private router: Router) { }
+    constructor(private router: Router, private data:Data) { }
     public readonly filtres: FiltreStatut[] = ['Tous', 'En Cours', 'Resolus', 'Ouvert', 'Fermé'];
 
     // Données fixes (Source de vérité pour le tableau des litiges)
-    private readonly donneesLitiges: Litige[] = [
-        { no: 1, jeune: "Moussa Cisse", recruteur: "Mohamed Traoré", mission: "Mission de livraison", statut: "En Cours", montant: "15.000 FCFA", dateCreation: "10/01/2025" },
-        { no: 2, jeune: "Moussa Cisse", recruteur: "Mohamed Traoré", mission: "Mission de livraison", statut: "En attente", montant: "15.000 FCFA", dateCreation: "10/01/2025" },
-        { no: 3, jeune: "Moussa Cisse", recruteur: "Mohamed Traoré", mission: "Mission de livraison", statut: "Resolu", montant: "15.000 FCFA", dateCreation: "10/01/2025" },
-        { no: 4, jeune: "Moussa Cisse", recruteur: "Mohamed Traoré", mission: "Mission de livraison", statut: "Fermé", montant: "15.000 FCFA", dateCreation: "10/01/2025" },
-        { no: 5, jeune: "Moussa Cisse", recruteur: "Mohamed Traoré", mission: "Mission de livraison", statut: "En Cours", montant: "15.000 FCFA", dateCreation: "10/01/2025" },
-        { no: 6, jeune: "Moussa Cisse", recruteur: "Mohamed Traoré", mission: "Mission de livraison", statut: "En Cours", montant: "15.000 FCFA", dateCreation: "10/01/2025" },
-        { no: 7, jeune: "Moussa Cisse", recruteur: "Mohamed Traoré", mission: "Mission de livraison", statut: "En Cours", montant: "15.000 FCFA", dateCreation: "10/01/2025" },
-    ];
+    // private readonly donneesLitiges: Litige[] = [
+    //     { no: 1, jeune: "Moussa Cisse", recruteur: "Mohamed Traoré", mission: "Mission de livraison", statut: "En Cours", montant: "15.000 FCFA", dateCreation: "10/01/2025" },
+    //     { no: 2, jeune: "Moussa Cisse", recruteur: "Mohamed Traoré", mission: "Mission de livraison", statut: "En attente", montant: "15.000 FCFA", dateCreation: "10/01/2025" },
+    //     { no: 3, jeune: "Moussa Cisse", recruteur: "Mohamed Traoré", mission: "Mission de livraison", statut: "Resolu", montant: "15.000 FCFA", dateCreation: "10/01/2025" },
+    //     { no: 4, jeune: "Moussa Cisse", recruteur: "Mohamed Traoré", mission: "Mission de livraison", statut: "Fermé", montant: "15.000 FCFA", dateCreation: "10/01/2025" },
+    //     { no: 5, jeune: "Moussa Cisse", recruteur: "Mohamed Traoré", mission: "Mission de livraison", statut: "En Cours", montant: "15.000 FCFA", dateCreation: "10/01/2025" },
+    //     { no: 6, jeune: "Moussa Cisse", recruteur: "Mohamed Traoré", mission: "Mission de livraison", statut: "En Cours", montant: "15.000 FCFA", dateCreation: "10/01/2025" },
+    //     { no: 7, jeune: "Moussa Cisse", recruteur: "Mohamed Traoré", mission: "Mission de livraison", statut: "En Cours", montant: "15.000 FCFA", dateCreation: "10/01/2025" },
+    // ];
 
     // Tableau actuellement affiché, mis à jour par les filtres
     public litigesAffiches: Litige[] = [];
+    donneesLitiges:Litige[] = [];
     // Le filtre actif par défaut au chargement
     public filtreActif: FiltreStatut = 'Tous';
 
     ngOnInit(): void {
-        // Au démarrage du composant, afficher tous les litiges
+      this.data.getData(Env.LITIGE).subscribe({
+        next:(res:any)=>{
+          this.donneesLitiges = res;
+          this.litigesAffiches = res;
+          console.log(res);
+        },
+        error(err) {
+          console.log(err);
+        },
+      })
         this.litigesAffiches = [...this.donneesLitiges];
     }
 
@@ -65,16 +81,16 @@ export class LitigesComponent implements OnInit {
 
             // Mapping du libellé du filtre vers la valeur de statut dans les données
             switch (statut) {
-                case 'Resolus': statutRecherche = 'Resolu'; break;
+                case 'Resolus': statutRecherche = 'RESOLU'; break;
                 // 'Ouvert' peut être mappé à 'En Cours' ou à un autre statut si défini
-                case 'Ouvert': statutRecherche = 'En Cours'; break;
-                case 'En Cours': statutRecherche = 'En Cours'; break;
-                case 'Fermé': statutRecherche = 'Fermé'; break;
+                case 'Ouvert': statutRecherche = 'OUVERT'; break;
+                case 'En Cours': statutRecherche = 'EN_COURS'; break;
+                case 'Fermé': statutRecherche = 'FERME'; break;
                 default: statutRecherche = statut as Litige['statut'];
             }
 
             if (statutRecherche) {
-                this.litigesAffiches = this.donneesLitiges.filter(litige =>
+                this.litigesAffiches = this.donneesLitiges.filter((litige: { statut: string; }) =>
                     litige.statut === statutRecherche
                 );
             }
@@ -96,7 +112,7 @@ export class LitigesComponent implements OnInit {
      * @param litige L'objet Litige concerné.
      */
     voirDetails(litige: Litige): void {
-        this.router.navigate(['/litiges/detail/', litige.no]);
+        this.router.navigate(['/litiges/detail/', litige.id]);
         // Implémentez ici la navigation ou l'ouverture d'une modale
     }
 }

@@ -11,6 +11,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalComponent } from '../../components/modal/modal.component';
+import { Data } from '../../services/data';
+import { Env } from '../../env';
 
 @Component({
   selector: 'app-litige-detail',
@@ -47,62 +49,75 @@ export class LitigesDetailComponent implements OnInit {
   communicationType: 'interne' | 'jeune' | 'recruteur' = 'interne';
   ajusterNote: boolean = false;
   actionFinanciere: boolean = false;
+  avatarUrl1= 'images/hommepro.png'
+  avatarUrl2='images/profil.png'
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router,private data:Data) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const id = params.get('no');
       if (id) {
         this.litigeId = id;
-        this.loadLitigeDetails(this.litigeId);
+        this.loadLitigeDetails(Number(id));
       } else {
         this.router.navigate(['/litiges']);
       }
     });
   }
 
-  loadLitigeDetails(id: string): void {
-    const numericId = parseInt(id, 10);
-    let statutLitige = 'En attente';
+  loadLitigeDetails(id: number): void {
+    // const numericId = parseInt(id, 10);
+    // let statutLitige = 'En attente';
 
-    if (numericId === 1) { statutLitige = 'En Cours'; }
-    else if (numericId === 2) { statutLitige = 'Ouvert'; }
-    else if (numericId === 3) { statutLitige = 'Résolu'; }
-    else if (numericId === 4) { statutLitige = 'Fermé'; }
-    else if (numericId === 5 || numericId === 6 || numericId === 7) { statutLitige = 'En Cours'; }
-    else { statutLitige = 'En attente'; }
+    // if (numericId === 1) { statutLitige = 'En Cours'; }
+    // else if (numericId === 2) { statutLitige = 'Ouvert'; }
+    // else if (numericId === 3) { statutLitige = 'RESOLU'; }
+    // else if (numericId === 4) { statutLitige = 'FERME'; }
+    // else if (numericId === 5 || numericId === 6 || numericId === 7) { statutLitige = 'En Cours'; }
+    // else { statutLitige = 'En attente'; }
 
-    this.litige = {
-      numero: id,
-      objet: 'Livraison',
-      descriptionCourte: "Le jeune n'a pas été payé pour la mission effectuée.",
-      descriptionComplete: "Le jeune n'a pas reçu son paiement de 15.000 FCFA pour la livraison effectuée le 08/01/2025. Le recruteur ne répond pas aux messages depuis 48h. Le jeune a joint des captures d'écran de l'accord et des rappels de paiement.",
-      statut: statutLitige,
-      montant: '15.000 FCFA',
-      dateCreation: '10/01/2025',
-      derniereMiseAJour: '10/01/2025',
-      resolutionPrevued: '22/01/2025',
-      jeune: { nom: 'Ramatou Konare', email: 'rama@gmail.com', avatarUrl: 'images/hommepro.png' },
-      recruteur: { nom: 'Amadou Bakagoyo', email: 'amadou@gmail.com', avatarUrl: 'images/profil.png' },
-      missionAssociee: { numero: id, titre: 'Livraison' },
-      documentsJoints: [
-        { nom: 'Capture_accord.png', url: '/docs/1/accord.png' },
-        { nom: 'Preuve_rappel.pdf', url: '/docs/1/rappel.pdf' },
-      ],
-      journalActivite: [
-        { date: '10/01/2025 à 09:30', type: 'statut', texte: "Litige créé avec le statut 'Ouvert'." },
-        { date: '10/01/2025 à 11:00', type: 'statut', texte: "Statut mis à jour à 'En Cours' par Admin N°001." },
-        { date: '10/01/2025 à 14:20', type: 'note', texte: "Analyse initiale: le jeune a fourni des preuves solides." }
-      ]
-    };
+    // this.litige = {
+    //   numero: id,
+    //   objet: 'Livraison',
+    //   descriptionCourte: "Le jeune n'a pas été payé pour la mission effectuée.",
+    //   descriptionComplete: "Le jeune n'a pas reçu son paiement de 15.000 FCFA pour la livraison effectuée le 08/01/2025. Le recruteur ne répond pas aux messages depuis 48h. Le jeune a joint des captures d'écran de l'accord et des rappels de paiement.",
+    //   statut: statutLitige,
+    //   montant: '15.000 FCFA',
+    //   dateCreation: '10/01/2025',
+    //   derniereMiseAJour: '10/01/2025',
+    //   resolutionPrevued: '22/01/2025',
+    //   jeune: { nom: 'Ramatou Konare', email: 'rama@gmail.com', avatarUrl: 'images/hommepro.png' },
+    //   recruteur: { nom: 'Amadou Bakagoyo', email: 'amadou@gmail.com', avatarUrl: 'images/profil.png' },
+    //   missionAssociee: { numero: id, titre: 'Livraison' },
+    //   documentsJoints: [
+    //     { nom: 'Capture_accord.png', url: '/docs/1/accord.png' },
+    //     { nom: 'Preuve_rappel.pdf', url: '/docs/1/rappel.pdf' },
+    //   ],
+    //   journalActivite: [
+    //     { date: '10/01/2025 à 09:30', type: 'statut', texte: "Litige créé avec le statut 'Ouvert'." },
+    //     { date: '10/01/2025 à 11:00', type: 'statut', texte: "Statut mis à jour à 'En Cours' par Admin N°001." },
+    //     { date: '10/01/2025 à 14:20', type: 'note', texte: "Analyse initiale: le jeune a fourni des preuves solides." }
+    //   ]
+    // };
+
+    this.data.getDataById(Env.LITIGE+'/',id).subscribe({
+      next:(value:any)=> {
+        console.log(value);
+        this.litige = value[0];
+      },
+      error(err) {
+        console.log(err);
+      },
+    })
+
   }
 
   // MÉTHODE AJOUTÉE/CORRIGÉE
   get isLitigeClosed(): boolean {
     if (!this.litige) return true;
     const status = this.litige.statut;
-    return status === 'Résolu' || status === 'Fermé';
+    return status === 'RESOLU' || status === 'FERME';
   }
 
   // MÉTHODE AJOUTÉE/CORRIGÉE
@@ -120,10 +135,10 @@ export class LitigesDetailComponent implements OnInit {
   }
 
   onStatusChange(): void {
-    // Si le statut a été changé à Résolu ou Fermé via le select
-    if (this.litige.statut === 'Résolu' || this.litige.statut === 'Fermé') {
+    // Si le statut a été changé à RESOLU ou FERME via le select
+    if (this.litige.statut === 'RESOLU' || this.litige.statut === 'FERME') {
 
-      this.pendingAction = (this.litige.statut === 'Résolu' ? 'resoudre' : 'fermer');
+      this.pendingAction = (this.litige.statut === 'RESOLU' ? 'resoudre' : 'fermer');
       this.confirmationMessage = `Confirmer le changement de statut à '${this.litige.statut}' ?`;
 
       this.actionConfirmationModal.open();
@@ -220,14 +235,14 @@ export class LitigesDetailComponent implements OnInit {
 
     // EXÉCUTION DE L'ACTION EN COURS
     if (this.pendingAction === 'resoudre') {
-      this.litige.statut = 'Résolu'; // CHANGEMENT DE STATUT UNIQUEMENT ICI
+      this.litige.statut = 'RESOLU'; // CHANGEMENT DE STATUT UNIQUEMENT ICI
       this.logActivity('statut', `Litige RÉSOUDRE. Note ajustée: ${this.ajusterNote ? 'Oui' : 'Non'}. Action financière: ${this.actionFinanciere ? 'Oui' : 'Non'}.`);
-      successMessage = "Litige résolu avec succès !";
+      successMessage = "Litige RESOLU avec succès !";
 
     } else if (this.pendingAction === 'fermer') {
-      this.litige.statut = 'Fermé'; // CHANGEMENT DE STATUT UNIQUEMENT ICI
-      this.logActivity('statut', "Litige FERMÉ par l'administrateur.");
-      successMessage = "Litige fermé avec succès.";
+      this.litige.statut = 'FERME'; // CHANGEMENT DE STATUT UNIQUEMENT ICI
+      this.logActivity('statut', "Litige FERME par l'administrateur.");
+      successMessage = "Litige FERME avec succès.";
 
     } else if (this.pendingAction === 'envoyer') {
       // Exécute l'envoi de communication (fonction non confirmée précédemment)
