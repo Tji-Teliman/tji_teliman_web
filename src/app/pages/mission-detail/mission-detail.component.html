@@ -1,92 +1,105 @@
-<div class="mission-page">
-  <!-- Bande bleue gauche -->
+<div class="layout-container">
   <div class="sidebar">
-    <button class="back-button" (click)="goBack()">
-      <i class="fas fa-arrow-left"></i>
-    </button>
-  </div>
-
-<div class="mission-detail-container" *ngIf="mission">
-  <div class="header-band">
-    <div class="header-title">
-      Détail sur la mission: {{ mission.titre }}
-    </div>
-  </div>
-
-  <div class="content-area">
-    <div class="recruiter-card">
-      <h2 class="recruiter-title">Recruteur</h2>
-      <div class="recruiter-info">
-        <img
-          *ngIf="mission.recruteurUrlPhoto; else defaultAvatar"
-          [src]="mission.recruteurUrlPhoto"
-          alt="Recruiter Photo"
-          class="recruiter-photo"
-        >
-        <ng-template #defaultAvatar>
-          <div class="recruiter-photo default-avatar">
-            <i class="fas fa-user"></i>
-          </div>
-        </ng-template>
-        <div class="recruiter-meta">
-          <div class="recruiter-name">{{ mission.recruteurPrenom }} {{ mission.recruteurNom }}</div>
-          <div class="rating">
-            <i class="fas fa-star" *ngFor="let star of [].constructor(mission.etoile??5)"></i>
-            <i class="far fa-star" *ngFor="let star of [].constructor(5 -(mission.etoile??5))"></i>
-          </div>
-        </div>
-      </div>
-      <button class="delete-mission-button" (click)="openDeleteMissionConfirmation(mission.id)">
-        <i class="fas fa-trash-alt"></i>
+    <div class="sidebar-content">
+      <button class="back-button" (click)="goBack()">
+        <i class="fas fa-arrow-left"></i>
       </button>
     </div>
+  </div>
 
-    <div class="info-row">
-      <div class="mission-description-card">
-        <h3>Description de la Mission</h3>
-        <p>{{ mission.description }}</p>
-      </div>
-
-      <div class="mission-details-grid">
-        <div class="detail-item">
-          <i class="fas fa-map-marker-alt icon"></i>
-          <div class="text">
-            <span>{{mission.adresse}}</span>
-            <!-- <span></span> -->
-          </div>
-        </div>
-        <div class="detail-item">
-          <i class="far fa-clock icon"></i>
-          <div class="text">
-            <span>Estimé:</span>
-            <span>{{ mission.dureHeures }} H</span>
-          </div>
-        </div>
-        <div class="detail-item">
-          <i class="far fa-calendar-alt icon"></i>
-          <div class="text">
-            <span>Date Limite:</span>
-            <span>{{ mission.dateFin }}</span>
-          </div>
-        </div>
-      </div>
+  <div class="main-content" *ngIf="mission">
+    
+    <div class="top-header">
+      <h1>Détail sur la mission: {{ mission.titre }}</h1>
     </div>
 
-    <div class="requirements-card">
-      <h3>Exigences Clés</h3>
-      <ul>
-        <li>
-          <i class="fas fa-check-circle check-icon"></i> {{ mission.exigence }}
-        </li>
-      </ul>
-    </div>
+    <div class="content-scrollable">
+      
+      <div class="card recruiter-section">
+        <div class="recruiter-left">
+          <h2 class="section-label">Recruteur</h2>
+          <div class="profile-row">
+            <img 
+              [src]="mission.recruteurUrlPhoto || 'assets/default-avatar.png'" 
+              class="avatar" 
+              alt="Recruteur"
+              onerror="this.src='assets/default-avatar.png'"
+            >
+            <div class="profile-info">
+              <div class="name">{{ mission.recruteurPrenom }} {{ mission.recruteurNom }}</div>
+              <div class="stars">
+                <i class="fas fa-star" *ngFor="let s of [].constructor(mission.etoile || 5)"></i>
+                <i class="far fa-star" *ngFor="let s of [].constructor(5 - (mission.etoile || 5))"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      <button class="delete-btn-custom" (click)="openDeleteMissionConfirmation(mission.id)">
+             <div class="trash-icon-box">
+                <i class="fas fa-trash-alt"></i> 
+             </div>
+        </button>
+      </div>
 
-    <button class="view-applications-button" [routerLink]="['/mission-candidatures', mission.id]">
-     Voir les candidatures pour cette mission
-</button>
+      <div class="middle-row">
+        
+        <div class="card description-card">
+          <h3 class="card-title">Description de la Mission</h3>
+          <p class="description-text">
+            {{ mission.description }}
+          </p>
+        </div>
+
+        <div class="card details-card">
+          <div class="detail-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div class="detail-text">
+              <span class="detail-value">{{ mission.adresse }}</span> </div>
+          </div>
+          <div class="divider"></div>
+          <div class="detail-item">
+            <i class="far fa-clock"></i>
+            <div class="detail-text">
+              <span class="detail-label">Estimé:</span>
+              <span class="detail-value">{{ mission.dureHeures }}heures</span>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="detail-item">
+            <i class="far fa-calendar-alt"></i>
+            <div class="detail-text">
+              <span class="detail-label">Date Limite:</span>
+              <span class="detail-value">{{ mission.dateFin | date:'dd/MM/yy' }}</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card requirements-card">
+        <h3 class="card-title center-text">Exigences Clés</h3>
+        <div class="requirements-list">
+          <div class="req-item">
+            <i class="fas fa-check-circle green-check"></i>
+            <span>{{ mission.exigence }}</span>
+          </div>
+          <div class="req-item" *ngIf="mission.exigence2">
+             <i class="fas fa-check-circle green-check"></i>
+             <span>{{ mission.exigence2 }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-area">
+        <button class="btn-green" [routerLink]="['/mission-candidatures', mission.id]">
+          Voir les candidatures pour cette mission
+        </button>
+      </div>
+
+    </div>
   </div>
 </div>
-
 <app-modal
   #deleteMissionModal
   type="confirmation"

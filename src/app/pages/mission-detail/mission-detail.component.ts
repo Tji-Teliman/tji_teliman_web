@@ -1,12 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core'; // AJOUTER ViewChild
-import { ActivatedRoute, Router } from '@angular/router'; // AJOUTER Router
-// Importez vos modals si ce sont des composants séparés
-import { ModalComponent } from '../../components/modal/modal.component'; // Ajustez le chemin si nécessaire
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ModalComponent } from '../../components/modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Data } from '../../services/data';
 import { Env } from '../../env';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-mission-detail',
@@ -25,8 +25,13 @@ export class MissionDetailComponent implements OnInit {
 
   missionToDeleteId: number | null = null;
 
-  // Injectez ActivatedRoute et Router pour la navigation
-  constructor(private route: ActivatedRoute, private router: Router, private data:Data) { }
+  // Injectez ActivatedRoute, Router, Data et HttpClient pour la navigation et les appels API
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private data: Data,
+    private http: HttpClient,
+  ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -75,21 +80,31 @@ export class MissionDetailComponent implements OnInit {
 
   // Gère la confirmation de suppression
   confirmDeletion(): void {
-    if (this.missionToDeleteId !== null) {
-      console.log(`Suppression de la mission ID: ${this.missionToDeleteId}`);
-      // Ici, vous feriez l'appel à votre service pour supprimer la mission
-      // this.missionService.deleteMission(this.missionToDeleteId).subscribe(() => { ... });
+    if (this.missionToDeleteId === null) return;
 
-      // Simuler la suppression réussie
-      this.deleteMissionModal.close();
-      this.successDeleteMissionModal.open();
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
 
-      // Après un court délai, rediriger vers la liste des missions
-      setTimeout(() => {
-        this.successDeleteMissionModal.close();
-        this.router.navigate(['/missions']);
-      }, 1500);
-    }
+    const deleteUrl = `${Env.API_URL}missions/${this.missionToDeleteId}`;
+
+    this.http.delete<any>(deleteUrl, { headers }).subscribe({
+      next: () => {
+        // Fermer le modal de confirmation et afficher le succès
+        this.deleteMissionModal.close();
+        this.successDeleteMissionModal.open();
+
+        // Après un court délai, fermer le succès et retourner à la liste des missions
+        setTimeout(() => {
+          this.successDeleteMissionModal.close();
+          this.router.navigate(['/missions']);
+        }, 1500);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
   }
 
   // Gérer la redirection vers la liste des missions

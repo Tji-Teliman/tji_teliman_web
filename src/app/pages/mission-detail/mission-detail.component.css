@@ -1,306 +1,353 @@
-/* Styles Généraux de la Page de Détail Mission */
-.mission-page {
-  display: flex;
-  min-height: 100vh;
-  background-color: #f3f4f6;
+/* --- Layout Global --- */
+:host {
+  display: block;
+  height: 100vh;
+  overflow: hidden;
 }
 
+.layout-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-color: #f3f4f6; /* Gris clair fond page */
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* --- Barre Latérale (Sidebar) --- */
 .sidebar {
-  background-color: #2563eb;
-  width: 150px;
+  width: 100px; /* Largeur fixe comme sur l'image */
+  background-color: #2563eb; /* Bleu roi */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* Ne rétrécit pas */
+}
+
+.back-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: white;
+  border: none;
+  color: #2563eb;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.sidebar .back-button {
-  background: white;
-  color: #2563eb;
-  border: none;
-  font-size: 1.5em;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.mission-detail-container {
-  flex: 1;
-  padding: 30px 40px;
-  background: #f3f4f6;
-}
-
-.back-button {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.5em;
-  cursor: pointer;
-  margin-right: 15px;
-  padding: 0;
-  display: flex; /* Pour centrer l'icône */
-  align-items: center;
-}
 .back-button:hover {
-  opacity: 0.8;
+  transform: scale(1.1);
 }
 
-.header-title {
-  flex-grow: 1; /* Permet au titre de prendre l'espace restant */
-  text-align: center; /* Centrer le titre */
-  padding-right: 100px; /* Compenser l'espace du bouton back pour le centrage */
-  font-size: 24px;
-  font-weight: 600;
+/* --- Contenu Principal --- */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
 }
 
-/* Zone de Contenu Principale (carte centrale) */
-.content-area {
-  max-width: 1100px;
-  margin: 20px auto;
-  background: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
-  padding: 24px 28px 28px;
+/* En-tête blanc */
+.top-header {
+  background-color: white;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+.top-header h1 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #111;
+}
+
+/* Zone défilable */
+.content-scrollable {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.top-section {
+/* --- Styles Génériques des Cartes --- */
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border: 1px solid rgba(0,0,0,0.02);
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+
+.center-text {
+  text-align: center;
+}
+
+/* --- Section Recruteur --- */
+.recruiter-section {
+  /* pas de carte blanche : juste posé sur le fond gris */
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 20px 0 10px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 20px;
+  align-items: center;
 }
 
-/* CARTE RECRUTEUR */
-.recruiter-card,
-.mission-description-card,
-.mission-details-grid,
-.requirements-card {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-
-.recruiter-card {
+.recruiter-left {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 16px 18px;
-  position: relative;
   gap: 10px;
 }
 
-.recruiter-title {
-  color: #f59e0b; /* Orange pour "Recruteur" */
-  font-size:16px;
-  margin-bottom: 8px;
-  font-weight: 600;
-}
-
-.recruiter-info {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.recruiter-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.recruiter-photo {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%; /* Cercle */
-  object-fit: cover;
-  border: 2px solid #e2e8f0;
-}
-
-.recruiter-name {
-  font-weight: 600;
-  font-size: 18px;
-  color: #333;
-}
-
-.rating {
-  color: #f59e0b; /* Jaune/orange pour les étoiles */
-  font-size: 0.9em;
-}
-
-.delete-mission-button {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background-color: #fee2e2; /* Rouge clair */
-  color: #ef4444;
-  border: none;
-  border-radius: 10px;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  font-size: 20px;
-  transition: background-color 0.2s;
-}
-.delete-mission-button:hover {
-  background-color: #dc2626;
-}
-
-/* CARTE DESCRIPTION */
-.mission-description-card {
-  background-color: white;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-  flex: 1.6;
-}
-
-.mission-description-card h3 {
-  color: #333;
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.mission-description-card p {
-  color: #666;
-  font-size: 14px;
-  line-height: 1.6;
-  white-space: pre-wrap; /* Pour respecter les sauts de ligne */
-}
-
-/* GRILLE DE DÉTAILS (Location, Time, Date) */
-.mission-details-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  background-color: white;
-  border-radius: 10px;
-  padding: 16px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-  text-align: left;
-  flex: 1;
-}
-
-.detail-item {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-  color: #666;
-  font-size: 14px;
-}
-
-.detail-item .icon {
-  font-size: 1.4em;
-  color: #3b82f6; /* Bleu */
-  margin-bottom: 5px;
-}
-
-.detail-item .text span:first-child {
-  font-weight: 600;
-  color: #333;
-}
-
-/* CARTE EXIGENCES */
-.requirements-card {
-  background-color: white;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-}
-
-.requirements-card h3 {
-  color: #333;
-  font-size: 16px;
-  font-weight: 600px;
-  margin-bottom: 10px;
-}
-
-.requirements-card ul {
-  list-style: none; /* Supprimer les puces par défaut */
-  padding: 0;
+.section-label {
+  color: #f59e0b; /* Orange */
+  font-size: 1.1rem;
+  font-weight: 700;
   margin: 0;
 }
 
-.requirements-card li {
+.profile-row {
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
-  color: #666;
+  gap: 15px;
 }
 
-.requirements-card .check-icon {
-  color: #10b981; /* Vert pour les checks */
-  margin-right: 10px;
-  font-size: 1.2em;
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #f3f4f6;
 }
 
-/* Bouton "Voir les candidatures" */
-.view-applications-button {
-  background-color: #10b981; /* Vert */
+.default-avatar-bg {
+  background-color: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  font-size: 1.5rem;
+}
+
+.profile-info .name {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #000;
+}
+
+.stars {
+  color: #f59e0b;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+/* Bouton Supprimer (rectangle blanc avec icône rouge) */
+.delete-btn-custom {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.trash-icon-box {
+  background: #ffffff;
+  border: 1px solid #9ca3af; /* gris sobre comme sur la maquette */
+  width: 110px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trash-icon-box i {
+  color: #ef4444; /* rouge vif */
+  font-size: 26px;
+}
+
+/* --- Section Médiane (Description + Détails) --- */
+.middle-row {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* Carte Description */
+.description-card {
+  flex: 1.5; /* 60% largeur */
+}
+
+.description-text {
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+/* Carte Détails */
+.details-card {
+  flex: 1; /* 40% largeur */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 15px;
+}
+
+.detail-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+
+.icon-circle {
+  font-size: 1.5rem;
+  color: #1f2937; /* Icones foncées */
+  margin-bottom: 5px;
+}
+
+.detail-text {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.detail-value {
+  font-weight: 600;
+  color: #111;
+  margin-top: 2px;
+}
+
+.divider {
+  width: 1px;
+  height: 50px;
+  background-color: #e5e7eb;
+  align-self: center;
+}
+
+/* --- Exigences --- */
+.requirements-card {
+  padding: 25px;
+}
+
+.requirements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center; /* Centre les items */
+}
+
+.req-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  color: #374151;
+  font-weight: 500;
+}
+
+.green-check {
+  color: #10b981; /* Vert */
+  font-size: 1.3rem;
+}
+
+/* --- Bouton d'action final --- */
+.action-area {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  padding-bottom: 20px;
+}
+
+.btn-green {
+  background-color: #10b981;
   color: white;
   border: none;
-  border-radius: 20px;
-  padding: 12px 24px;
-  font-size: 16px;
+  padding: 14px 40px;
+  border-radius: 50px; /* Forme pilule */
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s;
-  text-align: center;
   box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  transition: background 0.2s;
   width: 100%;
-  max-width: 320px;
-  margin: 10px auto 0;
-  display: block;
+  max-width: 400px;
 }
 
-.view-applications-button:hover {
+.btn-green:hover {
   background-color: #059669;
 }
 
-/* Media Queries pour la Responsivité */
-@media (min-width: 768px) {
-  /* Ligne description + détails côte à côte */
-  .info-row {
-    display: flex;
-    gap: 18px;
-  }
-}
-
-@media (max-width: 767px) {
-  .header-title {
-    font-size: 18px; /* Réduire la taille du titre sur mobile */
-  }
-
-  .recruiter-card {
-    align-items: center; /* Centrer le contenu dans la carte recruteur */
-    text-align: center;
-  }
-
-  .recruiter-info {
-    flex-direction: column; /* Stack le nom et les étoiles sur mobile */
-  }
-
-  .delete-mission-button {
-    top: 10px;
-    right: 10px;
-  }
-
-  .mission-details-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Messages de chargement ou d'erreur */
 .loading-message {
   text-align: center;
   padding: 50px;
-  font-size: 1.2em;
-  color: #718096;
+  color: #6b7280;
+  font-size: 1.1rem;
+}
+
+/* --- Responsive Mobile --- */
+@media (max-width: 768px) {
+  .layout-container {
+    flex-direction: column;
+    height: auto;
+    overflow: auto;
+  }
+  
+  .sidebar {
+    width: 100%;
+    height: 60px;
+    flex-direction: row;
+    padding: 0 20px;
+    box-sizing: border-box;
+    justify-content: flex-start;
+  }
+
+  .middle-row {
+    flex-direction: column;
+  }
+  
+  .details-card {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .divider {
+    display: none; /* Cache les diviseurs sur mobile */
+  }
+  
+  .detail-item {
+    flex-basis: 100%; /* Un item par ligne sur petit écran */
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-left: 20px;
+  }
+
+  .top-header h1 {
+    font-size: 1.1rem;
+  }
 }
