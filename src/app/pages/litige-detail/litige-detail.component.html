@@ -9,10 +9,9 @@
 
     <div class="main-detail-card">
 
-      <mat-card class="litige-data-card" style="height: auto; max-height: 230px; overflow: hidden; position: relative;">
+      <mat-card class="litige-data-card">
         <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
-          <h3>Litige N° {{ litige.id }} - </h3>
-          <!-- {{ litige.objet }} -->
+          <h3>{{ litige.titre }}</h3>
           <span class="status-badge" [ngClass]="{'pending': litige.statut === 'EN_ATTENTE' || litige.statut === 'OUVERT', 'in-progress': litige.statut === 'EN_COURS', 'resolved': litige.statut === 'RESOLU', 'closed': litige.statut === 'FERME'}">
             {{ litige.statut }}
           </span>
@@ -21,20 +20,12 @@
 
         <div class="litige-details-grid full-width-grid">
           <div class="detail-item">
-            <span class="label">Montant du litige</span>
-            <span class="value amount">{{ litige.montant ?? '...' }}</span>
-          </div>
-          <div class="detail-item">
             <span class="label">Date de création</span>
-            <span class="value">{{ litige.dateCreation | date:'dd/mm/yyyy'}}</span>
+            <span class="value">{{ litige.dateCreation | date:'dd/MM/yyyy'}}</span>
           </div>
           <div class="detail-item">
-            <span class="label">Dernière mise à jour</span>
-            <span class="value">{{ litige.derniereMiseAJour }}</span>
-          </div>
-          <div class="detail-item">
-            <span class="label">Résolution prévue</span>
-            <span class="value">{{ litige.dateResolution | date:'dd/mm/yyyy' }}</span>
+            <span class="label">Type de Litige</span>
+            <span class="value amount">{{ litige.type }}</span>
           </div>
         </div>
       </mat-card>
@@ -43,12 +34,12 @@
         <h4 class="card-subtitle">Decision Administrative</h4>
         <p class="full-description" style="white-space: pre-wrap;">{{ litige.decisionAdministrateur ?? 'Pas de decision pour ce litige'}}</p>
 
-        <h5 class="attachments-title" style="font-size: 1em; margin-top: 20px; font-weight: bold;">Documents joints ({{ litige.documentsJoints?.length || 0 }})</h5>
-        <div class="attachments-list">
-          <div class="attachment-item" *ngFor="let doc of litige.documentsJoints" style="display: flex; align-items: center; margin-bottom: 5px;">
+        <h5 class="attachments-title" style="font-size: 1em; margin-top: 20px; font-weight: bold;">Documents joints ({{ litige.documentUrl ? 1 : 0 }})</h5>
+        <div class="attachments-list" *ngIf="litige.documentUrl">
+          <div class="attachment-item" style="display: flex; align-items: center; margin-bottom: 5px;">
             <i class="fas fa-file-alt"></i>
-            <span>{{ doc.nom }}</span>
-            <button mat-icon-button (click)="telechargerDocument(doc.url)" style="margin-left: 10px;">
+            <span>Document du litige</span>
+            <button mat-icon-button (click)="telechargerDocument(litige.documentUrl)" style="margin-left: 10px;">
               <i class="fas fa-download"></i>
             </button>
           </div>
@@ -66,7 +57,7 @@
           </div>
         </div>
 
-        <h4 class="card-subtitle" style="margin-top: 20px;">Communication & Notes</h4>
+        <h4 class="card-subtitle comm-notes-spacer">Communication & Notes</h4>
 
         <mat-form-field appearance="outline" class="full-width-input" style="width: 100%;">
           <mat-label>Écrire un message aux utilisateurs ou une note interne...</mat-label>
@@ -97,7 +88,10 @@
       <mat-card class="party-card">
         <h4 class="card-subtitle">Jeune</h4>
         <div class="party-info">
-          <img [src]="avatarUrl1" class="avatar-circle" alt="Avatar Jeune">
+          <img *ngIf="litige.jeunePrestateurPhotoUrl" [src]="litige.jeunePrestateurPhotoUrl" class="avatar-circle" alt="Avatar Jeune" (error)="litige.jeunePrestateurPhotoUrl = null">
+          <div *ngIf="!litige.jeunePrestateurPhotoUrl" class="avatar-circle default-avatar">
+            <i class="fas fa-user"></i>
+          </div>
           <div>
             <span class="party-name">{{ litige.jeunePrestateurNom }}</span>
             <span class="party-email">{{ litige.jeunePrestateurEmail}}</span>
@@ -108,7 +102,10 @@
       <mat-card class="party-card">
         <h4 class="card-subtitle">Recruteur</h4>
         <div class="party-info">
-          <img [src]="avatarUrl2" class="avatar-circle" alt="Avatar Recruteur">
+          <img *ngIf="litige.recruteurPhotoUrl" [src]="litige.recruteurPhotoUrl" class="avatar-circle" alt="Avatar Recruteur" (error)="litige.recruteurPhotoUrl = null">
+          <div *ngIf="!litige.recruteurPhotoUrl" class="avatar-circle default-avatar">
+            <i class="fas fa-user"></i>
+          </div>
           <div>
             <span class="party-name">{{ litige.recruteurNom}}</span>
             <span class="party-email">{{ litige.recruteurEmail }}</span>
@@ -119,8 +116,8 @@
       <mat-card class="mission-associee-card">
         <h4 class="card-subtitle">Mission Associée</h4>
         <div class="mission-associee-content">
-          <div class="mission-icon">
-            <i class="fas fa-briefcase mission-icon"></i>
+          <div class="mission-icon-container">
+            <i class="fas fa-briefcase"></i>
           </div>
           <div>
             <span class="mission-name">{{ litige.missionTitre }}</span><br>
@@ -138,6 +135,7 @@
             [(ngModel)]="litige.statut"
             [disabled]="isLitigeClosed"
             (selectionChange)="onStatusChange()"
+            panelClass="white-background-panel"
           >
             <mat-option value="OUVERT">Ouvert</mat-option>
             <mat-option value="EN_COURS">En Cours (Enquête)</mat-option>

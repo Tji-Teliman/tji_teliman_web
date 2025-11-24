@@ -41,6 +41,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* Center vertically */
     z-index: 1000;
 }
 
@@ -57,7 +58,7 @@
     justify-content: center;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    margin-bottom: 20px;
+    /* margin-bottom removed for vertical centering */
 }
 
 /* --- AJUSTEMENT DE LA ZONE DE CONTENU PRINCIPALE --- */
@@ -361,6 +362,15 @@ mat-checkbox {
     object-fit: cover;
 }
 
+.default-avatar {
+    background-color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #757575;
+    font-size: 24px;
+}
+
 .party-info > div {
     display: flex;
     flex-direction: column;
@@ -380,11 +390,10 @@ mat-checkbox {
     display: flex;
     align-items: center;
     margin-top: 10px;
+    gap: 15px; /* Add gap between icon and text */
 }
 
-.mission-icon {
-  font-size: 25px;
-  color: #2563eb;
+.mission-icon-container {
   width: 50px;
   height: 50px;
   background-color: #DDE5F9;
@@ -392,12 +401,18 @@ mat-checkbox {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0; /* Prevent shrinking */
+}
 
+.mission-icon-container i {
+  font-size: 25px;
+  color: #2563eb;
 }
 
 .mission-name {
     font-weight: bold;
     font-size: 1em;
+    display: block; /* Ensure it breaks line if needed */
 }
 
 .mission-number {
@@ -466,4 +481,31 @@ mat-checkbox {
         align-items: flex-start;
         gap: 10px;
     }
+}
+
+/* --- FIX DROPDOWN TRANSPARENCY --- */
+::ng-deep .white-background-panel {
+  background-color: white !important;
+  background: white !important; /* Double check */
+  opacity: 1 !important;
+  box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12) !important;
+}
+
+::ng-deep .white-background-panel .mat-option {
+  background-color: white !important;
+  color: black !important;
+}
+
+::ng-deep .white-background-panel .mat-option:hover {
+  background-color: #f5f5f5 !important;
+}
+
+/* --- SPACER FOR RESOLUTION TOOL --- */
+.admin-tool-card .card-subtitle {
+    margin-bottom: 30px;
+}
+
+.comm-notes-spacer {
+    margin-top: 30px;
+    margin-bottom: 30px;
 }

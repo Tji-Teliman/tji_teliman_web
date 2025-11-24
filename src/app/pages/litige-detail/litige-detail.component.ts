@@ -105,12 +105,32 @@ export class LitigesDetailComponent implements OnInit {
       next:(value:any)=> {
         console.log(value);
         this.litige = value[0];
+
+        // Normaliser les URLs des photos si elles existent
+        if (this.litige.jeunePrestateurPhotoUrl) {
+            this.litige.jeunePrestateurPhotoUrl = this.normalizePhotoUrl(this.litige.jeunePrestateurPhotoUrl);
+        }
+        if (this.litige.recruteurPhotoUrl) {
+            this.litige.recruteurPhotoUrl = this.normalizePhotoUrl(this.litige.recruteurPhotoUrl);
+        }
+        if (this.litige.documentUrl) {
+            this.litige.documentUrl = this.normalizePhotoUrl(this.litige.documentUrl);
+        }
       },
       error(err) {
         console.log(err);
       },
     })
 
+  }
+
+  normalizePhotoUrl(rawPath: string): string {
+    if (!rawPath) return '';
+    const uploadIndex = rawPath.toLowerCase().indexOf('uploads');
+    const relativePath = uploadIndex >= 0 ? rawPath.substring(uploadIndex) : rawPath;
+    const normalized = relativePath.replace(/\\/g, '/');
+    const baseUrl = 'http://localhost:8080/';
+    return baseUrl + normalized;
   }
 
   // MÉTHODE AJOUTÉE/CORRIGÉE
@@ -207,7 +227,7 @@ export class LitigesDetailComponent implements OnInit {
 
   telechargerDocument(url: string): void {
     console.log(`Téléchargement du document à l'URL: ${url}`);
-    // window.open(url, '_blank');
+    window.open(url, '_blank');
   }
 
   fermerLitige(): void {
