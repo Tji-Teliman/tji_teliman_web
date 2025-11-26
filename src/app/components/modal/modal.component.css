@@ -1,15 +1,15 @@
-/* src/app/components/modal/modal.component.css */
+/* Modal Backdrop */
 .modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(15, 23, 42, 0.4); /* Arrière-plan sombre semi-transparent */
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 2000;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -20,14 +20,16 @@
   visibility: visible;
 }
 
+/* Modal Content */
 .modal-content {
-  background: var(--card, #FFFFFF); /* Utilise la variable CSS --card */
-  border-radius: 14px;
-  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.15);
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
   padding: 30px;
-  box-sizing: border-box;
+  min-width: 350px;
+  max-width: 500px;
   text-align: center;
-  transform: scale(0.95);
+  transform: scale(0.9);
   transition: transform 0.3s ease;
 }
 
@@ -35,46 +37,67 @@
   transform: scale(1);
 }
 
+/* Modal Body */
 .modal-body {
   margin-bottom: 25px;
 }
 
 .modal-message {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 500;
   line-height: 1.5;
-  color: var(--text, #0F172A);
+  color: #333;
   margin: 0;
 }
 
+/* Modal Footer */
 .modal-footer {
   display: flex;
   gap: 12px;
   justify-content: center;
 }
 
+/* Buttons */
 .btn {
-  padding: 12px 24px;
+  padding: 12px 30px;
   border-radius: 8px;
   font-weight: 600;
   font-size: 14px;
   cursor: pointer;
   border: none;
-  transition: opacity 0.2s ease;
+  transition: all 0.2s ease;
+  min-width: 100px;
 }
 
-/* Bouton Confirmer (Bleu) */
-.btn-confirm, .btn-ok {
-  background: var(--blue, #2563EB);
-  color: #fff;
+.btn-ok {
+  background: #2563eb;
+  color: white;
 }
 
-/* Bouton Annuler (Orange) */
+.btn-ok:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.btn-confirm {
+  background: #2563eb;
+  color: white;
+}
+
+.btn-confirm:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
 .btn-cancel {
-  background: #F97316; /* Un orange fort */
-  color: #fff;
+  background: #f97316;
+  color: white;
 }
 
-.btn:hover {
-  opacity: 0.9;
+.btn-cancel:hover {
+  background: #ea580c;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
 }

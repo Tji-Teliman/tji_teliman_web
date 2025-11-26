@@ -37,7 +37,6 @@ export class LitigesDetailComponent implements OnInit {
   litigeId: string | null = null;
   litige: any = null;
 
-  @ViewChild('actionConfirmationModal') actionConfirmationModal!: ModalComponent;
   @ViewChild('successModal') successModal!: ModalComponent;
 
   // CORRIGÉ: Ajout du type 'envoyer'
@@ -116,6 +115,11 @@ export class LitigesDetailComponent implements OnInit {
         if (this.litige.documentUrl) {
             this.litige.documentUrl = this.normalizePhotoUrl(this.litige.documentUrl);
         }
+
+        // Initialiser journalActivite s'il n'existe pas
+        if (!this.litige.journalActivite) {
+            this.litige.journalActivite = [];
+        }
       },
       error(err) {
         console.log(err);
@@ -151,77 +155,72 @@ export class LitigesDetailComponent implements OnInit {
       texte: texte
     };
 
+    if (!this.litige.journalActivite) {
+        this.litige.journalActivite = [];
+    }
     this.litige.journalActivite.unshift(newLog);
   }
 
   onStatusChange(): void {
-    // Si le statut a été changé à RESOLU ou FERME via le select
-    if (this.litige.statut === 'RESOLU' || this.litige.statut === 'FERME') {
-
-      this.pendingAction = (this.litige.statut === 'RESOLU' ? 'resoudre' : 'fermer');
-      this.confirmationMessage = `Confirmer le changement de statut à '${this.litige.statut}' ?`;
-
-      this.actionConfirmationModal.open();
-
-    } else {
-      // Pour les statuts intermédiaires (Ouvert, En Cours, etc.), pas de confirmation nécessaire
-      this.logActivity('statut', `Statut mis à jour à '${this.litige.statut}'`);
-    }
+    // Tous les changements de statut sont appliqués directement
+    this.logActivity('statut', `Statut mis à jour à '${this.litige.statut}'`);
   }
 
-  // NOUVELLE MÉTHODE POUR OUVRIR LE MODAL DE COMMUNICATION
-  preparerEnvoiCommunication(): void {
-      if (this.isLitigeClosed || !this.adminCommentaire) return;
 
-      this.pendingAction = 'envoyer';
-      let action = '';
-      switch (this.communicationType) {
-        case 'interne':
-          action = 'Note Interne';
-          break;
-        case 'jeune':
-          action = 'Message au Jeune';
-          break;
-        case 'recruteur':
-          action = 'Message au Recruteur';
-          break;
-      }
-
-      this.confirmationMessage = `Confirmer l'envoi de la ${action} ?\n\nContenu : "${this.adminCommentaire.substring(0, 50)}..."`;
-      this.actionConfirmationModal.open();
-  }
 
   envoyerCommunication(): void {
-    // L'exécution se fait maintenant dans confirmAction()
     if (this.isLitigeClosed || !this.adminCommentaire) return;
 
     let logText = '';
     let logType: 'note' | 'message' | 'statut' = 'note';
-    let destinataire = '';
+    let destinataireNom = '';
+    let apiDestinataire: 'JEUNE' | 'RECRUTEUR' | null = null;
 
     switch (this.communicationType) {
       case 'interne':
         logText = `NOTE INTERNE (Admin): ${this.adminCommentaire}`;
         logType = 'note';
-        break;
+        // Pour les notes internes, on garde la logique locale ou un autre endpoint si existant
+        // Ici on suppose que c'est juste local pour l'instant ou géré différemment
+        this.logActivity(logType, logText);
+        this.adminCommentaire = '';
+        return; // On arrête ici pour la note interne pour l'instant
       case 'jeune':
         logText = `MESSAGE ENVOYÉ au JEUNE: ${this.adminCommentaire}`;
         logType = 'message';
-        destinataire = this.litige.jeune.nom;
+        destinataireNom = this.litige.jeunePrestateurNom;
+        apiDestinataire = 'JEUNE';
         break;
       case 'recruteur':
         logText = `MESSAGE ENVOYÉ au RECRUTEUR: ${this.adminCommentaire}`;
         logType = 'message';
-        destinataire = this.litige.recruteur.nom;
+        destinataireNom = this.litige.recruteurNom;
+        apiDestinataire = 'RECRUTEUR';
         break;
     }
 
-    this.logActivity(logType, logText);
+    if (apiDestinataire) {
+        const payload = {
+            destinataire: apiDestinataire,
+            contenu: this.adminCommentaire
+        };
 
-    this.adminCommentaire = '';
-    if (logType === 'message') {
-      this.successModal.message = `Message envoyé à ${destinataire} avec succès.`;
-      this.successModal.open();
+        console.log('Envoi du message...', payload);
+        this.data.postData(`${Env.LITIGE}/${this.litigeId}/messages-admin`, payload).subscribe({
+            next: (res: any) => {
+                console.log('Message envoyé avec succès', res);
+                // On n'ajoute PAS le message au journal d'activité interne (demande utilisateur)
+                this.adminCommentaire = '';
+                this.successModal.message = `Message envoyé à ${destinataireNom} avec succès.`;
+                this.successModal.open();
+            },
+            error: (err: any) => {
+                console.error('Erreur lors de l\'envoi du message', err);
+                alert("Erreur lors de l'envoi du message. Veuillez vérifier la console.");
+            }
+        });
+    } else {
+        console.warn('Aucun destinataire API défini');
     }
   }
 
@@ -232,56 +231,30 @@ export class LitigesDetailComponent implements OnInit {
 
   fermerLitige(): void {
     if (this.isLitigeClosed) return;
-
-    this.pendingAction = 'fermer';
-    this.confirmationMessage = 'Voulez-vous vraiment FERMER ce litige ? Cette action pourrait être irréversible.';
-    this.actionConfirmationModal.open();
+    if (confirm('Voulez-vous vraiment FERMER ce litige ? Cette action pourrait être irréversible.')) {
+      this.litige.statut = 'FERME';
+      this.logActivity('statut', "Litige FERME par l'administrateur.");
+      this.successModal.message = "Litige FERME avec succès.";
+      this.successModal.open();
+      this.ajusterNote = false;
+      this.actionFinanciere = false;
+    }
   }
 
   resoudreLitige(): void {
     if (this.isLitigeClosed) return;
-
-    this.pendingAction = 'resoudre';
-    this.confirmationMessage = `Êtes-vous sûr(e) de vouloir RÉSOUDRE ce litige ?\n
-    - Ajustement de note: ${this.ajusterNote ? 'Oui' : 'Non'}\n
-    - Action financière: ${this.actionFinanciere ? 'Oui' : 'Non'}`;
-    this.actionConfirmationModal.open();
-  }
-
-  confirmAction(): void {
-    this.actionConfirmationModal.close();
-
-    let successMessage = '';
-
-    // EXÉCUTION DE L'ACTION EN COURS
-    if (this.pendingAction === 'resoudre') {
-      this.litige.statut = 'RESOLU'; // CHANGEMENT DE STATUT UNIQUEMENT ICI
+    const message = `Êtes-vous sûr(e) de vouloir RÉSOUDRE ce litige ?\n\n- Ajustement de note: ${this.ajusterNote ? 'Oui' : 'Non'}\n- Action financière: ${this.actionFinanciere ? 'Oui' : 'Non'}`;
+    if (confirm(message)) {
+      this.litige.statut = 'RESOLU';
       this.logActivity('statut', `Litige RÉSOUDRE. Note ajustée: ${this.ajusterNote ? 'Oui' : 'Non'}. Action financière: ${this.actionFinanciere ? 'Oui' : 'Non'}.`);
-      successMessage = "Litige RESOLU avec succès !";
-
-    } else if (this.pendingAction === 'fermer') {
-      this.litige.statut = 'FERME'; // CHANGEMENT DE STATUT UNIQUEMENT ICI
-      this.logActivity('statut', "Litige FERME par l'administrateur.");
-      successMessage = "Litige FERME avec succès.";
-
-    } else if (this.pendingAction === 'envoyer') {
-      // Exécute l'envoi de communication (fonction non confirmée précédemment)
-      this.envoyerCommunication();
-      // On sort car envoyerCommunication ouvre déjà le successModal si c'est un message
-      this.pendingAction = null;
-      return;
-    }
-
-    // Affichage du succès pour les actions Fermer/Résoudre
-    if (successMessage) {
-      this.successModal.message = successMessage;
+      this.successModal.message = "Litige RESOLU avec succès !";
       this.successModal.open();
+      this.ajusterNote = false;
+      this.actionFinanciere = false;
     }
-
-    this.pendingAction = null;
-    this.ajusterNote = false;
-    this.actionFinanciere = false;
   }
+
+
 
   goBack(): void {
     this.router.navigate(['/litiges']);

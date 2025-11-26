@@ -75,7 +75,7 @@
             mat-flat-button
             color="primary"
             [disabled]="!adminCommentaire || isLitigeClosed"
-            (click)="preparerEnvoiCommunication()">
+            (click)="envoyerCommunication()">
             Envoyer
           </button>
         </div>
@@ -165,19 +165,10 @@
   </div>
 
 </div>
-<app-modal
-  #actionConfirmationModal
-  type="confirmation"
-  [message]="confirmationMessage"
-  confirmText="Confirmer l'action"
-  cancelText="Annuler"
-  (confirmed)="confirmAction()"
-  (dismissed)="pendingAction = null"
-></app-modal>
 
 <app-modal
   #successModal
   type="success"
   message=""
-  [width]="350"
+  [width]="400"
 ></app-modal>
